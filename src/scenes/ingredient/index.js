@@ -27,7 +27,7 @@ function ListIngredients() {
     IngredientService.deleteIngredient(id)
       .then(() => {
         setIngredients((prevIngredients) =>
-          prevIngredients.filter((ingredient) => ingredient.ingredient_id !== id)
+          prevIngredients.filter((ingredient) => ingredient.ingredientId !== id)
         );
         window.location.reload();
       })
@@ -49,17 +49,17 @@ function ListIngredients() {
   };
 
   const columns = [
-    { field: 'ingredient_id', headerName: 'ID'},
+    { field: 'ingredientId', headerName: 'ID'},
     { field: 'name', headerName: 'Name', flex: 1 },
     { field: 'description', headerName: 'Description', flex: 1 },
-    { field: 'unit_of_measurement', headerName: 'Unit of Measurement' },
-    { field: 'stock_quantity', headerName: 'Stock Quantity', type: 'number', flex: 1 },
-    { field: 'unit_price', headerName: 'Unit Price', type: 'number'},
+    { field: 'unitOfMeasurement', headerName: 'Unit of Measurement' },
+    { field: 'stockQuantity', headerName: 'Stock Quantity', type: 'number', flex: 1 },
+    { field: 'unitPrice', headerName: 'Unit Price', type: 'number'},
     {
       field: 'actions',
       headerName: 'Actions',
       flex: 1.5,
-      renderCell: ({ row: { ingredient_id } }) => (
+      renderCell: ({ row: {ingredientId } }) => (
         <Box
           width="60%"
           m="0 auto"
@@ -69,7 +69,7 @@ function ListIngredients() {
           borderRadius="4px"
         >
           <Button
-            onClick={() => editIngredient(ingredient_id)}
+            onClick={() => editIngredient(ingredientId)}
             variant="contained"
             color="primary"
             startIcon={<BrowserUpdatedIcon />}
@@ -78,7 +78,7 @@ function ListIngredients() {
             Update
           </Button>
           <Button
-            onClick={() => deleteIngredient(ingredient_id)}
+            onClick={() => deleteIngredient(ingredientId)}
             variant="contained"
             color="error"
             startIcon={<DeleteForeverIcon />}
@@ -87,7 +87,7 @@ function ListIngredients() {
             Delete
           </Button>
           <Button
-            onClick={() => viewIngredient(ingredient_id)}
+            onClick={() => viewIngredient(ingredientId)}
             variant="contained"
             color="primary"
             startIcon={<VisibilityIcon />}
@@ -101,13 +101,13 @@ function ListIngredients() {
   ];
 
   const rows = ingredients.map((ingredient) => ({
-    id: ingredient.ingredient_id,
-    ingredient_id: ingredient.ingredient_id,
+    id: ingredient.ingredientId,
+      ingredientId: ingredient.ingredientId,
     name: ingredient.name,
     description: ingredient.description,
-    unit_of_measurement: ingredient.unit_of_measurement,
-    stock_quantity: ingredient.stock_quantity,
-    unit_price: ingredient.unit_price,
+      unitOfMeasurement: ingredient.unitOfMeasurement,
+      stockQuantity: ingredient.stockQuantity,
+      unitPrice: ingredient.unitPrice,
   }));
 
   return (
