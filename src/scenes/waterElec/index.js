@@ -54,7 +54,7 @@ function ListWaterElec() {
   };
 
   const columns = [
-    { field: 'bill_N1um', headerName: 'Bill Number', flex: 1 },
+    { field: 'bill_Num', headerName: 'Bill Number', flex: 1 },
     { field: 'cost', headerName: 'Cost', type: 'number', flex: 1 },
     { field: 'water_elec', headerName: 'Water/Electricity', flex: 1 },
     { field: 'date', headerName: 'Date', type: 'date', flex: 1 },
