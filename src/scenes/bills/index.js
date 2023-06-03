@@ -33,7 +33,7 @@ function ListBills() {
     BillService.deleteBill(billNumber)
       .then(() => {
         setBills((prevBills) =>
-          prevBills.filter((bill) => bill.bill_number !== billNumber)
+          prevBills.filter((bill) => bill.billNumber !== billNumber)
         );
         window.location.reload();
       })
@@ -55,16 +55,16 @@ function ListBills() {
   };
 
   const columns = [
-    { field: 'bill_number', headerName: 'Bill Number', flex: 1 },
+    { field: 'billNumber', headerName: 'Bill Number', flex: 1 },
     { field: 'amount', headerName: 'Amount', type: 'number', flex: 1 },
     { field: 'date', headerName: 'Date', type: 'date', flex: 1 },
     { field: 'status', headerName: 'Status', flex: 1 },
-    { field: 'supplier_id', headerName: 'Supplier ID', type: 'number', flex: 1 },
+    { field: 'supplierId', headerName: 'Supplier ID', type: 'number', flex: 1 },
     {
       field: 'actions',
       headerName: 'Actions',
       flex: 1.5,
-      renderCell: ({ row: { bill_number } }) => (
+      renderCell: ({ row: { billNumber } }) => (
         <Box
           width="60%"
           m="0 auto"
@@ -74,7 +74,7 @@ function ListBills() {
           borderRadius="4px"
         >
           <Button
-            onClick={() => editBill(bill_number)}
+            onClick={() => editBill(billNumber)}
             variant="contained"
             color="primary"
             startIcon={<BrowserUpdatedIcon />}
@@ -83,7 +83,7 @@ function ListBills() {
             Update
           </Button>
           <Button
-            onClick={() => deleteBill(bill_number)}
+            onClick={() => deleteBill(billNumber)}
             variant="contained"
             color="error"
             startIcon={<DeleteForeverIcon />}
@@ -92,7 +92,7 @@ function ListBills() {
             Delete
           </Button>
           <Button
-            onClick={() => viewBill(bill_number)}
+            onClick={() => viewBill(billNumber)}
             variant="contained"
             color="primary"
             startIcon={<VisibilityIcon />}
@@ -106,12 +106,12 @@ function ListBills() {
   ];
 
   const rows = bills.map((bill) => ({
-    id: bill.bill_number,
-    bill_number: bill.bill_number,
+    id: bill.billNumber,
+    billNumber: bill.billNumber,
     amount: bill.amount,
-    date: bill.date,
+    date: new Date(bill.date),
     status: bill.status,
-    supplier_id: bill.supplier_id,
+    supplierId: bill.supplier.supplierId,
   }));
 
   return (
