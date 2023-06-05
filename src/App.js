@@ -21,7 +21,7 @@ import ListWaterElec from "./scenes/waterElec";
 import WaterElecForm from "./components/CreateOrUpdateWaterElec";
 import SupplierForm from "./components/CreateOrUpdateSupplier";
 import ProdFees from "./scenes/productionCost";
-import ProductionForm from "./components/ProdFees";
+import ProdFeesForm from "./components/ProdFeesForm";
 import LoginForm from "./scenes/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -69,7 +69,7 @@ function App() {
                   <Route path = "/edit-product/:id" element = {<SupplierForm />} />
 
                   <Route path = "/production_cost" element = {<ProdFees />} />
-                  <Route path = "/add-prod-cost/_add" element = {<ProductionForm />} />
+                  <Route path = "/add-prod-cost/_add" element = {<ProdFeesForm />} />
                   </Routes>
                 </main>
             </div>

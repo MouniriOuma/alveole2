@@ -22,6 +22,11 @@ class IngredientService {
   deleteIngredient(ingredientId) {
     return axios.delete(INGREDIENT_API_BASE_URL + '/' + ingredientId);
   }
+
+  updateIngredientStock(ingredientId, quantity) {
+    return axios.put(INGREDIENT_API_BASE_URL + '/' + ingredientId + '/stock' + '/' + quantity);
+  }
+
 }
 
 export default new IngredientService();
