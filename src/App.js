@@ -29,6 +29,7 @@ import ProductForm from "./components/CreateOrUpdateProduct";
 import ViewProduct from "./scenes/product/ViewProduct";
 import ViewSupplier from "./scenes/suppliers/ViewSupplier";
 import ViewClient from "./scenes/clients/ViewClient";
+import ViewIngredient from "./scenes/ingredient/ViewIngredient";
 
 
 function App() {
@@ -65,7 +66,8 @@ function App() {
                   <Route path = "/ingredients" element = {<ListIngredients />} />
                   <Route path = "/add-ingredient/:id" element = {<IngredientForm />} />
                   <Route path = "/edit-ingredient/:id" element = {<IngredientForm />} />
-                {/* Bill */}
+                  <Route path = "/view-ingredient/:id" element = {<ViewIngredient />} />
+                  {/* Bill */}
                   <Route path = "/bills" element = {<ListBills />} />
                   <Route path = "/add-bill/:id" element = {<BillForm />} />
                   <Route path = "/edit-bill/:id" element = {<BillForm />} />
