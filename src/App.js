@@ -28,6 +28,7 @@ import ListProdCost from "./scenes/productionCost";
 import ProductForm from "./components/CreateOrUpdateProduct";
 import ViewProduct from "./scenes/product/ViewProduct";
 import ViewSupplier from "./scenes/suppliers/ViewSupplier";
+import ViewClient from "./scenes/clients/ViewClient";
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
                   <Route path = "/clients" element = {<ListClients />} />
                   <Route path = "/add-client/:id" element = {<ClientForm />} />
                   <Route path = "/edit-client/:id" element = {<ClientForm />} />
+                  <Route path = "/view-client/:id" element = {<ViewClient />} />
                 {/* Calendar */}
                   <Route path = "/calendar" element = {<Calendar />} />
                 {/* User */}
