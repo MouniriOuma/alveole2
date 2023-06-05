@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
-import ProductService from "../services/ProductService";
+import ProductionCostService from "../services/ProductionCostService";
 import IngredientService from "../services/IngredientService";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
@@ -64,9 +64,27 @@ const ProdFeesForm = () => {
                 stockQuantity: updatedStockQuantity,
             };
         });
+        console.log("Updated Ingredients:", updatedIngredients);
+
 
         console.log("Production Cost: $", productionCost);
-        console.log("Updated Ingredients:", updatedIngredients);
+
+
+            // Save production cost to the table
+            const currentDate = new Date().toISOString().split('T')[0];
+            const productionCostEntry = {
+                cost: productionCost,
+                date: currentDate,
+            };
+            ProductionCostService.createProductionCost(productionCostEntry)
+                .then(() => {
+                    console.log("Production cost saved successfully!");
+                })
+                .catch((error) => {
+                    console.error("Error saving production cost:", error);
+                });
+
+
     };
 
     const validationSchema = yup.object().shape({
