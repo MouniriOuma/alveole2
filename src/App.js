@@ -41,28 +41,38 @@ function App() {
             <main className="content">
               <Topbar setIsSidebar={setIsSidebar} /> {/* Always show the Topbar */}
               <Routes>
-                <Route path="/" element={<LoginForm />} />
-                <Route path="/Dashboard" element={<Dashboard />} />
+                {/* login */}
+                  <Route path="/" element={<LoginForm />} />
+                {/* Dashbord */}
+                  <Route path="/Dashboard" element={<Dashboard />} />
+                {/* Client */}
                   <Route path = "/clients" element = {<ListClients />} />
                   <Route path = "/add-client/:id" element = {<ClientForm />} />
                   <Route path = "/edit-client/:id" element = {<ClientForm />} />
+                {/* Calendar */}
                   <Route path = "/calendar" element = {<Calendar />} />
+                {/* User */}
                   <Route path = "/users" element = {<ListUsers />} />
                   <Route path = "/add-user/:id" element = {<UserForm />} />
                   <Route path = "/add-user/_add" element = {<UserForm />} />
                   <Route path = "/edit-user/:id" element = {<UserForm />} />
+                {/* Ingredient */}
                   <Route path = "/ingredients" element = {<ListIngredients />} />
                   <Route path = "/add-ingredient/:id" element = {<IngredientForm />} />
                   <Route path = "/edit-ingredient/:id" element = {<IngredientForm />} />
+                {/* Bill */}
                   <Route path = "/bills" element = {<ListBills />} />
                   <Route path = "/add-bill/:id" element = {<BillForm />} />
                   <Route path = "/edit-bill/:id" element = {<BillForm />} />
+                {/* Water / electricity */}
                   <Route path = "/waterElecs" element = {<ListWaterElec />} />
                   <Route path = "/add-waterElecs/:id" element = {<WaterElecForm />} />
                   <Route path = "/edit-waterElecs/:id" element = {<WaterElecForm />} />
+                {/* Supplier */}
                   <Route path = "/suppliers" element = {<ListSuppliers />} />
                   <Route path = "/add-supplier/:id" element = {<SupplierForm />} />
                   <Route path = "/edit-supplier/:id" element = {<SupplierForm />} />
+                {/* Product */}
                   <Route path = "/products" element = {<ListProducts />} />
                   <Route path = "/add-product/:id" element = {<SupplierForm />} />
                   <Route path = "/edit-product/:id" element = {<SupplierForm />} />
