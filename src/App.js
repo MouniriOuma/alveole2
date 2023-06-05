@@ -4,6 +4,8 @@ import {Route, Routes} from "react-router-dom";
 import Topbar from './scenes/base/Topbar';
 import Sidebar from "./scenes/base/Sidebar";
 import Dashboard from "./scenes/dashboard";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import {ColorModeContext, useMode} from "./theme";
 import ListClients from "./scenes/clients";
@@ -20,11 +22,9 @@ import BillForm from "./components/CreateOrUpdateBill";
 import ListWaterElec from "./scenes/waterElec";
 import WaterElecForm from "./components/CreateOrUpdateWaterElec";
 import SupplierForm from "./components/CreateOrUpdateSupplier";
-import ProdFees from "./scenes/productionCost";
-import ProdFeesForm from "./components/ProdFeesForm";
+import ProdCostForm from "./components/ProdCostForm";
 import LoginForm from "./scenes/Login";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import ListProdCost from "./scenes/productionCost";
 
 
 function App() {
@@ -43,7 +43,6 @@ function App() {
               <Routes>
                 <Route path="/" element={<LoginForm />} />
                 <Route path="/Dashboard" element={<Dashboard />} />
-                    {/* ... Other routes */}
                   <Route path = "/clients" element = {<ListClients />} />
                   <Route path = "/add-client/:id" element = {<ClientForm />} />
                   <Route path = "/edit-client/:id" element = {<ClientForm />} />
@@ -67,9 +66,8 @@ function App() {
                   <Route path = "/products" element = {<ListProducts />} />
                   <Route path = "/add-product/:id" element = {<SupplierForm />} />
                   <Route path = "/edit-product/:id" element = {<SupplierForm />} />
-
-                  <Route path = "/production_cost" element = {<ProdFees />} />
-                  <Route path = "/add-prod-cost/_add" element = {<ProdFeesForm />} />
+                  <Route path = "/production_cost" element = {<ListProdCost />} />
+                  <Route path = "/add-prod-cost/_add" element = {<ProdCostForm />} />
                   </Routes>
                 </main>
             </div>
