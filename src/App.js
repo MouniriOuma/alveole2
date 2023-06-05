@@ -30,6 +30,7 @@ import ViewProduct from "./scenes/product/ViewProduct";
 import ViewSupplier from "./scenes/suppliers/ViewSupplier";
 import ViewClient from "./scenes/clients/ViewClient";
 import ViewIngredient from "./scenes/ingredient/ViewIngredient";
+import ViewBill from "./scenes/bills/ViewBill";
 
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
                   <Route path = "/bills" element = {<ListBills />} />
                   <Route path = "/add-bill/:id" element = {<BillForm />} />
                   <Route path = "/edit-bill/:id" element = {<BillForm />} />
+                  <Route path = "/view-bill/:id" element = {<ViewBill />} />
                 {/* Water / electricity */}
                   <Route path = "/waterElecs" element = {<ListWaterElec />} />
                   <Route path = "/add-waterElecs/:id" element = {<WaterElecForm />} />
