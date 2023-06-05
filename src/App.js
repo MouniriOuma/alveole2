@@ -25,6 +25,8 @@ import SupplierForm from "./components/CreateOrUpdateSupplier";
 import ProdCostForm from "./components/ProdCostForm";
 import LoginForm from "./scenes/Login";
 import ListProdCost from "./scenes/productionCost";
+import ProductForm from "./components/CreateOrUpdateProduct";
+import ViewProduct from "./scenes/product/ViewProduct";
 
 
 function App() {
@@ -74,8 +76,10 @@ function App() {
                   <Route path = "/edit-supplier/:id" element = {<SupplierForm />} />
                 {/* Product */}
                   <Route path = "/products" element = {<ListProducts />} />
-                  <Route path = "/add-product/:id" element = {<SupplierForm />} />
-                  <Route path = "/edit-product/:id" element = {<SupplierForm />} />
+                  <Route path = "/add-product/:id" element = {<ProductForm />} />
+                  <Route path = "/edit-product/:id" element = {<ProductForm />} />
+                  <Route path = "/view-product/:id" element = {<ViewProduct />} />
+                {/* Production cost */}
                   <Route path = "/production_cost" element = {<ListProdCost />} />
                   <Route path = "/add-prod-cost/_add" element = {<ProdCostForm />} />
                   </Routes>
