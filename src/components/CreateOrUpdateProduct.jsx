@@ -61,7 +61,7 @@ const ProductForm = () => {
     }
   };
 
-  const validationSchema = yup.object().shape({
+  const checkoutSchema = yup.object().shape({
     description: yup.string().required('Description is required'),
     productName: yup.string().required('Product Name is required'),
     quantity: yup
