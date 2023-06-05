@@ -139,7 +139,7 @@ const rows = clients.map((client) => ({
       </Button>
       <Box
         m="40px 0 0 0"
-        height="75vh"
+        height="60vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",

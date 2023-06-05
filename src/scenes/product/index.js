@@ -28,7 +28,7 @@ function ListProducts() {
     ProductService.deleteProduct(id)
       .then(() => {
         setProducts((prevProducts) =>
-          prevProducts.filter((product) => product.product_id !== id)
+          prevProducts.filter((product) => product.productId !== id)
         );
         window.location.reload();
       })
@@ -123,7 +123,7 @@ function ListProducts() {
       </Button>
       <Box
         m="40px 0 0 0"
-        height="75vh"
+        height="60vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
