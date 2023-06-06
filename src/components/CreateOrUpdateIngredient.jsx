@@ -7,14 +7,29 @@ import { Formik } from 'formik';
 import Header from "../scenes/base/Header";
 import IngredientService from '../services/IngredientService';
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { Grid } from '@mui/material';
+import SupplierService from "../services/SupplierService";
+import { MenuItem, InputLabel, Select } from '@mui/material';
+
+
 
 function IngredientForm() {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  
+
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [supplierList, setSupplierList] = useState([]);
+
   useEffect(() => {
+    SupplierService.getSuppliers()
+        .then((res) => {
+          setSupplierList(res.data);
+        })
+        .catch((error) => {
+          console.log('Error fetching suppliers:', error);
+        });
+
     if (id === '_add') {
       return;
     } else {
@@ -22,11 +37,11 @@ function IngredientForm() {
         let ingredient = res.data;
         setIngredientName(ingredient.name);
         setDescription(ingredient.description);
-        setMaxQuantity(ingredient.max_quantity);
-        setStockQuantity(ingredient.stock_quantity);
-        setUnitOfMeasurement(ingredient.unit_of_measurement);
-        setUnitPrice(ingredient.unit_price);
-        setSupplierId(ingredient.supplier_id);
+        setMaxQuantity(ingredient.maxQuantity);
+        setStockQuantity(ingredient.stockQuantity);
+        setUnitOfMeasurement(ingredient.unitOfMeasurement);
+        setUnitPrice(ingredient.unitPrice);
+        setSupplierId(ingredient.supplierId);
       });
     }
   }, [id]);
@@ -55,46 +70,84 @@ function IngredientForm() {
   };
 
   const saveOrUpdateIngredient = (values) => {
-    const ingredient = {
-      name: values.ingredientName,
-      description: values.description,
-      max_quantity: values.maxQuantity,
-      stock_quantity: values.stockQuantity,
-      unit_of_measurement: values.unitOfMeasurement,
-      unit_price: values.unitPrice,
-      supplier_id: values.supplierId,
-    };
+    const {
+      ingredientName,
+      description,
+      maxQuantity,
+      stockQuantity,
+      unitOfMeasurement,
+      unitPrice,
+      supplierId
+    } = values;
 
-    console.log('ingredient => ' + JSON.stringify(ingredient));
-
-    if (id === '_add') {
-      IngredientService.createIngredient(ingredient)
-        .then((res) => {
-          navigate('/ingredients');
-        })
-        .catch((error) => {
-          console.log('Error creating ingredient:', error);
-        });
-    } else {
-      IngredientService.updateIngredient(ingredient, id)
-        .then((res) => {
-          navigate('/ingredients');
-        })
-        .catch((error) => {
-          console.log('Error updating ingredient:', error);
-        });
+    if (
+        ingredientName === '' &&
+        description === '' &&
+        maxQuantity === 0 &&
+        stockQuantity === 0 &&
+        unitOfMeasurement === '' &&
+        unitPrice === 0 &&
+        supplierId === 0
+    ) {
+      console.log("All values are empty, skipping saveOrUpdateIngredient");
+      return;
     }
-  };
 
+    SupplierService.getSupplierById(supplierId)
+        .then((supplierResponse) => {
+          const supplier = supplierResponse.data;
+
+          const ingredient = {
+            name: ingredientName,
+            description,
+            maxQuantity,
+            stockQuantity,
+            unitOfMeasurement,
+            unitPrice,
+            supplier: {
+              supplierId: supplierId,
+              address: supplier.address || '', // Use the address value from the supplier
+              contact: supplier.contact || '', // Use the contact value from the supplier
+              email: supplier.email || '', // Use the email value from the supplier
+              suppliedProduct: supplier.suppliedProduct || null, // Use the suppliedProduct value from the supplier
+              cin: supplier.cin || '', // Use the cin value from the supplier
+              firstName: supplier.firstName || '', // Use the firstName value from the supplier
+              lastName: supplier.lastName || '', // Use the lastName value from the supplier
+              ice: supplier.ice || 0 // Use the ice value from the supplier
+            }
+          };
+
+          if (id === '_add') {
+            IngredientService.createIngredient(ingredient)
+                .then(() => {
+                  navigate('/ingredients');
+                })
+                .catch((error) => {
+                  console.log('Error creating ingredient:', error);
+                });
+          } else {
+            IngredientService.updateIngredient(ingredient, id)
+                .then(() => {
+                  navigate('/ingredients');
+                })
+                .catch((error) => {
+                  console.log('Error updating ingredient:', error);
+                });
+          }
+        })
+        .catch((error) => {
+          console.log('Error fetching supplier:', error);
+        });
+  };
   const cancel = () => {
     navigate('/ingredients');
   };
 
   const getTitle = () => {
     if (id === '_add') {
-      return <span className="text-center">Add Ingredient</span>;
+      return <span className="text-center">Add ingredient</span>;
     } else {
-      return <span className="text-center">Update Ingredient</span>;
+      return <span className="text-center">Update ingredient</span>;
     }
   };
 
@@ -106,140 +159,129 @@ function IngredientForm() {
     }
   };
 
-  const [formValues, setFormValues] = useState(null) 
-  
+  const [formValues, setFormValues] = useState(null)
+
   return (
-    <Box m="20px">
-      <Header title={getTitle()} subtitle={getSubTitle()} />
+      <Box m="20px">
+        <Header title={getTitle()} subtitle={getSubTitle()} />
 
-      <Formik
-        onSubmit={handleFormSubmit}
-        initialValues={formValues || initialValues}
-        validationSchema={checkoutSchema}
-        enableReinitialize
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <Box
-              display="grid"
-              gap="30px"
-              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-              sx={{
-                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-              }}
-            >
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Ingredient Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.ingredientName}
-                name="ingredientName"
-                error={touched.ingredientName && !!errors.ingredientName}
-                helperText={touched.ingredientName && errors.ingredientName}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Description"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.description}
-                name="description"
-                error={touched.description && !!errors.description}
-                helperText={touched.description && errors.description}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="number"
-                label="Max Quantity"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.maxQuantity}
-                name="maxQuantity"
-                error={touched.maxQuantity && !!errors.maxQuantity}
-                helperText={touched.maxQuantity && errors.maxQuantity}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="number"
-                label="Stock Quantity"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.stockQuantity}
-                name="stockQuantity"
-                error={touched.stockQuantity && !!errors.stockQuantity}
-                helperText={touched.stockQuantity && errors.stockQuantity}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Unit of Measurement"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.unitOfMeasurement}
-                name="unitOfMeasurement"
-                error={touched.unitOfMeasurement && !!errors.unitOfMeasurement}
-                helperText={touched.unitOfMeasurement && errors.unitOfMeasurement}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="number"
-                label="Unit Price"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.unitPrice}
-                name="unitPrice"
-                error={touched.unitPrice && !!errors.unitPrice}
-                helperText={touched.unitPrice && errors.unitPrice}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="number"
-                label="Supplier ID"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.supplierId}
-                name="supplierId"
-                error={touched.supplierId && !!errors.supplierId}
-                helperText={touched.supplierId && errors.supplierId}
-                sx={{ gridColumn: "span 2" }}
-              />
-            </Box>
+        <Formik
+            initialValues={initialValues}
+            onSubmit={handleFormSubmit}
+            validationSchema={checkoutSchema}
+            enableReinitialize
+        >
+          {({ values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue }) => (
+              <Box component="form" onSubmit={handleSubmit} display="flex" flexDirection="column" gap="20px">
+                <TextField
+                    fullWidth
+                    variant="filled"
+                    label="Ingredient Name"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.ingredientName}
+                    name="ingredientName"
+                    error={touched.ingredientName && !!errors.ingredientName}
+                    helperText={touched.ingredientName && errors.ingredientName}
+                />
+                <TextField
+                    fullWidth
+                    variant="filled"
+                    label="Description"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.description}
+                    name="description"
+                    error={touched.description && !!errors.description}
+                    helperText={touched.description && errors.description}
+                />
+                <TextField
+                    fullWidth
+                    variant="filled"
+                    type="number"
+                    label="Max Quantity"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.maxQuantity}
+                    name="maxQuantity"
+                    error={touched.maxQuantity && !!errors.maxQuantity}
+                    helperText={touched.maxQuantity && errors.maxQuantity}
+                />
+                <TextField
+                    fullWidth
+                    variant="filled"
+                    type="number"
+                    label="Stock Quantity"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.stockQuantity}
+                    name="stockQuantity"
+                    error={touched.stockQuantity && !!errors.stockQuantity}
+                    helperText={touched.stockQuantity && errors.stockQuantity}
+                />
+                <TextField
+                    fullWidth
+                    variant="filled"
+                    label="Unit of Measurement"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.unitOfMeasurement}
+                    name="unitOfMeasurement"
+                    error={touched.unitOfMeasurement && !!errors.unitOfMeasurement}
+                    helperText={touched.unitOfMeasurement && errors.unitOfMeasurement}
+                />
+                <TextField
+                    fullWidth
+                    variant="filled"
+                    type="number"
+                    label="Unit Price"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.unitPrice}
+                    name="unitPrice"
+                    error={touched.unitPrice && !!errors.unitPrice}
+                    helperText={touched.unitPrice && errors.unitPrice}
+                />
 
-            <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
-                Save
-              </Button>
-              <Button onClick={cancel} color="error" variant="contained" style={{ marginLeft: '10px' }}>
-                Cancel
-              </Button>
-            </Box>
-          </form>
-        )}
-      </Formik>
-    </Box>
+                {/* here the supplier text fie ld */}
+
+                <TextField
+                    fullWidth
+                    variant="filled"
+                    type="number"
+                    label="Supplier"
+                    onBlur={handleBlur}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setFieldValue('supplierId', e.target.value);
+                    }}
+                    value={values.supplierId}
+                    name="supplierId"
+                    error={touched.supplierId && !!errors.supplierId}
+                    helperText={touched.supplierId && errors.supplierId}
+                    select
+                >
+                  {supplierList.map((supplier) => (
+                      <MenuItem key={supplier.supplierId} value={supplier.supplierId}>
+                        {supplier.businessName ? supplier.businessName : `${supplier.firstName} ${supplier.lastName}`}
+                      </MenuItem>
+                  ))}
+                </TextField>
+
+
+
+                <Box display="flex" justifyContent="end" gap="10px">
+                  <Button type="submit" variant="contained" color="secondary">
+                    Save
+                  </Button>
+                  <Button variant="contained" color="error" onClick={cancel}>
+                    Cancel
+                  </Button>
+                </Box>
+              </Box>
+          )}
+        </Formik>
+      </Box>
   );
 }
 
