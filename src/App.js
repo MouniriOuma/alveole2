@@ -93,6 +93,7 @@ function App() {
                 {/* Production cost */}
                   <Route path = "/production_cost" element = {<ListProdCost />} />
                   <Route path = "/add-prod-cost/_add" element = {<ProdCostForm />} />
+                  <Route path = "/view-production-cost/:id" element = {<ViewProductionCost />} />
                   </Routes>
                 </main>
             </div>
