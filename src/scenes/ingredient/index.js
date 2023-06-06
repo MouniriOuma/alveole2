@@ -50,12 +50,13 @@ function ListIngredients() {
   };
 
   const columns = [
-    { field: 'ingredientId', headerName: 'ID'},
+   // { field: 'ingredientId', headerName: 'ID'},
     { field: 'name', headerName: 'Name', flex: 1 },
-    { field: 'description', headerName: 'Description', flex: 1 },
-    { field: 'unitOfMeasurement', headerName: 'Unit of Measurement' },
     { field: 'stockQuantity', headerName: 'Stock Quantity', type: 'number', flex: 1 },
-    { field: 'unitPrice', headerName: 'Unit Price', type: 'number'},
+    { field: 'unitOfMeasurement', headerName: 'Unit of Measurement', flex: 1  },
+    { field: 'unitPrice', headerName: 'Unit Price', type: 'number', flex: 1 },
+    { field: 'description', headerName: 'Description', flex: 1 },
+    { field: 'supplier', headerName: 'Supplier', flex: 1 },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -92,17 +93,19 @@ function ListIngredients() {
     },
   ];
 
-  const rows = ingredients.map((ingredient) => ({
-    id: ingredient.ingredientId,
-      ingredientId: ingredient.ingredientId,
-    name: ingredient.name,
-    description: ingredient.description,
-      unitOfMeasurement: ingredient.unitOfMeasurement,
-      stockQuantity: ingredient.stockQuantity,
-      unitPrice: ingredient.unitPrice,
-  }));
+    const rows = ingredients.map((ingredient) => ({
+        id: ingredient.ingredientId,
+        ingredientId: ingredient.ingredientId,
+        name: ingredient.name,
+        description: ingredient.description,
+        unitOfMeasurement: ingredient.unitOfMeasurement,
+        stockQuantity: ingredient.stockQuantity,
+        unitPrice: ingredient.unitPrice,
+        supplier: ingredient.supplier.businessName || `${ingredient.supplier.firstName} ${ingredient.supplier.lastName}`,
+    }));
 
-  return (
+
+    return (
     <Box m="20px">
       <Header title="INGREDIENTS" subtitle="All ingredients" />
       <Button 
