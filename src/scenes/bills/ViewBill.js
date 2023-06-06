@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import { Grid } from '@mui/material';
 import BillService from '../../services/BillService';
 import Header from "../base/Header";
-import BrowserUpdatedIcon from "@mui/icons-material/BrowserUpdated";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { tokens } from "../../theme";
@@ -94,7 +94,7 @@ export default function ViewBill() {
                         <Button
                             variant="contained"
                             color="secondary"
-                            startIcon={<BrowserUpdatedIcon />}
+                            startIcon={<BorderColorIcon />}
                             onClick={() => editBill(id)}
                         >
                             Edit

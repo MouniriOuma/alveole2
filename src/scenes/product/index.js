@@ -5,9 +5,10 @@ import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../base/Header";
-import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 
@@ -51,51 +52,42 @@ function ListProducts() {
   };
 
   const columns = [
-    { field: 'productId', headerName: 'Product ID' },
+  // { field: 'productId', headerName: 'Product ID' },
     { field: 'productName', headerName: 'Product Name', flex: 1 },
     { field: 'description', headerName: 'Description', flex: 1 },
     { field: 'quantity', headerName: 'Quantity' },
     {
       field: 'actions',
       headerName: 'Actions',
-      flex: 1.5,
+      flex: 1,
       renderCell: ({ row: { productId } }) => (
-        <Box
-          width="60%"
-          m="0 auto"
-          p="5px"
-          display="flex"
-          justifyContent="center"
-          borderRadius="4px"
-        >
-          <Button
-            onClick={() => editProduct(productId)}
-            variant="contained"
-            color="primary"
-            startIcon={<BrowserUpdatedIcon />}
-            sx={{ marginRight: '10px' }}
+          <Box
+              width="60%"
+              m="0 auto"
+              p="5px"
+              display="flex"
+              justifyContent="center"
+              borderRadius="4px"
           >
-            Update
-          </Button>
-          <Button
-            onClick={() => deleteProduct(productId)}
-            variant="contained"
-            color="error"
-            startIcon={<DeleteForeverIcon />}
-            sx={{ marginRight: '10px' }}
-          >
-            Delete
-          </Button>
-          <Button
-            onClick={() => viewProduct(productId)}
-            variant="contained"
-            color="primary"
-            startIcon={<VisibilityIcon />}
-            sx={{ marginRight: '10px' }}
-          >
-            View
-          </Button>
-        </Box>
+              <Box sx={{ background: colors.blueAccent[700], borderRadius: '10%', marginRight: '10px' }}>
+                  <IconButton aria-label="update" size="small" onClick={() => editProduct(productId)}>
+                      <BorderColorIcon fontSize="inherit" />
+                  </IconButton>
+              </Box>
+
+              <Box sx={{ background: colors.redAccent[700], borderRadius: '10%', marginRight: '10px' }}>
+                  <IconButton aria-label="delete" size="small" onClick={() => deleteProduct(productId)}>
+                      <DeleteForeverIcon fontSize="inherit" />
+                  </IconButton>
+              </Box>
+
+              <Box sx={{ background: colors.greenAccent[500], borderRadius: '10%', marginRight: '10px' }}>
+                  <IconButton aria-label="view" size="small" onClick={() => viewProduct(productId)}>
+                      <VisibilityIcon fontSize="inherit" />
+                  </IconButton>
+              </Box>
+          </Box>
+
       ),
     },
   ];

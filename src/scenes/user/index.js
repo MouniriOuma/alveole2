@@ -4,7 +4,7 @@ import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../base/Header";
-import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AddIcon from '@mui/icons-material/Add';
@@ -70,7 +70,7 @@ function ListUsers() {
             onClick={() => editUser(id)}
             variant="contained"
             color="primary"
-            startIcon={<BrowserUpdatedIcon />}
+            startIcon={<BorderColorIcon />}
             sx={{ marginRight: '10px' }}
           >
             Update

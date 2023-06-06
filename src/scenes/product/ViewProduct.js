@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import { Grid } from '@mui/material';
 import ProductService from '../../services/ProductService';
 import Header from "../base/Header";
-import BrowserUpdatedIcon from "@mui/icons-material/BrowserUpdated";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { tokens } from "../../theme";
@@ -86,7 +86,7 @@ export default function ViewProduct() {
                         <Button
                             variant="contained"
                             color="secondary"
-                            startIcon={<BrowserUpdatedIcon />}
+                            startIcon={<BorderColorIcon />}
                             onClick={() => editProduct(id)}
                         >
                             Edit
