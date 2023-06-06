@@ -54,16 +54,16 @@ function ListSuppliers() {
   };
 
   const columns = [
-    { field: 'supplierId', headerName: 'Supplier ID' },
+    //{ field: 'supplierId', headerName: 'Supplier ID' },
+    { field: 'businessName', headerName: 'Business Name', flex: 1 },
+    { field: 'ice', headerName: 'ICE' },
+    { field: 'firstName', headerName: 'First Name', flex: 1 },
+    { field: 'lastName', headerName: 'Last Name', flex: 1 },
+    { field: 'cin', headerName: 'CIN', flex: 1 },
     { field: 'address', headerName: 'Address', flex: 1 },
     { field: 'contact', headerName: 'Contact', flex: 1 },
     { field: 'email', headerName: 'Email', flex: 1 },
     { field: 'suppliedProduct', headerName: 'Supplied Product', flex: 1 },
-    { field: 'cin', headerName: 'CIN', flex: 1 },
-    { field: 'firstName', headerName: 'First Name', flex: 1 },
-    { field: 'lastName', headerName: 'Last Name', flex: 1 },
-    { field: 'ice', headerName: 'ICE' },
-    { field: 'businessName', headerName: 'Business Name', flex: 1 },
     {
       field: 'actions',
       headerName: 'Actions',
