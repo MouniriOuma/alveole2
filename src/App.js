@@ -63,7 +63,7 @@ function App() {
                 {/* User */}
                   <Route path = "/users" element = {<ListUsers />} />
                   <Route path = "/add-user/:id" element = {<UserForm />} />
-                  <Route path = "/add-user/_add" element = {<UserForm />} />
+                  <Route path = "/add-user/:id" element = {<UserForm />} />
                   <Route path = "/edit-user/:id" element = {<UserForm />} />
                 {/* Ingredient */}
                   <Route path = "/ingredients" element = {<ListIngredients />} />

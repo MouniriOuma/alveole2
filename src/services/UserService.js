@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const USER_API_BASE_URL = "http://localhost:8081/users";
+const CREATE_USER_API_BASE_URL = "http://localhost:8081/api/auth";
 
 class UserService {
   getUsers() {
@@ -9,6 +10,10 @@ class UserService {
 
   createUser(user) {
     return axios.post(USER_API_BASE_URL, user);
+  }
+
+  registerUser(user) {
+    return axios.post(CREATE_USER_API_BASE_URL + '/signup', user);
   }
 
   getUserById(userId) {

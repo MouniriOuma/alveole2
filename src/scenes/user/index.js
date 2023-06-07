@@ -10,15 +10,17 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import UserService from '../../services/UserService'
+import IconButton from "@mui/material/IconButton";
 
 function ListUsers() {
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const [users, setUsers] = React.useState([]);
 
   React.useEffect(() => {
     UserService.getUsers().then((res) => {
       setUsers(res.data);
+      console.log("data : ", res.data);
     });
   }, []);
 
@@ -26,14 +28,14 @@ function ListUsers() {
 
   const deleteUser = (id) => {
     UserService.deleteUser(id)
-      .then(() => {
-        setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
-        window.location.reload();
-      })
-      .catch((error) => {
-        // Handle the error here
-        console.log('Error deleting user:', error);
-      });
+        .then(() => {
+          setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+          window.location.reload();
+        })
+        .catch((error) => {
+          // Handle the error here
+          console.log('Error deleting user:', error);
+        });
   };
 
   const viewUser = (id) => {
@@ -49,51 +51,41 @@ function ListUsers() {
   };
 
   const columns = [
-    { field: 'id', headerName: 'ID' },
+    // { field: 'id', headerName: 'ID' },
     { field: 'username', headerName: 'Username', flex: 1 },
-    { field: 'password', headerName: 'Password', flex: 1 },
-    { field: 'user_type', headerName: 'User Type', flex: 1 },
+    { field: 'email', headerName: 'Email', flex: 1 },
+    { field: 'roles', headerName: 'User role', flex: 1 },
     {
       field: 'actions',
       headerName: 'Actions',
-      flex: 1.5,
+      flex: 1,
       renderCell: ({ row: { id } }) => (
-        <Box
-          width="60%"
-          m="0 auto"
-          p="5px"
-          display="flex"
-          justifyContent="center"
-          borderRadius="4px"
-        >
-          <Button
-            onClick={() => editUser(id)}
-            variant="contained"
-            color="primary"
-            startIcon={<BorderColorIcon />}
-            sx={{ marginRight: '10px' }}
+          <Box
+              width="60%"
+              m="0 auto"
+              p="5px"
+              display="flex"
+              justifyContent="center"
+              borderRadius="4px"
           >
-            Update
-          </Button>
-          <Button
-            onClick={() => deleteUser(id)}
-            variant="contained"
-            color="error"
-            startIcon={<DeleteForeverIcon />}
-            sx={{ marginRight: '10px' }}
-          >
-            Delete
-          </Button>
-          <Button
-            onClick={() => viewUser(id)}
-            variant="contained"
-            color="primary"
-            startIcon={<VisibilityIcon />}
-            sx={{ marginRight: '10px' }}
-          >
-            View
-          </Button>
-        </Box>
+            <Box sx={{ background: colors.blueAccent[700], borderRadius: '10%', marginRight: '10px' }}>
+              <IconButton aria-label="update" size="small" onClick={() => editUser(id)}>
+                <BorderColorIcon fontSize="inherit" />
+              </IconButton>
+            </Box>
+
+            <Box sx={{ background: colors.redAccent[700], borderRadius: '10%', marginRight: '10px' }}>
+              <IconButton aria-label="delete" size="small" onClick={() => deleteUser(id)}>
+                <DeleteForeverIcon fontSize="inherit" />
+              </IconButton>
+            </Box>
+
+            <Box sx={{ background: colors.greenAccent[500], borderRadius: '10%', marginRight: '10px' }}>
+              <IconButton aria-label="view" size="small" onClick={() => viewUser(id)}>
+                <VisibilityIcon fontSize="inherit" />
+              </IconButton>
+            </Box>
+          </Box>
       ),
     },
   ];
@@ -101,8 +93,8 @@ function ListUsers() {
   const rows = users.map((user) => ({
     id: user.id,
     username: user.username,
-    password: user.password,
-    user_type: user.user_type,
+    email: user.email,
+    roles: user.roles.map(role => role.name).join(" "),
   }));
 
   return (
