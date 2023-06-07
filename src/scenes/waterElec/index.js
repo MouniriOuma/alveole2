@@ -21,6 +21,7 @@ function ListWaterElec() {
     WaterElecService.getWaterElec()
       .then((res) => {
         setWaterElec(res.data);
+          console.log('waterElec => ' + JSON.stringify(res.data));
       })
       .catch((error) => {
         console.log('Error retrieving water/electricity bills:', error);
