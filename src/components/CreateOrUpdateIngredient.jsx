@@ -21,6 +21,7 @@ function IngredientForm() {
 
   const [supplierList, setSupplierList] = useState([]);
 
+
   useEffect(() => {
     SupplierService.getSuppliers()
         .then((res) => {
@@ -41,7 +42,7 @@ function IngredientForm() {
         setStockQuantity(ingredient.stockQuantity);
         setUnitOfMeasurement(ingredient.unitOfMeasurement);
         setUnitPrice(ingredient.unitPrice);
-        setSupplierId(ingredient.supplierId);
+        setSupplierId(ingredient.supplier.supplierId);
       });
     }
   }, [id]);
@@ -243,7 +244,7 @@ function IngredientForm() {
                     helperText={touched.unitPrice && errors.unitPrice}
                 />
 
-                {/* here the supplier text fie ld */}
+                {/* here the supplier text field */}
 
                 <TextField
                     fullWidth
@@ -262,11 +263,18 @@ function IngredientForm() {
                     select
                 >
                   {supplierList.map((supplier) => (
-                      <MenuItem key={supplier.supplierId} value={supplier.supplierId}>
-                        {supplier.businessName ? supplier.businessName : `${supplier.firstName} ${supplier.lastName}`}
+                      <MenuItem
+                          key={supplier.supplierId}
+                          value={supplier.supplierId}
+                          selected={supplier.supplierId === values.supplierId}
+                      >
+                        {supplier.businessName
+                            ? supplier.businessName
+                            : `${supplier.firstName} ${supplier.lastName}`}
                       </MenuItem>
                   ))}
                 </TextField>
+
 
 
 
