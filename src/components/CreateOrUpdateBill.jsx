@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Box, TextField, Button } from '@mui/material';
+import { Box, TextField, Button, MenuItem, InputAdornment } from '@mui/material';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../scenes/base/Header";
 import BillService from '../services/BillService';
+import SupplierService from '../services/SupplierService';
+import { parseISO, formatISO } from 'date-fns';
 
 const BillForm = () => {
     const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -13,200 +15,281 @@ const BillForm = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-  useEffect(() => {
-    if (id === '_add') {
-      return;
-    } else {
-      BillService.getBillById(id).then((res) => {
-          let bill = res.data;
-          setAmount(bill.amount);
-          setDate(bill.date);
-          setStatus(bill.status);
-          setSupplierId(bill.supplier_id);
-        })
-        .catch((error) => {
-          console.log('Error retrieving bill:', error);
-        });
-    }
-  }, [id]);
+    const [supplierList, setSupplierList] = useState([]);
 
-  const [amount, setAmount] = useState('');
-  const [date, setDate] = useState('');
-  const [status, setStatus] = useState('');
-  const [supplierId, setSupplierId] = useState('');
+    useEffect(() => {
+        SupplierService.getSuppliers()
+            .then((res) => {
+                setSupplierList(res.data);
+            })
+            .catch((error) => {
+                console.log('Error fetching suppliers:', error);
+            });
 
-  const initialValues = {
-    amount,
-    date,
-    status,
-    supplierId,
-  };
+        if (id === '_add') {
+            return;
+        } else {
+            BillService.getBillById(id).then((res) => {
+                let bill = res.data;
+                setBillNumber(bill.billNumber);
+                setSupplierId(bill.supplier.supplierId);
+                setDate(bill.date);
+                setAmount(bill.amount);
+                setStatus(bill.status);
+            });
+        }
+    }, [id]);
 
-  const handleFormSubmit = (values) => {
-    console.log(values);
-    saveOrUpdateBill(values);
-  };
+    const [billNumber, setBillNumber] = useState('');
+    const [supplierId, setSupplierId] = useState(0);
+    const [date, setDate] = useState('2023-01-01');
+    const [amount, setAmount] = useState(0);
+    const [status, setStatus] = useState('');
 
-  const saveOrUpdateBill = (values) => {
-    // Get the values from the form
-    const amount = values.amount;
-    const date = values.date;
-    const status = values.status;
-    const supplierId = values.supplierId;
-
-    // Create a new bill object
-    const bill = {
-      amount,
-      date,
-      status,
-      supplier_id: supplierId,
+    const initialValues = {
+        billNumber,
+        supplierId,
+        date,
+        amount,
+        status,
     };
 
-    console.log('bill =>', + JSON.stringify(bill));
+    const handleFormSubmit = (values) => {
+        console.log(values);
+        saveOrUpdateBill(values);
+    };
 
-    if (id === '_add') {
-      BillService.createBill(bill).then((res) => {
-          navigate('/bills');
-        })
-        .catch((error) => {
-          console.log('Error creating bill:', error);
-        });
-    } else {
-        BillService.updateBill(bill, id).then((res) => {
-          navigate('/bills');
-        })
-        .catch((error) => {
-          console.log('Error updating bill:', error);
-        });
-    }
-  };
+    const saveOrUpdateBill = (values) => {
+        const { billNumber, supplierId, date, amount, status } = values;
 
-  const cancel = () => {
-    navigate('/bills');
-  };
+        if (
+            billNumber === '' &&
+            supplierId === 0 &&
+            date === '2023-01-01' &&
+            amount === 0 &&
+            status === ''
+        ) {
+            console.log('All values are empty, skipping saveOrUpdateBill');
+            return;
+        }
 
-  const getTitle = () => {
-    if (id === '_add') {
-      return <span className="text-center">Add Bill</span>;
-    } else {
-      return <span className="text-center">Update Bill</span>;
-    }
-  };
+        SupplierService.getSupplierById(supplierId)
+            .then((supplierResponse) => {
+                const supplier = supplierResponse.data;
 
-  const getSubTitle = () => {
-    if (id === '_add') {
-      return <span className="text-center">Add a new bill</span>;
-    } else {
-      return <span className="text-center">Update your bill</span>;
-    }
-  };
+                const bill = {
+                    billNumber,
+                    supplier: {
+                        supplierId,
+                        address: supplier.address || '',
+                        contact: supplier.contact || '',
+                        email: supplier.email || '',
+                        suppliedProduct: supplier.suppliedProduct || null,
+                        cin: supplier.cin || '',
+                        firstName: supplier.firstName || '',
+                        lastName: supplier.lastName || '',
+                        ice: supplier.ice || 0,
+                        businessName: supplier.businessName || ''
+                    },
+                    date,
+                    amount,
+                    status
+                };
 
-  const checkoutSchema = yup.object().shape({
-    amount: yup.number().required('Required'),
-    date: yup.date().required('Required'),
-    status: yup.string().required('Required'),
-    supplierId: yup.number().required('Required'),
-  });
+                if (id === '_add') {
+                    BillService.createBill(bill)
+                        .then(() => {
+                            navigate('/bills');
+                        })
+                        .catch((error) => {
+                            console.log('Error creating bill:', error);
+                        });
+                } else {
+                    BillService.updateBill(bill, id)
+                        .then(() => {
+                            navigate('/bills');
+                        })
+                        .catch((error) => {
+                            console.log('Error updating bill:', error);
+                        });
+                }
+            })
+            .catch((error) => {
+                console.log('Error fetching supplier:', error);
+            });
+    };
 
-  const [formValues, setFormValues] = useState(null) 
-  
-  return (
-    <Box m="20px">
-      <Header title={getTitle()} subtitle={getSubTitle()} />
+    const cancel = () => {
+        navigate('/bills');
+    };
 
-      <Formik
-        onSubmit={handleFormSubmit}
-        initialValues={formValues || initialValues}
-        validationSchema={checkoutSchema}
-        enableReinitialize
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <Box
-              display="grid"
-              gap="30px"
-              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-              sx={{
-                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-              }}
+    const getTitle = () => {
+        if (id === '_add') {
+            return <span className="text-center">Add Bill</span>;
+        } else {
+            return <span className="text-center">Update Bill</span>;
+        }
+    };
+
+    const getSubTitle = () => {
+        if (id === '_add') {
+            return <span className="text-center">Add a new bill</span>;
+        } else {
+            return <span className="text-center">Update your bill</span>;
+        }
+    };
+
+    const checkoutSchema = yup.object().shape({
+        amount: yup.number().required('Required'),
+        date: yup.date().required('Required'),
+        status: yup.string().required('Required'),
+        supplierId: yup.number().required('Required'),
+    });
+
+    const supplierOptions = supplierList.map((supplier) => (
+        <MenuItem key={supplier.supplierId} value={supplier.supplierId}>
+            {supplier.businessName ? supplier.businessName : `${supplier.firstName} ${supplier.lastName}`}
+        </MenuItem>
+    ));
+
+    return (
+        <Box m="20px">
+            <Header title={getTitle()} subtitle={getSubTitle()} />
+
+            <Formik
+                onSubmit={handleFormSubmit}
+                initialValues={initialValues}
+                validationSchema={checkoutSchema}
+                enableReinitialize
             >
-            <TextField
-              fullWidth
-              variant="filled"
-              type="number"
-              label="Amount"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.amount}
-              name="amount"
-              error={touched.amount && !!errors.amount}
-              helperText={touched.amount && errors.amount}
-              sx={{ gridColumn: "span 2" }}
-            />
+                {({
+                      values,
+                      errors,
+                      touched,
+                      handleBlur,
+                      handleChange,
+                      handleSubmit,
+                      setFieldValue,
+                  }) => (
+                    <form onSubmit={handleSubmit}>
+                        <Box
+                            display="grid"
+                            gap="30px"
+                            gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+                            sx={{
+                                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+                            }}
+                        >
+                            <TextField
+                                fullWidth
+                                variant="filled"
+                                label="Bill number"
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                value={values.billNumber}
+                                name="billNumber"
+                                error={touched.billNumber && !!errors.billNumber}
+                                helperText={touched.billNumber && errors.billNumber}
+                                sx={{ gridColumn: "span 2" }}
+                            />
 
-            <TextField
-              fullWidth
-              variant="filled"
-              type="date"
-              label="Date"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.date}
-              name="date"
-              error={touched.date && !!errors.date}
-              helperText={touched.date && errors.date}
-              sx={{ gridColumn: "span 2" }}
-            />
+                            <TextField
+                                fullWidth
+                                variant="filled"
+                                type="number"
+                                label="Amount"
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                value={values.amount || ""}
+                                name="amount"
+                                error={touched.amount && !!errors.amount}
+                                helperText={touched.amount && errors.amount}
+                                sx={{ gridColumn: "span 2" }}
+                            />
 
-            <TextField
-              fullWidth
-              variant="filled"
-              type="text"
-              label="Status"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.status}
-              name="status"
-              error={touched.status && !!errors.status}
-              helperText={touched.status && errors.status}
-              sx={{ gridColumn: "span 2" }}
-            />
+                            <TextField
+                                fullWidth
+                                variant="filled"
+                                type="date"
+                                label="Date"
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                value={values.date ? formatISO(parseISO(values.date), { representation: 'date' }) : ''}
+                                name="date"
+                                error={touched.date && !!errors.date}
+                                helperText={touched.date && errors.date}
+                                sx={{ gridColumn: 'span 2' }}
+                                inputProps={{
+                                    max: formatISO(new Date(), { representation: 'date' }),
+                                }}
+                            />
 
-            <TextField
-              fullWidth
-              variant="filled"
-              type="number"
-              label="Supplier ID"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.supplierId}
-              name="supplierId"
-              error={touched.supplierId && !!errors.supplierId}
-              helperText={touched.supplierId && errors.supplierId}
-              sx={{ gridColumn: "span 2" }}
-            />
-            </Box>
-            <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="primary" variant="contained" onClick={handleFormSubmit}>
-                Save
-              </Button>
-              <Button onClick={cancel} color="secondary" variant="contained" style={{ marginLeft: '10px' }}>
-                Cancel
-              </Button>
-            </Box>
-          </form>
-        )}
-      </Formik>
-    </Box>
-    
-  );
-};
+                            <TextField
+                                fullWidth
+                                variant="filled"
+                                select
+                                label="Status"
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                value={values.status || ""}
+                                name="status"
+                                error={touched.status && !!errors.status}
+                                helperText={touched.status && errors.status}
+                                sx={{ gridColumn: "span 2" }}
+                            >
+                                <MenuItem value="PENDING">PENDING</MenuItem>
+                                <MenuItem value="PAID">PAID</MenuItem>
+                            </TextField>
+
+                            {/* here the supplier text field */}
+
+                            <TextField
+                                fullWidth
+                                variant="filled"
+                                type="number"
+                                label="Supplier"
+                                onBlur={handleBlur}
+                                onChange={(e) => {
+                                    handleChange(e);
+                                    setFieldValue('supplierId', e.target.value);
+                                }}
+                                value={values.supplierId}
+                                name="supplierId"
+                                error={touched.supplierId && !!errors.supplierId}
+                                helperText={touched.supplierId && errors.supplierId}
+                                select
+                            >
+                                {supplierList.map((supplier) => (
+                                    <MenuItem
+                                        key={supplier.supplierId}
+                                        value={supplier.supplierId}
+                                        selected={supplier.supplierId === values.supplierId}
+                                    >
+                                        {supplier.businessName
+                                            ? supplier.businessName
+                                            : `${supplier.firstName} ${supplier.lastName}`}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Box>
+                        <Box display="flex" justifyContent="end" mt="20px">
+                            <Button type="submit" color="secondary" variant="contained">
+                                Save
+                            </Button>
+                            <Button
+                                onClick={cancel}
+                                color="error"
+                                variant="contained"
+                                style={{ marginLeft: "10px" }}
+                            >
+                                Cancel
+                            </Button>
+                        </Box>
+                    </form>
+                )}
+            </Formik>
+        </Box>
+    );
+}
 
 export default BillForm;

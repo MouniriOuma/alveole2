@@ -17,6 +17,7 @@ function ListBills() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [bills, setBills] = React.useState([]);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     BillService.getBills()
@@ -28,7 +29,6 @@ function ListBills() {
       });
   }, []);
 
-  const navigate = useNavigate();
 
   const deleteBill = (billNumber) => {
     BillService.deleteBill(billNumber)
@@ -43,12 +43,12 @@ function ListBills() {
       });
   };
 
-  const viewBill = (billNumber) => {
-    navigate(`/view-bill/${billNumber}`);
+  const viewBill = (id) => {
+    navigate(`/view-bill/${id}`);
   };
 
-  const editBill = (billNumber) => {
-    navigate(`/edit-bill/${billNumber}`);
+  const editBill = (id) => {
+    navigate(`/edit-bill/${id}`);
   };
 
   const addBill = () => {
@@ -60,7 +60,7 @@ function ListBills() {
     { field: 'amount', headerName: 'Amount', type: 'number', flex: 1 },
     { field: 'date', headerName: 'Date', type: 'date', flex: 1 },
     { field: 'status', headerName: 'Status', flex: 1 },
-    { field: 'supplierId', headerName: 'Supplier ID', type: 'number', flex: 1 },
+    { field: 'supplier', headerName: 'Supplier', type: 'number', flex: 1 },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -103,7 +103,7 @@ function ListBills() {
     amount: bill.amount,
     date: new Date(bill.date),
     status: bill.status,
-    supplierId: bill.supplier.supplierId,
+    supplier: bill.supplier.businessName || `${bill.supplier.firstName} ${bill.supplier.lastName}`,
   }));
 
   return (
