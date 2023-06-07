@@ -20,7 +20,7 @@ const ProductForm = () => {
       ProductService.getProductById(id).then((res) => {
         let product = res.data;
         setDescription(product.description);
-        setProductName(product.product_name);
+        setProductName(product.productName);
         setQuantity(product.quantity);
       });
     }
@@ -38,35 +38,56 @@ const ProductForm = () => {
 
   const handleFormSubmit = (values) => {
     console.log(values);
-    saveOrUpdateProduct(values);
+    if (values.description === "" && values.productName === "" && values.quantity === "") {
+      // Skip sending to the database if all values are empty
+      navigate("/products");
+    } else {
+      saveOrUpdateProduct(values);
+    }
   };
 
   const saveOrUpdateProduct = (values) => {
-    const product = {
-      description: values.description,
-      product_name: values.productName,
-      quantity: values.quantity,
-    };
-    
-    console.log('product => ' + JSON.stringify(product));
+    // Get the values from the form
+    const description = values.description;
+    const productName = values.productName;
+    const quantity = values.quantity;
 
-    if (id === '_add') {
+    // Create a new product object
+    const product = {
+      description,
+      productName,
+      quantity,
+    };
+
+    console.log("product => " + JSON.stringify(product));
+
+    // Check if all values are empty
+    const allValuesEmpty = Object.values(product).every((value) => !value);
+
+    if (allValuesEmpty) {
+      // All values are empty, skip saving or updating
+      console.log("All values are empty, skipping saveOrUpdateProduct");
+      return;
+    }
+
+    if (id === "_add") {
       ProductService.createProduct(product).then((res) => {
-        navigate('/products');
+        navigate("/products");
       });
     } else {
       ProductService.updateProduct(product, id).then((res) => {
-        navigate('/products');
+        navigate("/products");
       });
     }
   };
+
+
 
   const checkoutSchema = yup.object().shape({
     description: yup.string().required('Description is required'),
     productName: yup.string().required('Product Name is required'),
     quantity: yup
       .number()
-      .integer('Quantity must be an integer')
       .required('Quantity is required'),
   });
 
@@ -76,17 +97,17 @@ const ProductForm = () => {
 
   const getTitle = () => {
     if (id === '_add') {
-      return <span className="text-center">Add client</span>;
+      return <span className="text-center">Add product</span>;
     } else {
-      return <span className="text-center">Update Client</span>;
+      return <span className="text-center">Update product</span>;
     }
   };
 
   const getSubTitle = () => {
     if (id === '_add') {
-      return <span className="text-center">Add a new client</span>;
+      return <span className="text-center">Add a new product</span>;
     } else {
-      return <span className="text-center">Update your Client</span>;
+      return <span className="text-center">Update your product</span>;
     }
   };
 
@@ -120,21 +141,6 @@ const ProductForm = () => {
               }}
             >
 
-            
-            <TextField
-              fullWidth
-              variant="filled"
-              type="text"
-              label="Description"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.description}
-              name="description"
-              error={touched.description && !!errors.description}
-              helperText={touched.description && errors.description}
-              sx={{ gridColumn: "span 2" }}
-            />
-
             <TextField
               fullWidth
               variant="filled"
@@ -147,6 +153,20 @@ const ProductForm = () => {
               error={touched.productName && !!errors.productName}
               helperText={touched.productName && errors.productName}
               sx={{ gridColumn: "span 2" }}
+            />
+
+            <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Description"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.description}
+                name="description"
+                error={touched.description && !!errors.description}
+                helperText={touched.description && errors.description}
+                sx={{ gridColumn: "span 2" }}
             />
 
             <TextField
