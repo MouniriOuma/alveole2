@@ -1,16 +1,17 @@
-import { Box, Button, TextField, FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
-import { Formik } from "formik";
-import * as yup from "yup";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import Header from "../scenes/base/Header";
+import React, { useState, useEffect } from 'react';
+import { Box, Button, TextField, FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Header from '../scenes/base/Header';
 import UserService from '../services/UserService';
-import React, {useState} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const UserForm = () => {
-    const isNonMobile = useMediaQuery("(min-width:600px)");
+    const isNonMobile = useMediaQuery('(min-width:600px)');
 
     const { id } = useParams();
+    console.log('id:',id);
     const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
@@ -18,31 +19,85 @@ const UserForm = () => {
     const [email, setEmail] = useState('');
     const [roles, setRoles] = useState([]);
 
+    useEffect(() => {
+        if (id !== '_add') {
+            // Fetch user details if not adding a new user
+            UserService.getUserById(id)
+                .then((response) => {
+                    const user = response.data;
+                    setUsername(user.username);
+                    setPassword('');
+                    setEmail(user.email);
+                    setRoles(user.roles.map(role => {
+                        if (role.name === 'ROLE_ADMIN') {
+                            return 'admin';
+                        } else if (role.name === 'ROLE_USER') {
+                            return 'user';
+                        } else {
+                            return role.name;
+                        }
+                    }));
+                })
+                .catch((error) => {
+                    console.error('Error fetching user:', error);
+                });
+        }
+    }, [id]);
+
     const handleFormSubmit = (values) => {
         if (!values.roles || values.roles.length === 0) {
             return; // Prevent submitting if roles array is empty or undefined
         }
 
-        console.log(values);
-        saveUser(values);
+        if (id === '_add') {
+            createUser(values);
+        } else {
+            updateUser(values);
+        }
     };
 
-    const saveUser = (values) => {
+    const createUser = (values) => {
         const { username, password, email, roles } = values;
 
         const user = {
             username,
             password,
             email,
-            roles,
+            role: roles,
         };
 
-        console.log('user => ', user);
+        console.log("user", user);
 
-        UserService.registerUser(user).then((res) => {
-            navigate('/users');
-        });
+        UserService.registerUser(user)
+            .then(() => {
+                navigate('/users');
+            })
+            .catch((error) => {
+                console.error('Error creating user:', error);
+            });
     };
+
+    const updateUser = (values) => {
+        const { username, password, email, roles } = values;
+
+        const user = {
+            username,
+            email,
+            password,
+            role: roles,
+        };
+
+        console.log('user:', user);
+
+        UserService.updateUser(id, user)
+            .then(() => {
+                navigate('/users');
+            })
+            .catch((error) => {
+                console.error('Error updating user:', error);
+            });
+    };
+
 
     const cancel = () => {
         navigate('/users');
@@ -52,7 +107,7 @@ const UserForm = () => {
         if (id === '_add') {
             return <span className="text-center">Add User</span>;
         } else {
-            return <span className="text-center">Update User</span>;
+            return <span className="text-center">Update user </span>;
         }
     };
 
@@ -60,7 +115,7 @@ const UserForm = () => {
         if (id === '_add') {
             return <span className="text-center">Add a new user</span>;
         } else {
-            return <span className="text-center">Update your User</span>;
+            return <span className="text-center">Update / set new password for your User</span>;
         }
     };
 
@@ -93,20 +148,19 @@ const UserForm = () => {
                             gap="30px"
                             gridTemplateColumns="repeat(4, minmax(0, 1fr))"
                             sx={{
-                                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+                                '& > div': { gridColumn: isNonMobile ? undefined : 'span 4' },
                             }}
                         >
-
                             <FormControl
                                 fullWidth
                                 variant="filled"
                                 error={!!touched.roles && !!errors.roles}
-                                sx={{ gridColumn: "span 4" }}
+                                sx={{ gridColumn: 'span 4' }}
                             >
                                 <InputLabel>User Roles</InputLabel>
                                 <Select
                                     multiple
-                                    value={roles} // Use the roles state here
+                                    value={roles}
                                     onChange={(event) => setRoles(event.target.value)}
                                     onBlur={handleBlur}
                                     name="roles"
@@ -130,7 +184,7 @@ const UserForm = () => {
                                 name="username"
                                 error={!!touched.username && !!errors.username}
                                 helperText={touched.username && errors.username}
-                                sx={{ gridColumn: "span 2" }}
+                                sx={{ gridColumn: 'span 2' }}
                             />
                             <TextField
                                 fullWidth
@@ -143,7 +197,7 @@ const UserForm = () => {
                                 name="password"
                                 error={!!touched.password && !!errors.password}
                                 helperText={touched.password && errors.password}
-                                sx={{ gridColumn: "span 2" }}
+                                sx={{ gridColumn: 'span 2' }}
                             />
                             <TextField
                                 fullWidth
@@ -156,13 +210,12 @@ const UserForm = () => {
                                 name="email"
                                 error={!!touched.email && !!errors.email}
                                 helperText={touched.email && errors.email}
-                                sx={{ gridColumn: "span 4" }}
+                                sx={{ gridColumn: 'span 4' }}
                             />
-
                         </Box>
 
                         <Box display="flex" justifyContent="end" mt="20px">
-                            <Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
+                            <Button type="submit" color="secondary" variant="contained">
                                 Save
                             </Button>
                             <Button onClick={cancel} color="error" variant="contained" style={{ marginLeft: '10px' }}>
@@ -177,10 +230,12 @@ const UserForm = () => {
 };
 
 const checkoutSchema = yup.object().shape({
-    username: yup.string().required("Username is required"),
-    password: yup.string().min(6, "Password must be at least 8 characters").required("Password is required"),
-    email: yup.string().email("Invalid email address").required("Email is required"),
-    roles: yup.array().min(1, "User roles are required").required("User roles are required"),
+    username: yup.string().required('Username is required'),
+    password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+    email: yup.string().email('Invalid email address').required('Email is required'),
+    roles: yup.array().min(1, 'User roles are required').required('User roles are required'),
 });
 
 export default UserForm;
+
+
