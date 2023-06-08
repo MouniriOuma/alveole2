@@ -11,6 +11,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
+import {useEffect, useState} from "react";
+import UserService from "../../services/UserService";
 
 
 
@@ -19,13 +21,44 @@ function ListSuppliers() {
     const colors = tokens(theme.palette.mode);
   const [suppliers, setSuppliers] = React.useState([]);
 
-  React.useEffect(() => {
-    SupplierService.getSuppliers().then((res) => {
-      setSuppliers(res.data);
-    });
-  }, []);
 
-  const navigate = useNavigate();
+    React.useEffect(() => {
+        SupplierService.getSuppliers()
+            .then((res) => {
+                setSuppliers(res.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching suppliers:', error);
+            });
+    }, []);
+
+    const navigate = useNavigate();
+
+    //define the role
+    const username = localStorage.getItem('username');
+    const [role, setRole] = useState('');
+
+    React.useEffect(() => {
+        console.log('Fetching user roles...');
+        UserService.getUserRoleByUsername(username)
+            .then((response) => {
+                console.log('User roles response:', response.data);
+                const roleNames = response.data;
+                if (roleNames.includes('ROLE_USER') && !roleNames.includes('ROLE_ADMIN')) {
+                    setRole('user');
+                } else if (roleNames.includes('ROLE_ADMIN')) {
+                    setRole('admin');
+                } else {
+                    setRole('');
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching user roles:', error);
+            });
+    }, [username]);
+
+    const isUser = role.includes('user') && !role.includes('admin');
+
 
   const deleteSupplier = (id) => {
     SupplierService.deleteSupplier(id)
@@ -77,17 +110,18 @@ function ListSuppliers() {
               justifyContent="center"
               borderRadius="4px"
           >
+              {!isUser && (
               <Box sx={{ background: colors.blueAccent[700], borderRadius: '10%', marginRight: '10px' }}>
                   <IconButton aria-label="update" size="small" onClick={() => editSupplier(supplierId)}>
                       <BorderColorIcon fontSize="inherit" />
                   </IconButton>
-              </Box>
-
+              </Box>)}
+              {!isUser && (
               <Box sx={{ background: colors.redAccent[700], borderRadius: '10%', marginRight: '10px' }}>
                   <IconButton aria-label="delete" size="small" onClick={() => deleteSupplier(supplierId)}>
                       <DeleteForeverIcon fontSize="inherit" />
                   </IconButton>
-              </Box>
+              </Box>)}
 
               <Box sx={{ background: colors.greenAccent[500], borderRadius: '10%', marginRight: '10px' }}>
                   <IconButton aria-label="view" size="small" onClick={() => viewSupplier(supplierId)}>
@@ -122,7 +156,7 @@ function ListSuppliers() {
         color="secondary"
         size="large"
         startIcon={<AddIcon />}
-        sx={{ marginRight: '10px' }}  
+        sx={{ marginRight: '10px' }}
       >
         Add
       </Button>

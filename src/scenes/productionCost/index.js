@@ -11,6 +11,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
+import UserService from "../../services/UserService";
 
 function ListProdCost() {
     const theme = useTheme();
@@ -22,6 +23,33 @@ function ListProdCost() {
             setProductionCosts(res.data);
         });
     }, []);
+
+
+    //define the role
+    const username = localStorage.getItem('username');
+    const [role, setRole] = React.useState('');
+
+    React.useEffect(() => {
+        console.log('Fetching user roles...');
+        UserService.getUserRoleByUsername(username)
+            .then((response) => {
+                console.log('User roles response:', response.data);
+                const roleNames = response.data;
+                if (roleNames.includes('ROLE_USER') && !roleNames.includes('ROLE_ADMIN')) {
+                    setRole('user');
+                } else if (roleNames.includes('ROLE_ADMIN')) {
+                    setRole('admin');
+                } else {
+                    setRole('');
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching user roles:', error);
+            });
+    }, [username]);
+
+    const isUser = role.includes('user') && !role.includes('admin');
+
 
     const navigate = useNavigate();
 
@@ -52,13 +80,13 @@ function ListProdCost() {
     };
 
     const columns = [
-        { field: 'id', headerName: 'ID' },
-        { field: 'cost', headerName: 'Cost', flex: 1 },
+       // { field: 'id', headerName: 'ID' },
         { field: 'date', headerName: 'Date', flex: 1 },
+        { field: 'cost', headerName: 'Cost', flex: 1 },
         {
             field: 'actions',
             headerName: 'Actions',
-            flex: 1.5,
+            flex: 1,
             renderCell: ({ row: { id } }) => (
                 <Box
                     width="60%"
@@ -68,17 +96,19 @@ function ListProdCost() {
                     justifyContent="center"
                     borderRadius="4px"
                 >
+                    {/*{!isUser && (
                     <Box sx={{ background: colors.blueAccent[700], borderRadius: '10%', marginRight: '10px' }}>
                         <IconButton aria-label="update" size="small" onClick={() => editProductionCost(id)}>
                             <BorderColorIcon fontSize="inherit" />
                         </IconButton>
-                    </Box>
+                    </Box>)}*/}
+                    {!isUser && (
 
                     <Box sx={{ background: colors.redAccent[700], borderRadius: '10%', marginRight: '10px' }}>
                         <IconButton aria-label="delete" size="small" onClick={() => deleteProductionCost(id)}>
                             <DeleteForeverIcon fontSize="inherit" />
                         </IconButton>
-                    </Box>
+                    </Box>)}
 
                     <Box sx={{ background: colors.greenAccent[500], borderRadius: '10%', marginRight: '10px' }}>
                         <IconButton aria-label="view" size="small" onClick={() => viewProductionCost(id)}>

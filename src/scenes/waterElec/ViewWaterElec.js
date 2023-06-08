@@ -13,7 +13,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { tokens } from "../../theme";
-
+import UserService from "../../services/UserService";
 export default function ViewWaterElec() {
     const isNonMobile = useMediaQuery("(min-width:600px)");
 
@@ -33,6 +33,32 @@ export default function ViewWaterElec() {
                 console.error('Error fetching water/electricity:', error);
             });
     }, [id]);
+
+    //define the role
+    const username = localStorage.getItem('username');
+    const [role, setRole] = useState('');
+
+    React.useEffect(() => {
+        console.log('Fetching user roles...');
+        UserService.getUserRoleByUsername(username)
+            .then((response) => {
+                console.log('User roles response:', response.data);
+                const roleNames = response.data;
+                if (roleNames.includes('ROLE_USER') && !roleNames.includes('ROLE_ADMIN')) {
+                    setRole('user');
+                } else if (roleNames.includes('ROLE_ADMIN')) {
+                    setRole('admin');
+                } else {
+                    setRole('');
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching user roles:', error);
+            });
+    }, [username]);
+
+    const isUser = role.includes('user') && !role.includes('admin');
+
 
     const editWaterElec = (id) => {
         navigate(`/edit-waterElecs/${id}`);
@@ -90,6 +116,7 @@ export default function ViewWaterElec() {
                         >
                             Back
                         </Button>
+                        {!isUser && (
                         <Button
                             variant="contained"
                             color="secondary"
@@ -97,7 +124,7 @@ export default function ViewWaterElec() {
                             onClick={() => editWaterElec(id)}
                         >
                             Edit
-                        </Button>
+                        </Button>)}
                     </CardActions>
                 </Card>
             </Box>

@@ -92,6 +92,7 @@ export default function ViewProductionCost() {
                         >
                             Back
                         </Button>
+                        {/*
                         <Button
                             variant="contained"
                             color="secondary"
@@ -99,7 +100,7 @@ export default function ViewProductionCost() {
                             onClick={() => editProductionCost(id)}
                         >
                             Edit
-                        </Button>
+                        </Button>*/}
                     </CardActions>
                 </Card>
             </Box>

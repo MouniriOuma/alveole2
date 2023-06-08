@@ -11,6 +11,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
+import {useState} from "react";
+import UserService from "../../services/UserService";
 
 function ListWaterElec() {
   const theme = useTheme();
@@ -29,6 +31,32 @@ function ListWaterElec() {
   }, []);
 
   const navigate = useNavigate();
+
+
+    //define the role
+    const username = localStorage.getItem('username');
+    const [role, setRole] = useState('');
+
+    React.useEffect(() => {
+        console.log('Fetching user roles...');
+        UserService.getUserRoleByUsername(username)
+            .then((response) => {
+                console.log('User roles response:', response.data);
+                const roleNames = response.data;
+                if (roleNames.includes('ROLE_USER') && !roleNames.includes('ROLE_ADMIN')) {
+                    setRole('user');
+                } else if (roleNames.includes('ROLE_ADMIN')) {
+                    setRole('admin');
+                } else {
+                    setRole('');
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching user roles:', error);
+            });
+    }, [username]);
+
+    const isUser = role.includes('user') && !role.includes('admin');
 
   const deleteWaterElec = (id) => {
     WaterElecService.deleteWaterElec(id)
@@ -72,18 +100,19 @@ function ListWaterElec() {
               display="flex"
               justifyContent="center"
               borderRadius="4px"
-          >
+          > {!isUser && (
               <Box sx={{ background: colors.blueAccent[700], borderRadius: '10%', marginRight: '10px' }}>
                   <IconButton aria-label="update" size="small" onClick={() => editWaterElec(bill_Num)}>
                       <BorderColorIcon fontSize="inherit" />
                   </IconButton>
-              </Box>
+              </Box>)}
 
+              {!isUser && (
               <Box sx={{ background: colors.redAccent[700], borderRadius: '10%', marginRight: '10px' }}>
                   <IconButton aria-label="delete" size="small" onClick={() => deleteWaterElec(bill_Num)}>
                       <DeleteForeverIcon fontSize="inherit" />
                   </IconButton>
-              </Box>
+              </Box>)}
 
               <Box sx={{ background: colors.greenAccent[500], borderRadius: '10%', marginRight: '10px' }}>
                   <IconButton aria-label="view" size="small" onClick={() => viewWaterElec(bill_Num)}>

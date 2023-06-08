@@ -44,6 +44,8 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+
+  //define user role
   const username = localStorage.getItem('username');
   const [role, setRole] = useState('');
 
@@ -53,9 +55,10 @@ const Sidebar = () => {
             .then((response) => {
                 console.log('User roles response:', response.data);
                 const roleNames = response.data;
-                if (roleNames.includes('ROLE_USER')) {
+                if (roleNames.includes('ROLE_USER') && !roleNames.includes('ROLE_ADMIN')) {
                     setRole('user');
-                } else if (roleNames.includes('ROLE_ADMIN')) {
+
+            } else if (roleNames.includes('ROLE_ADMIN')) {
                     setRole('admin');
                 } else {
                     setRole('');
@@ -66,6 +69,11 @@ const Sidebar = () => {
             });
     }, [username]);
 
+    function isUserRole(role) {
+        return role.includes('user') && !role.includes('admin');
+    }
+
+    const isUser = isUserRole(role);
 
 
 
@@ -109,10 +117,10 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
-                  ADMIN
-                </Typography>
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                  <Typography variant="h3" color={colors.grey[100]}>
+                      {role.includes('admin') ? 'ADMIN' : role.includes('user') ? 'USER' : ''}
+                  </Typography>
+                  <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
                 </IconButton>
               </Box>
@@ -127,9 +135,7 @@ const Sidebar = () => {
               style={{ cursor: "pointer", borderRadius: "50%" , fontSize: 100}}
 
               />
-                
-               
-                
+
               </Box>
               {/* ADD FUNCTION GETUSER NAME */}
               <Box textAlign="center">
@@ -142,7 +148,7 @@ const Sidebar = () => {
                   {username}
                 </Typography>
                 <Typography variant="h4" color={colors.greenAccent[500]}>
-                  {role}
+                    {role.includes('admin') ? 'ADMIN' : role.includes('user') ? 'USER' : ''}
                 </Typography>
               </Box>
             </Box>
@@ -164,16 +170,18 @@ const Sidebar = () => {
             >
               Data
             </Typography>
-            <Item
-              title="Users"
-              to="/users"
-              icon={<EngineeringOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
+              {role.includes('admin') && (
+                  <Item
+                      title="Users"
+                      to="/users"
+                      icon={<EngineeringOutlinedIcon />}
+                      selected={selected}
+                      setSelected={setSelected}
+                  />
+              )}
+              <Item
               title="Suppliers"
-              to="/Suppliers"
+              to="/suppliers"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -200,30 +208,32 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+              {role.includes('admin') && (
             <Item
               title="Add user"
-              to="/add-user/_add"
+              to="/add-user/:id"
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />             
+            />
+                  )}
             <Item
               title="Products"
-              to="/Products"
+              to="/products"
               icon={<CategoryOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Ingredients"
-              to="/Ingredients"
+              to="/ingredients"
               icon={<ScienceOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Bills"
-              to="/Bills"
+              to="/bills"
               icon={<DescriptionIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -267,7 +277,7 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="log out"
-              to="/loging page"
+              to="/"
               icon={<LogoutIcon />}
               selected={selected}
               setSelected={setSelected}
