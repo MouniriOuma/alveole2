@@ -33,6 +33,7 @@ import ViewIngredient from "./scenes/ingredient/ViewIngredient";
 import ViewBill from "./scenes/bills/ViewBill";
 import ViewWaterElec from "./scenes/waterElec/ViewWaterElec";
 import ViewProductionCost from "./scenes/productionCost/ViewProductionCost";
+import Stock from "./scenes/stock";
 
 
 function App() {
@@ -94,6 +95,8 @@ function App() {
                   <Route path = "/production_cost" element = {<ListProdCost />} />
                   <Route path = "/add-production-cost" element = {<ProdCostForm />} />
                   <Route path = "/view-production-cost/:id" element = {<ViewProductionCost />} />
+                  {/* Stock */}
+                  <Route path = "/stock" element = {<Stock />} />
                   </Routes>
                 </main>
             </div>
