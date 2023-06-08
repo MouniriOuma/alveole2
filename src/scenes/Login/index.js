@@ -30,6 +30,9 @@ const Login = () => {
         setPassword(e.target.value);
     };
 
+
+
+
     const handleLogin = (e) => {
         e.preventDefault();
         setLoading(true);
@@ -39,7 +42,17 @@ const Login = () => {
                 setLoading(false);
                 if (response.type === 'LOGIN_SUCCESS') {
                     setLoggedIn(true);
-                    navigate('/Dashboard'); // Redirect to Dashboard
+
+
+                    //const { token, id, username, email, roles } = response.data;
+                    console.log('Logged in as:', username);
+                    localStorage.setItem('username', username);
+
+
+
+                    // Redirect to Dashboard
+                    navigate('/Dashboard');
+
                 } else if (response.type === 'LOGIN_FAIL') {
                     setLoggedIn(false);
                     setErrorMessage(response.payload.message); // Set the error message from the payload
@@ -52,9 +65,7 @@ const Login = () => {
             });
     };
 
-    if (isLoggedIn) {
-        return <Navigate to="/Dashboard" />;
-    }
+
 
     return (
         <div className="col-md-12">
