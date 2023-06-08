@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -18,10 +18,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DescriptionIcon from '@mui/icons-material/Description';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import UserService from "../../services/UserService";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
   return (
     <MenuItem
       active={selected === title}
@@ -42,8 +44,33 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const username = localStorage.getItem('username');
+  const [role, setRole] = useState('');
 
-  return (
+    useEffect(() => {
+        console.log('Fetching user roles...');
+        UserService.getUserRoleByUsername(username)
+            .then((response) => {
+                console.log('User roles response:', response.data);
+                const roleNames = response.data;
+                if (roleNames.includes('ROLE_USER')) {
+                    setRole('user');
+                } else if (roleNames.includes('ROLE_ADMIN')) {
+                    setRole('admin');
+                } else {
+                    setRole('');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error.message);
+            });
+    }, [username]);
+
+
+
+
+
+    return (
     <Box
 
       sx={{
@@ -112,10 +139,10 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  oumaima mouniri
+                  {username}
                 </Typography>
                 <Typography variant="h4" color={colors.greenAccent[500]}>
-                  Admin
+                  {role}
                 </Typography>
               </Box>
             </Box>
