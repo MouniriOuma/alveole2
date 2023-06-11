@@ -261,6 +261,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+              {role.includes('admin') && (
             <Item
               title="production cost"
               to="/production_cost"
@@ -268,6 +269,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+                  )}
 
             <Typography
               variant="h6"

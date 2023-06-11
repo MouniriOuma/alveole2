@@ -90,14 +90,23 @@ function ListUsers() {
     },
   ];
 
-  const rows = users.map((user) => ({
-    id: user.id,
-    username: user.username,
-    email: user.email,
-    roles: user.roles.map(role => role.name).join(" "),
-  }));
+    const rows = users.map((user) => ({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        roles: user.roles.map((role) => {
+            if (role.name.includes('ROLE_ADMIN')) {
+                return 'admin';
+            } else if (role.name === 'ROLE_USER') {
+                return 'user';
+            } else {
+                return '';
+            }
+        }).join(" "),
+    }));
 
-  return (
+
+    return (
     <Box m="20px">
     <Header title="USERS" subtitle="All users" />
     <Button

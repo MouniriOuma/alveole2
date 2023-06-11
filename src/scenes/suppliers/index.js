@@ -133,21 +133,21 @@ function ListSuppliers() {
     },
   ];
 
-  const rows = suppliers.map((supplier) => ({
-    id: supplier.supplierId,
-    supplierId: supplier.supplierId,
-    address: supplier.address,
-    contact: supplier.contact,
-    email: supplier.email,
-    suppliedProduct: supplier.suppliedProduct,
-    cin: supplier.cin,
-    firstName: supplier.firstName,
-    lastName: supplier.lastName,
-    ice: supplier.ice,
-    businessName: supplier.businessName,
-  }));
+    const rows = suppliers.map((supplier) => ({
+        id: supplier.supplierId,
+        supplierId: supplier.supplierId,
+        address: supplier.address,
+        contact: supplier.contact,
+        email: supplier.email,
+        suppliedProduct: supplier.suppliedProduct,
+        cin: supplier.cin !== 0 ? supplier.cin : ' ',
+        firstName: supplier.firstName,
+        lastName: supplier.lastName,
+        ice: supplier.ice !== 0 ? supplier.ice : ' ',
+        businessName: supplier.businessName,
+    }));
 
-  return (
+    return (
     <Box m="20px">
       <Header title="SUPPLIERS" subtitle="All suppliers" />
       <Button

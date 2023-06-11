@@ -2,8 +2,6 @@ import React from 'react';
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../base/Header";
-import LineChart from "../../components/LineChart";
-import DoughnutChart from "../../components/DoughnutChart";
 
 function Stock() {
     const theme = useTheme();
@@ -13,8 +11,8 @@ function Stock() {
         <div>
             <Header title="Stock" />
             {/* move this later to the prod cost page*/}
-            <LineChart />
-            <DoughnutChart />
+            {/*<LineChart />
+            <DoughnutChart />*/}
         </div>
     );
 }
