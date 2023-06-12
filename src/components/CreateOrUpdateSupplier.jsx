@@ -23,14 +23,14 @@ const SupplierForm = () => {
       SupplierService.getSupplierById(id).then((res) => {
         let supplier = res.data;
         setAddress(supplier.address);
-        setBusinessName(supplier.business_name);
+        setBusinessName(supplier.businessName);
         setCIN(supplier.cin);
         setContact(supplier.contact);
         setEmail(supplier.email);
-        setFirstName(supplier.first_name);
+        setFirstName(supplier.firstName);
         setICE(supplier.ice);
-        setLastName(supplier.last_name);
-        setSuppliedProduct(supplier.supplied_product);
+        setLastName(supplier.lastName);
+        setSuppliedProduct(supplier.suppliedProduct);
       });
     }
   }, [id]);
@@ -65,14 +65,14 @@ const SupplierForm = () => {
   const saveOrUpdateSupplier = (values) => {
     const supplier = {
       address: values.address,
-      business_name: values.businessName,
+      businessName: values.businessName,
       cin: values.cin,
       contact: values.contact,
       email: values.email,
-      first_name: values.firstName,
+      firstName: values.firstName,
       ice: values.ice,
-      last_name: values.lastName,
-      supplied_product: values.suppliedProduct,
+      lastName: values.lastName,
+      suppliedProduct: values.suppliedProduct,
     };
 
     console.log('supplier => ' + JSON.stringify(supplier));
@@ -284,7 +284,7 @@ const SupplierForm = () => {
 
 const supplierSchema = yup.object().shape({
   address: yup.string(),
-  businessName: yup.string().required('Business Name is required'),
+  businessName: yup.string(),
   cin: yup.string(),
   contact: yup.string().required('Contact is required'),
   email: yup.string(),
