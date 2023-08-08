@@ -9,23 +9,22 @@ import "./App.css";
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import {ColorModeContext, useMode} from "./theme";
 import ListClients from "./scenes/clients";
-import ClientForm from "./components/CreateOrUpdateClient";
-import Calendar from "./scenes/calendar/calendar";
+import ClientForm from "./scenes/clients/CreateOrUpdateClient";
 import ListUsers from './scenes/user';
 import ListSuppliers from './scenes/suppliers'
 import ListProducts from "./scenes/product";
 import ListIngredients from "./scenes/ingredient";
-import IngredientForm from "./components/CreateOrUpdateIngredient";
-import UserForm from "./components/CreateOrUpdateUser";
+import IngredientForm from "./scenes/ingredient/CreateOrUpdateIngredient";
+import UserForm from "./scenes/user/CreateOrUpdateUser";
 import ListBills from "./scenes/bills";
-import BillForm from "./components/CreateOrUpdateBill";
+import BillForm from "./scenes/bills/CreateOrUpdateBill";
 import ListWaterElec from "./scenes/waterElec";
-import WaterElecForm from "./components/CreateOrUpdateWaterElec";
-import SupplierForm from "./components/CreateOrUpdateSupplier";
-import ProdCostForm from "./components/ProdCostForm";
+import WaterElecForm from "./scenes/waterElec/CreateOrUpdateWaterElec";
+import SupplierForm from "./scenes/suppliers/CreateOrUpdateSupplier";
+import ProdCostForm from "./scenes/productionCost/ProdCostForm";
 import LoginForm from "./scenes/Login";
 import ListProdCost from "./scenes/productionCost";
-import ProductForm from "./components/CreateOrUpdateProduct";
+import ProductForm from "./scenes/product/CreateOrUpdateProduct";
 import ViewProduct from "./scenes/product/ViewProduct";
 import ViewSupplier from "./scenes/suppliers/ViewSupplier";
 import ViewClient from "./scenes/clients/ViewClient";
@@ -33,7 +32,6 @@ import ViewIngredient from "./scenes/ingredient/ViewIngredient";
 import ViewBill from "./scenes/bills/ViewBill";
 import ViewWaterElec from "./scenes/waterElec/ViewWaterElec";
 import ViewProductionCost from "./scenes/productionCost/ViewProductionCost";
-import Stock from "./scenes/stock";
 import ViewUser from "./scenes/user/ViewUser";
 
 
@@ -60,8 +58,6 @@ function App() {
                   <Route path = "/add-client/:id" element = {<ClientForm />} />
                   <Route path = "/edit-client/:id" element = {<ClientForm />} />
                   <Route path = "/view-client/:id" element = {<ViewClient />} />
-                {/* Calendar */}
-                  <Route path = "/calendar" element = {<Calendar />} />
                 {/* User */}
                   <Route path = "/users" element = {<ListUsers />} />
                   <Route path = "/add-user/:id" element = {<UserForm />} />
@@ -73,7 +69,7 @@ function App() {
                   <Route path = "/add-ingredient/:id" element = {<IngredientForm />} />
                   <Route path = "/edit-ingredient/:id" element = {<IngredientForm />} />
                   <Route path = "/view-ingredient/:id" element = {<ViewIngredient />} />
-                  {/* Bill */}
+                {/* Bill */}
                   <Route path = "/bills" element = {<ListBills />} />
                   <Route path = "/add-bill/:id" element = {<BillForm />} />
                   <Route path = "/edit-bill/:id" element = {<BillForm />} />
@@ -97,8 +93,6 @@ function App() {
                   <Route path = "/production_cost" element = {<ListProdCost />} />
                   <Route path = "/add-production-cost" element = {<ProdCostForm />} />
                   <Route path = "/view-production-cost/:id" element = {<ViewProductionCost />} />
-                  {/* Stock */}
-                  <Route path = "/stock" element = {<Stock />} />
                   </Routes>
                 </main>
             </div>
