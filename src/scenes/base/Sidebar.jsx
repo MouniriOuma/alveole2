@@ -208,15 +208,8 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-              {role.includes('admin') && (
-            <Item
-              title="Add user"
-              to="/add-user/:id"
-              icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-                  )}
+             
+
             <Item
               title="Products"
               to="/products"
@@ -245,6 +238,27 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+              <Item
+                  title="Bon de commande"
+                  to="/BonDeCommande"
+                  icon={<ReceiptLongIcon />}
+                  selected={selected}
+                  setSelected={setSelected}
+              />
+              <Item
+                  title="Bon de livraison"
+                  to="/BonDeLivraison"
+                  icon={<ReceiptLongIcon />}
+                  selected={selected}
+                  setSelected={setSelected}
+              />
+              <Item
+                  title="Facture"
+                  to="/Facture"
+                  icon={<ReceiptLongIcon />}
+                  selected={selected}
+                  setSelected={setSelected}
+              />
             
 
             <Typography
@@ -252,7 +266,7 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Charts
+              Autre
             </Typography>
             <Item
               title="stock"
