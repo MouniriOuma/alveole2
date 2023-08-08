@@ -4,11 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import { Formik } from 'formik';
-import Header from "../scenes/base/Header";
-import IngredientService from '../services/IngredientService';
+import Header from "../base/Header";
+import IngredientService from '../../services/IngredientService';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Grid } from '@mui/material';
-import SupplierService from "../services/SupplierService";
+import SupplierService from "../../services/SupplierService";
 import { MenuItem, InputLabel, Select } from '@mui/material';
 
 

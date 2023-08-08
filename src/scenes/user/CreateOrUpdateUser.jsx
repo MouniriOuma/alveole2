@@ -3,8 +3,8 @@ import { Box, Button, TextField, FormControl, FormHelperText, InputLabel, MenuIt
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Header from '../scenes/base/Header';
-import UserService from '../services/UserService';
+import Header from '../base/Header';
+import UserService from '../../services/UserService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const UserForm = () => {

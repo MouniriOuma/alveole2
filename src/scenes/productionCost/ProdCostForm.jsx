@@ -3,9 +3,9 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import {Box, useMediaQuery} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import IngredientService from "../services/IngredientService";
-import ProductionCostService from "../services/ProductionCostService";
-import Header from "../scenes/base/Header";
+import IngredientService from "../../services/IngredientService";
+import ProductionCostService from "../../services/ProductionCostService";
+import Header from "../base/Header";
 
 const ProdCostForm = () => {
     const isNonMobile = useMediaQuery('(min-width:600px)');

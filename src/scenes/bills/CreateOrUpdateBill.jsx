@@ -4,9 +4,9 @@ import { Box, TextField, Button, MenuItem, InputAdornment } from '@mui/material'
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Header from "../scenes/base/Header";
-import BillService from '../services/BillService';
-import SupplierService from '../services/SupplierService';
+import Header from "../base/Header";
+import BillService from '../../services/BillService';
+import SupplierService from '../../services/SupplierService';
 import { parseISO, formatISO } from 'date-fns';
 
 const BillForm = () => {

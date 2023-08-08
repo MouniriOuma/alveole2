@@ -2,8 +2,8 @@ import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Header from "../scenes/base/Header";
-import SupplierService from '../services/SupplierService';
+import Header from "../base/Header";
+import SupplierService from '../../services/SupplierService';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
