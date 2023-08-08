@@ -201,14 +201,6 @@ const Sidebar = () => {
             >
               Pages
             </Typography>
-            <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-             
 
             <Item
               title="Products"
@@ -268,13 +260,7 @@ const Sidebar = () => {
             >
               Autre
             </Typography>
-            <Item
-              title="stock"
-              to="/stock"
-              icon={<Inventory2Icon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+
               {role.includes('admin') && (
             <Item
               title="production cost"
