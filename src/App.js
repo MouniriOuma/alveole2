@@ -33,6 +33,7 @@ import ViewBill from "./scenes/bills/ViewBill";
 import ViewWaterElec from "./scenes/waterElec/ViewWaterElec";
 import ViewProductionCost from "./scenes/productionCost/ViewProductionCost";
 import ViewUser from "./scenes/user/ViewUser";
+import ListBonDeCommande from "./scenes/bonDeCommande";
 
 
 function App() {
@@ -79,6 +80,11 @@ function App() {
                   <Route path = "/add-waterElecs/:id" element = {<WaterElecForm />} />
                   <Route path = "/edit-waterElecs/:id" element = {<WaterElecForm />} />
                   <Route path = "/view-waterElecs/:id" element = {<ViewWaterElec />} />
+                  {/* Bon De Commande */}
+                  <Route path = "/BonDeCommande" element = {<ListBonDeCommande />} />
+                 {/* <Route path = "/add-bill/:id" element = {<BillForm />} />
+                  <Route path = "/edit-bill/:id" element = {<BillForm />} />
+                  <Route path = "/view-bill/:id" element = {<ViewBill />} />*/}
                 {/* Supplier */}
                   <Route path = "/suppliers" element = {<ListSuppliers />} />
                   <Route path = "/add-supplier/:id" element = {<SupplierForm />} />
