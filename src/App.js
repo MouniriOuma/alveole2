@@ -35,6 +35,7 @@ import ViewProductionCost from "./scenes/productionCost/ViewProductionCost";
 import ViewUser from "./scenes/user/ViewUser";
 import ListBonDeCommande from "./scenes/bonDeCommande";
 import ListBonDeLivraison from "./scenes/bonDeLivraison";
+import ListFacture from "./scenes/facture";
 
 
 function App() {
@@ -88,6 +89,11 @@ function App() {
                   <Route path = "/view-bill/:id" element = {<ViewBill />} />*/}
                   {/* Bon De Livraison */}
                   <Route path = "/BonDeLivraison" element = {<ListBonDeLivraison />} />
+                  {/* <Route path = "/add-bill/:id" element = {<BillForm />} />
+                  <Route path = "/edit-bill/:id" element = {<BillForm />} />
+                  <Route path = "/view-bill/:id" element = {<ViewBill />} />*/}
+                  {/* Facture */}
+                  <Route path = "/Facture" element = {<ListFacture />} />
                   {/* <Route path = "/add-bill/:id" element = {<BillForm />} />
                   <Route path = "/edit-bill/:id" element = {<BillForm />} />
                   <Route path = "/view-bill/:id" element = {<ViewBill />} />*/}
