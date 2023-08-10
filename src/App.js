@@ -36,6 +36,9 @@ import ViewUser from "./scenes/user/ViewUser";
 import ListBonDeCommande from "./scenes/bonDeCommande";
 import ListBonDeLivraison from "./scenes/bonDeLivraison";
 import ListFacture from "./scenes/facture";
+import ViewBonDeCommande from "./scenes/bonDeCommande/ViewBonDeCommande";
+import ViewBonDeLivraison from "./scenes/bonDeLivraison/ViewBonDeLivraison";
+import ViewFacture from "./scenes/facture/ViewFacture";
 
 
 function App() {
@@ -85,18 +88,18 @@ function App() {
                   {/* Bon De Commande */}
                   <Route path = "/BonDeCommande" element = {<ListBonDeCommande />} />
                  {/* <Route path = "/add-bill/:id" element = {<BillForm />} />
-                  <Route path = "/edit-bill/:id" element = {<BillForm />} />
-                  <Route path = "/view-bill/:id" element = {<ViewBill />} />*/}
+                  <Route path = "/edit-bill/:id" element = {<BillForm />} />*/}
+                  <Route path = "/bon-de-commandes/view/:id" element = {<ViewBonDeCommande />} />
                   {/* Bon De Livraison */}
                   <Route path = "/BonDeLivraison" element = {<ListBonDeLivraison />} />
                   {/* <Route path = "/add-bill/:id" element = {<BillForm />} />
-                  <Route path = "/edit-bill/:id" element = {<BillForm />} />
-                  <Route path = "/view-bill/:id" element = {<ViewBill />} />*/}
+                  <Route path = "/edit-bill/:id" element = {<BillForm />} />*/}
+                  <Route path = "/bon-de-livraisons/view/:id" element = {<ViewBonDeLivraison />} />
                   {/* Facture */}
                   <Route path = "/Facture" element = {<ListFacture />} />
                   {/* <Route path = "/add-bill/:id" element = {<BillForm />} />
-                  <Route path = "/edit-bill/:id" element = {<BillForm />} />
-                  <Route path = "/view-bill/:id" element = {<ViewBill />} />*/}
+                  <Route path = "/edit-bill/:id" element = {<BillForm />} />*/}
+                  <Route path = "/facture/view/:id" element = {<ViewFacture />} />
                 {/* Supplier */}
                   <Route path = "/suppliers" element = {<ListSuppliers />} />
                   <Route path = "/add-supplier/:id" element = {<SupplierForm />} />
