@@ -32,14 +32,13 @@ const BonDeCommandeForm = () => {
 
     function setBonDeCommandeDetails(details) {
         let formattedDetails = details.map((detail) => ({
-            id: detail.id,
+            id_detail: detail.id,
             produit: detail.produit,
             quantite: detail.quantite,
             prixUnitaire: detail.prixUnitaire,
         }));
         setDetailsArray(formattedDetails);
     }
-
 
     const [numeroCommande, setNumeroCommande] = useState('');
     const [dateCommande, setDateCommande] = useState('2023-01-01');
@@ -53,10 +52,7 @@ const BonDeCommandeForm = () => {
         },
     ]);
 
-
-
     const initialDetails = detailsArray.map(detail => ({
-        id: detail.id,
         produit: detail.produit,
         quantite: detail.quantite,
         prixUnitaire: detail.prixUnitaire,
@@ -68,6 +64,11 @@ const BonDeCommandeForm = () => {
         client,
         totalHT,
         details: detailsArray.length > 0 ? detailsArray : initialDetails,
+        //details: detailsArray === [ {
+        //                 produit: '',
+        //                 quantite: 0,
+        //                 prixUnitaire: 0,
+        //             }] ? initialDetails : detailsArray,
     };
 
     const handleFormSubmit = (values) => {
@@ -76,57 +77,66 @@ const BonDeCommandeForm = () => {
     };
 
     const saveOrUpdateBonDeCommande = (values) => {
-        const { numeroCommande, dateCommande, client, totalHT, detailsArray } = values;
+        const {
+            numeroCommande,
+            dateCommande,
+            client,
+            totalHT,
+            details,
+        } = values;
+
+        if (details && details.length > 0) {
+            console.log('full')
+        } else {console.log('empty')}
+
+        // The object to be sent to the database
+        const updatedBonDeCommande = {
+            numeroCommande,
+            dateCommande,
+            client,
+            totalHT,
+            bonDeCommandeDetails: details.map(detail => ({
+                produit: detail.produit,
+                quantite: detail.quantite,
+                prixUnitaire: detail.prixUnitaire,
+            })),
+        };
+        console.log("BC => " + JSON.stringify(updatedBonDeCommande));
 
         if (
             numeroCommande === '' &&
             client === '' &&
             dateCommande === '2023-01-01' &&
             totalHT === 0 &&
-            detailsArray === []
+            detailsArray === [ {
+                produit: '',
+                quantite: 0,
+                prixUnitaire: 0,
+            }]
         ) {
             console.log('All values are empty, skipping saveOrUpdateBonDeCommande');
             return;
         }
 
-        BonDeCommandeService.getBonDeCommandeById(id)
-            .then((response) => {
-                const bonDeCommande = response.data;
-
-                const updatedBonDeCommande = {
-                    id: bonDeCommande.id,
-                    numeroCommande: bonDeCommande.numeroCommande,
-                    dateCommande: bonDeCommande.dateCommande,
-                    client: bonDeCommande.client,
-                    totalHT: bonDeCommande.totalHT,
-                    bonDeCommandeDetails: bonDeCommande.bonDeCommandeDetails.map((detail) => ({
-                        id: detail.id,
-                        produit: detail.produit,
-                        quantite: detail.quantite,
-                        prixUnitaire: detail.prixUnitaire,
-                    })),
-                };
-
-
-
         if (id === '_add') {
-                    BonDeCommandeService.createBonDeCommande(updatedBonDeCommande)
-                        .then(() => {
-                            navigate('/bonDeCommande');
-                        })
-                        .catch((error) => {
-                            console.log('Error creating bonDeCommande:', error);
-                        });
-                } else {
-                    BonDeCommandeService.updateBonDeCommande(id, updatedBonDeCommande)
-                        .then(() => {
-                            navigate('/bonDeCommande');
-                        })
-                        .catch((error) => {
-                            console.log('Error updating bonDeCommande:', error);
-                        });
-                }
-            });
+            BonDeCommandeService.createBonDeCommande(updatedBonDeCommande)
+                .then(() => {
+                    navigate('/bonDeCommande');
+                })
+                .catch((error) => {
+                    console.log('Error creating bonDeCommande:', error);
+                });
+        }
+        else {
+            BonDeCommandeService.updateBonDeCommande(id, updatedBonDeCommande)
+                .then(() => {
+                    navigate('/bonDeCommande');
+                })
+                .catch((error) => {
+                    console.log('Error updating bonDeCommande:', error);
+                });
+        }
+
     };
 
     const cancel = () => {
@@ -159,7 +169,6 @@ const BonDeCommandeForm = () => {
         prixUnitaire: yup.number().required('Required'),
     });
 
-
     return (
         <Box m="20px">
             <Header title={getTitle()} subtitle={getSubTitle()} />
@@ -179,6 +188,7 @@ const BonDeCommandeForm = () => {
                               handleBlur,
                               handleChange,
                               handleSubmit,
+                              submitForm,
                               setFieldValue,
                           }) => (
                             <form onSubmit={handleSubmit}>
@@ -188,7 +198,7 @@ const BonDeCommandeForm = () => {
                                     sx={{
                                         "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                                     }}
-                                    >
+                                >
                                     <Box
                                         display="grid"
                                         gap="30px"
@@ -196,66 +206,66 @@ const BonDeCommandeForm = () => {
                                         sx={{
                                             "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                                         }}>
-                                <Box mb={2}>
-                                    <TextField
-                                        type="text"
-                                        name="numeroCommande"
-                                        label="Numero Commande"
-                                        variant="filled"
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        value={values.numeroCommande}
-                                        error={touched.numeroCommande && !!errors.numeroCommande}
-                                        helperText={touched.numeroCommande && errors.numeroCommande}
-                                        sx={{ gridColumn: "span 2" }}
-                                        fullWidth
-                                    />
-                                </Box>
-                                <Box mb={2}>
-                                    <TextField
-                                        type="date"
-                                        name="dateCommande"
-                                        label="Date Commande"
-                                        fullWidth
-                                        variant="filled"
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        value={values.dateCommande}
-                                        error={touched.dateCommande && !!errors.dateCommande}
-                                        helperText={touched.dateCommande && errors.dateCommande}
-                                        sx={{ gridColumn: "span 2" }}
-                                    />
-                                </Box>
-                                <Box mb={2}>
-                                    <TextField
-                                        type="text"
-                                        name="client"
-                                        label="Client"
-                                        fullWidth
-                                        variant="filled"
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        value={values.client}
-                                        error={touched.client && !!errors.client}
-                                        helperText={touched.client && errors.client}
-                                        sx={{ gridColumn: "span 2" }}
-                                    />
-                                </Box>
-                                <Box mb={2}>
-                                    <TextField
-                                        type="number"
-                                        name="totalHT"
-                                        label="Total HT"
-                                        fullWidth
-                                        variant="filled"
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        value={values.totalHT}
-                                        error={touched.totalHT && !!errors.totalHT}
-                                        helperText={touched.totalHT && errors.totalHT}
-                                        sx={{ gridColumn: "span 2" }}
-                                    />
-                                </Box>
+                                        <Box mb={2}>
+                                            <TextField
+                                                type="text"
+                                                name="numeroCommande"
+                                                label="Numero Commande"
+                                                variant="filled"
+                                                onBlur={handleBlur}
+                                                onChange={handleChange}
+                                                value={values.numeroCommande}
+                                                error={touched.numeroCommande && !!errors.numeroCommande}
+                                                helperText={touched.numeroCommande && errors.numeroCommande}
+                                                sx={{ gridColumn: "span 2" }}
+                                                fullWidth
+                                            />
+                                        </Box>
+                                        <Box mb={2}>
+                                            <TextField
+                                                type="date"
+                                                name="dateCommande"
+                                                label="Date Commande"
+                                                fullWidth
+                                                variant="filled"
+                                                onBlur={handleBlur}
+                                                onChange={handleChange}
+                                                value={values.dateCommande}
+                                                error={touched.dateCommande && !!errors.dateCommande}
+                                                helperText={touched.dateCommande && errors.dateCommande}
+                                                sx={{ gridColumn: "span 2" }}
+                                            />
+                                        </Box>
+                                        <Box mb={2}>
+                                            <TextField
+                                                type="text"
+                                                name="client"
+                                                label="Client"
+                                                fullWidth
+                                                variant="filled"
+                                                onBlur={handleBlur}
+                                                onChange={handleChange}
+                                                value={values.client}
+                                                error={touched.client && !!errors.client}
+                                                helperText={touched.client && errors.client}
+                                                sx={{ gridColumn: "span 2" }}
+                                            />
+                                        </Box>
+                                        <Box mb={2}>
+                                            <TextField
+                                                type="number"
+                                                name="totalHT"
+                                                label="Total HT"
+                                                fullWidth
+                                                variant="filled"
+                                                onBlur={handleBlur}
+                                                onChange={handleChange}
+                                                value={values.totalHT}
+                                                error={touched.totalHT && !!errors.totalHT}
+                                                helperText={touched.totalHT && errors.totalHT}
+                                                sx={{ gridColumn: "span 2" }}
+                                            />
+                                        </Box>
                                     </Box>
                                     <FieldArray name="details">
                                         {({ push, remove }) => (
@@ -307,6 +317,7 @@ const BonDeCommandeForm = () => {
                                                         <div className="mt-2">
                                                             {index > 0 && (
                                                                 <Button
+                                                                    sx={{m: 2}}
                                                                     variant="outlined"
                                                                     color="error"
                                                                     onClick={() => remove(index)}
@@ -316,9 +327,10 @@ const BonDeCommandeForm = () => {
                                                             )}
                                                             {index === values.details.length - 1 && (
                                                                 <Button
+                                                                    sx={{m: 2}}
                                                                     variant="outlined"
                                                                     color="success"
-                                                                    onClick={() => push({ produit: '', quantite: '', prixUnitaire: '' })}
+                                                                    onClick={() => push({ produit: '', quantite: 0, prixUnitaire: 0 })}
                                                                 >
                                                                     Add More
                                                                 </Button>
@@ -332,9 +344,19 @@ const BonDeCommandeForm = () => {
 
 
                                 </Box>
-                                <Button type="submit" variant="contained" color="secondary">
-                                    Submit
-                                </Button>
+                                <div style={{ textAlign: 'center' }}>
+                                    <Button type="submit" variant="contained" color="secondary" onClick={handleFormSubmit}>
+                                        Submit
+                                    </Button>
+                                    <Button
+                                        onClick={cancel}
+                                        color="error"
+                                        variant="contained"
+                                        style={{ marginLeft: "10px" }}
+                                    >
+                                        Cancel
+                                    </Button>
+                                </div>
                             </form>
                         )}
                     </Formik>
