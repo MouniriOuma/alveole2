@@ -88,8 +88,8 @@ function App() {
                   <Route path = "/view-waterElecs/:id" element = {<ViewWaterElec />} />
                   {/* Bon De Commande */}
                   <Route path = "/BonDeCommande" element = {<ListBonDeCommande />} />
-                  <Route path = "/Bon-De-Commandes/:id" element = {<BonDeCommandeForm />} />
-                  <Route path = "/edit-bill/:id" element = {<BillForm />} />
+                  <Route path = "/bon-de-commandes/:id" element = {<BonDeCommandeForm />} />
+                  <Route path = "/bon-de-commandes/edit/:id" element = {<BillForm />} />
                   <Route path = "/bon-de-commandes/view/:id" element = {<ViewBonDeCommande />} />
                   {/* Bon De Livraison */}
                   <Route path = "/BonDeLivraison" element = {<ListBonDeLivraison />} />

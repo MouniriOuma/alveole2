@@ -78,7 +78,7 @@ function ListBonDeCommande() {
     };
 
     const addBonDeCommande = () => {
-        navigate('/bon-de-commandes/add');
+        navigate('/bon-de-commandes/_add');
     };
 
     const columns = [
