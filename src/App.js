@@ -39,7 +39,7 @@ import ListFacture from "./scenes/facture";
 import ViewBonDeCommande from "./scenes/bonDeCommande/ViewBonDeCommande";
 import ViewBonDeLivraison from "./scenes/bonDeLivraison/ViewBonDeLivraison";
 import ViewFacture from "./scenes/facture/ViewFacture";
-import BonDeCommandeForm from "./scenes/bonDeCommande/CreateOrUpdateBonDeCommande";
+import BonDeCommandeForm from "./scenes/bonDeCommande/CreateBonDeCommande";
 
 
 function App() {

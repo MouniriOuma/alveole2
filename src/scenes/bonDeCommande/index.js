@@ -73,10 +73,6 @@ function ListBonDeCommande() {
         navigate(`/bon-de-commandes/view/${id}`);
     };
 
-    const editBonDeCommande = (id) => {
-        navigate(`/bon-de-commandes/edit/${id}`);
-    };
-
     const addBonDeCommande = () => {
         navigate('/bon-de-commandes/_add');
     };
@@ -99,13 +95,6 @@ function ListBonDeCommande() {
                     justifyContent="center"
                     borderRadius="4px"
                 >
-                    {!isUser && (
-                        <Box sx={{ background: colors.blueAccent[700], borderRadius: '10%', marginRight: '10px' }}>
-                            <IconButton aria-label="update" size="small" onClick={() => editBonDeCommande(id)}>
-                                <BorderColorIcon fontSize="inherit" />
-                            </IconButton>
-                        </Box>)}
-
                     {!isUser && (
                         <Box sx={{ background: colors.redAccent[700], borderRadius: '10%', marginRight: '10px' }}>
                             <IconButton aria-label="delete" size="small" onClick={() => deleteBonDeCommande(id)}>
