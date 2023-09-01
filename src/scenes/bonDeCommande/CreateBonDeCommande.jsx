@@ -8,7 +8,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import Header from "../base/Header";
 import BonDeCommandeService from "../../services/BonDeCommandeService";
 
-const Dashboard = () => {
+const BonDeCommandeForm = () => {
     const isNonMobile = useMediaQuery("(min-width:600px)");
 
     const navigate = useNavigate();
@@ -303,4 +303,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default BonDeCommandeForm;
