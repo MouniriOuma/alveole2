@@ -52,7 +52,10 @@ const Dashboard = () => {
             numeroCommande,
             dateCommande,
             client,
-            totalHT,
+            totalHT: details.reduce((total, detail) => {
+                const detailTotal = detail.quantite * detail.prixUnitaire;
+                return total + detailTotal;
+            }, 0),
             bonDeCommandeDetails: details.map(detail => ({
                 produit: detail.produit,
                 quantite: detail.quantite,
@@ -117,7 +120,7 @@ const Dashboard = () => {
                                     <Box
                                         display="grid"
                                         gap="30px"
-                                        gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+                                        gridTemplateColumns="repeat(3, minmax(0, 1fr))"
                                         sx={{
                                             "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                                         }}>
@@ -170,25 +173,6 @@ const Dashboard = () => {
                                                 helperText={
                                                     touched.client && errors.client
                                                         ? errors.client
-                                                        : ""
-                                                }
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                            />
-                                        </Box>
-                                        <Box mb={2}>
-                                            <TextField
-                                                margin="normal"
-                                                variant="outlined"
-                                                label="Total HT"
-                                                name="totalHT"
-                                                type="number"
-                                                value={values.totalHT}
-                                                required
-                                                fullWidth
-                                                helperText={
-                                                    touched.totalHT && errors.totalHT
-                                                        ? errors.totalHT
                                                         : ""
                                                 }
                                                 onChange={handleChange}
