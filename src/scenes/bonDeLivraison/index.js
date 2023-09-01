@@ -73,9 +73,6 @@ function ListBonDeLivraison() {
         navigate(`/bon-de-Livraisons/view/${id}`);
     };
 
-    const editBonDeLivraison = (id) => {
-        navigate(`/bon-de-Livraisons/edit/${id}`);
-    };
 
     const addBonDeLivraison = () => {
         navigate('/bon-de-Livraisons/add');
@@ -100,12 +97,6 @@ function ListBonDeLivraison() {
                     justifyContent="center"
                     borderRadius="4px"
                 >
-                    {!isUser && (
-                        <Box sx={{ background: colors.blueAccent[700], borderRadius: '10%', marginRight: '10px' }}>
-                            <IconButton aria-label="update" size="small" onClick={() => editBonDeLivraison(id)}>
-                                <BorderColorIcon fontSize="inherit" />
-                            </IconButton>
-                        </Box>)}
 
                     {!isUser && (
                         <Box sx={{ background: colors.redAccent[700], borderRadius: '10%', marginRight: '10px' }}>

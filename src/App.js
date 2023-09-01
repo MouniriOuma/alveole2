@@ -40,6 +40,7 @@ import ViewBonDeCommande from "./scenes/bonDeCommande/ViewBonDeCommande";
 import ViewBonDeLivraison from "./scenes/bonDeLivraison/ViewBonDeLivraison";
 import ViewFacture from "./scenes/facture/ViewFacture";
 import BonDeCommandeForm from "./scenes/bonDeCommande/CreateBonDeCommande";
+import BonDeLivraisonForm from "./scenes/bonDeLivraison/CreateBonDeLivraison";
 
 
 function App() {
@@ -89,17 +90,14 @@ function App() {
                   {/* Bon De Commande */}
                   <Route path = "/BonDeCommande" element = {<ListBonDeCommande />} />
                   <Route path = "/bon-de-commandes/:id" element = {<BonDeCommandeForm />} />
-                  <Route path = "/bon-de-commandes/edit/:id" element = {<BillForm />} />
                   <Route path = "/bon-de-commandes/view/:id" element = {<ViewBonDeCommande />} />
                   {/* Bon De Livraison */}
                   <Route path = "/BonDeLivraison" element = {<ListBonDeLivraison />} />
-                  {/* <Route path = "/add-bill/:id" element = {<BillForm />} />
-                  <Route path = "/edit-bill/:id" element = {<BillForm />} />*/}
+                  <Route path = "/bon-de-livraisons/:id" element = {<BonDeLivraisonForm />} />
                   <Route path = "/bon-de-livraisons/view/:id" element = {<ViewBonDeLivraison />} />
                   {/* Facture */}
                   <Route path = "/Facture" element = {<ListFacture />} />
-                  {/* <Route path = "/add-bill/:id" element = {<BillForm />} />
-                  <Route path = "/edit-bill/:id" element = {<BillForm />} />*/}
+                  <Route path = "/add-bill/:id" element = {<BillForm />} />
                   <Route path = "/facture/view/:id" element = {<ViewFacture />} />
                 {/* Supplier */}
                   <Route path = "/suppliers" element = {<ListSuppliers />} />
