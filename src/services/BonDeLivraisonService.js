@@ -11,6 +11,10 @@ class BonDeLivraisonService {
         return axios.get(BON_DE_LIVRAISON_API_BASE_URL + '/' + id);
     }
 
+    createBonDeLivraison(bonDeLivraison) {
+        return axios.post(BON_DE_LIVRAISON_API_BASE_URL, bonDeLivraison);
+    }
+
     updateBonDeLivraison(id, bonDeLivraison) {
         return axios.put(BON_DE_LIVRAISON_API_BASE_URL + '/update/' + id, bonDeLivraison);
     }
