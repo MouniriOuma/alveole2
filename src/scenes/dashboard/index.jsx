@@ -10,7 +10,7 @@ const Dashboard = () => {
                 <Header title="DASHBOARD" subtitle="welcome to the dashboard" />
             </Box>
         </Box>
-        
+
     );
 };
 
