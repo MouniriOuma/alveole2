@@ -73,7 +73,7 @@ const FactureForm = () => {
             totalHT: newTotalHT,
             totalTVA: newTotalTVA,
             totalTTC: newTotalTTC,
-            FactureDetails: details.map(detail => ({
+            factureDetails: details.map(detail => ({
                 produit: detail.produit,
                 quantiteCommande: detail.quantiteCommande,
                 prixUnitaire: detail.prixUnitaire,
@@ -81,20 +81,6 @@ const FactureForm = () => {
         };
 
         console.log("BC => " , JSON.stringify(updatedFacture, null, 2));
-
-
-        const areAllValuesEmpty = (
-            numeroCommande === '' &&
-            numeroLivraison === '' &&
-            client === '' &&
-            dateFacture === '2023-01-01' &&
-            totalHT === 0
-        );
-
-        if (areAllValuesEmpty) {
-            console.log('All values are empty, skipping saveFacture');
-            return;
-        }
 
         FactureService.createFacture(updatedFacture)
             .then(() => {
