@@ -64,9 +64,6 @@ export default function ViewBonDeCommande() {
     const isUser = role.includes('user') && !role.includes('admin');
 
 
-    const editBonDeCommande = (id) => {
-        navigate(`/edit-Bon-De-Commande/${id}`);
-    };
     const exportPDF = async () => {
         try {
             const response = await BonDeCommandeService.exportBonDeCommandeToPDF(id);

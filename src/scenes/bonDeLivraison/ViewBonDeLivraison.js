@@ -64,9 +64,6 @@ export default function ViewBonDeLivraison() {
     const isUser = role.includes('user') && !role.includes('admin');
 
 
-    const editBonDeLivraison = (id) => {
-        navigate(`/edit-Bon-De-Livraison/${id}`);
-    };
     const exportPDF = async () => {
         try {
             const response = await BonDeLivraisonService.exportBonDeLivraisonToPDF(id);
@@ -148,16 +145,7 @@ export default function ViewBonDeLivraison() {
                             >
                                 Back
                             </Button>
-                            {!isUser && (
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    startIcon={<BorderColorIcon />}
-                                    onClick={() => editBonDeLivraison(id)}
-                                >
-                                    Edit
-                                </Button>
-                            )}
+
                             <Button
                                 variant="contained"
                                 color="secondary"
