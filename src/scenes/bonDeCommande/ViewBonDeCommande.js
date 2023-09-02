@@ -140,7 +140,7 @@ export default function ViewBonDeCommande() {
                                 color="secondary"
                                 style={{ marginRight: '10px' }}
                                 startIcon={<KeyboardBackspaceIcon />}
-                                onClick={() => navigate('/bon-de-commandes')}
+                                onClick={() => navigate('/BonDeCommande')}
                             >
                                 Back
                             </Button>

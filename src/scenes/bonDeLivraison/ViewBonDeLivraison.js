@@ -141,7 +141,7 @@ export default function ViewBonDeLivraison() {
                                 color="secondary"
                                 style={{ marginRight: '10px' }}
                                 startIcon={<KeyboardBackspaceIcon />}
-                                onClick={() => navigate('/bon-de-Livraisons')}
+                                onClick={() => navigate('/BonDeLivraison')}
                             >
                                 Back
                             </Button>
