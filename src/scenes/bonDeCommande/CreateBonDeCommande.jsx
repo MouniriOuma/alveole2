@@ -292,6 +292,14 @@ const BonDeCommandeForm = () => {
                                         >
                                             Submit
                                         </Button>
+                                        <Button
+                                            onClick={cancel}
+                                            color="error"
+                                            variant="contained"
+                                            style={{ marginLeft: "10px" }}
+                                        >
+                                            Cancel
+                                        </Button>
                                     </div>
                                 </Box>
                             </Form>
