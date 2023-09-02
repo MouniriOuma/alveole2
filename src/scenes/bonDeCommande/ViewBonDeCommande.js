@@ -147,16 +147,6 @@ export default function ViewBonDeCommande() {
                             >
                                 Back
                             </Button>
-                            {!isUser && (
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    startIcon={<BorderColorIcon />}
-                                    onClick={() => editBonDeCommande(id)}
-                                >
-                                    Edit
-                                </Button>
-                            )}
                             <Button
                                 variant="contained"
                                 color="secondary"
