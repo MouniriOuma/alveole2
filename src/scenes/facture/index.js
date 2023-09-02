@@ -129,7 +129,7 @@ function ListFacture() {
 
     return (
         <Box m="20px">
-            <Header title="BON DE LIVRAISONS" subtitle="All bon de Livraisons" />
+            <Header title="FACTURE" subtitle="toutes les factures" />
             <Button
                 onClick={addFacture}
                 variant="contained"
@@ -138,7 +138,7 @@ function ListFacture() {
                 startIcon={<AddIcon />}
                 sx={{ marginRight: '10px' }}
             >
-                Add
+                Ajouter
             </Button>
             <Box
                 m="40px 0 0 0"
