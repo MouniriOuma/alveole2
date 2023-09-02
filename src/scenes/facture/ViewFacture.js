@@ -63,10 +63,6 @@ export default function ViewFacture() {
 
     const isUser = role.includes('user') && !role.includes('admin');
 
-
-    const editFacture = (id) => {
-        navigate(`/edit-Facture/${id}`);
-    };
     const exportPDF = async () => {
         try {
             const response = await FactureService.exportFactureToPDF(id);
@@ -155,16 +151,7 @@ export default function ViewFacture() {
                             >
                                 Back
                             </Button>
-                            {!isUser && (
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    startIcon={<BorderColorIcon />}
-                                    onClick={() => editFacture(id)}
-                                >
-                                    Edit
-                                </Button>
-                            )}
+
                             <Button
                                 variant="contained"
                                 color="secondary"
