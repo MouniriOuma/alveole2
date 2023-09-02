@@ -41,6 +41,7 @@ import ViewBonDeLivraison from "./scenes/bonDeLivraison/ViewBonDeLivraison";
 import ViewFacture from "./scenes/facture/ViewFacture";
 import BonDeCommandeForm from "./scenes/bonDeCommande/CreateBonDeCommande";
 import BonDeLivraisonForm from "./scenes/bonDeLivraison/CreateBonDeLivraison";
+import FactureForm from "./scenes/facture/CreateFacture";
 
 
 function App() {
@@ -97,7 +98,7 @@ function App() {
                   <Route path = "/bon-de-livraisons/view/:id" element = {<ViewBonDeLivraison />} />
                   {/* Facture */}
                   <Route path = "/Facture" element = {<ListFacture />} />
-                  <Route path = "/add-bill/:id" element = {<BillForm />} />
+                  <Route path = "/facture/:id" element = {<FactureForm />} />
                   <Route path = "/facture/view/:id" element = {<ViewFacture />} />
                 {/* Supplier */}
                   <Route path = "/suppliers" element = {<ListSuppliers />} />
