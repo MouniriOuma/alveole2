@@ -21,7 +21,7 @@ const BonDeLivraisonForm = () => {
         details: Yup.array().of(
             Yup.object().shape({
                 produit: Yup.string().required("required"),
-                quantite: Yup.number().required("required"),
+                quantiteCommande: Yup.number().required("required"),
                 prixUnitaire: Yup.number().required("required")
             })
         )
@@ -56,12 +56,12 @@ const BonDeLivraisonForm = () => {
             dateLivraison,
             client,
             totalHT: details.reduce((total, detail) => {
-                const detailTotal = detail.quantite * detail.prixUnitaire;
+                const detailTotal = detail.quantiteCommande * detail.prixUnitaire;
                 return total + detailTotal;
             }, 0),
             bonDeLivraisonDetails: details.map(detail => ({
                 produit: detail.produit,
-                quantite: detail.quantite,
+                quantiteCommande: detail.quantiteCommande,
                 prixUnitaire: detail.prixUnitaire,
             })),
         };
@@ -102,7 +102,7 @@ const BonDeLivraisonForm = () => {
                             totalHT: 0,
                             details: [{
                                 produit: '',
-                                quantite: 0,
+                                quantiteCommande: 0,
                                 prixUnitaire: 0,
                             }],
                         }}
@@ -211,9 +211,9 @@ const BonDeLivraisonForm = () => {
                                                     const touchedProduit = getIn(touched, produitName);
                                                     const errorProduit = getIn(errors, produitName);
 
-                                                    const quantiteName = `details[${index}].quantite`;
-                                                    const touchedQuantite = getIn(touched, quantiteName);
-                                                    const errorQuantite = getIn(errors, quantiteName);
+                                                    const quantiteCommandeName = `details[${index}].quantiteCommande`;
+                                                    const touchedQuantiteCommande = getIn(touched, quantiteCommandeName);
+                                                    const errorQuantiteCommande = getIn(errors, quantiteCommandeName);
 
                                                     const prixUnitaireName = `details[${index}].prixUnitaire`;
                                                     const touchedPrixUnitaire = getIn(touched, prixUnitaireName);
@@ -246,17 +246,17 @@ const BonDeLivraisonForm = () => {
                                                                         margin="normal"
                                                                         variant="outlined"
                                                                         label="Quantite"
-                                                                        name={quantiteName}
-                                                                        value={detail.quantite}
+                                                                        name={quantiteCommandeName}
+                                                                        value={detail.quantiteCommande}
                                                                         type="number"
                                                                         required
                                                                         fullWidth
                                                                         helperText={
-                                                                            touchedQuantite && errorQuantite
-                                                                                ? errorQuantite
+                                                                            touchedQuantiteCommande && errorQuantiteCommande
+                                                                                ? errorQuantiteCommande
                                                                                 : ""
                                                                         }
-                                                                        error={Boolean(touchedQuantite && errorQuantite)}
+                                                                        error={Boolean(touchedQuantiteCommande && errorQuantiteCommande)}
                                                                         onChange={handleChange}
                                                                         onBlur={handleBlur}
                                                                     />
@@ -299,7 +299,7 @@ const BonDeLivraisonForm = () => {
                                                     variant="outlined"
                                                     color="success"
                                                     onClick={() =>
-                                                        push({ produit: "", quantite: 0, prixUnitaire: 0 })
+                                                        push({ produit: "", quantiteCommande: 0, prixUnitaire: 0 })
                                                     }
                                                 >
                                                     Add

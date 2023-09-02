@@ -73,10 +73,6 @@ function ListFacture() {
         navigate(`/facture/view/${id}`);
     };
 
-    const editFacture = (id) => {
-        navigate(`/facture/edit/${id}`);
-    };
-
     const addFacture = () => {
         navigate('/facture/add');
     };
@@ -102,12 +98,6 @@ function ListFacture() {
                     justifyContent="center"
                     borderRadius="4px"
                 >
-                    {!isUser && (
-                        <Box sx={{ background: colors.blueAccent[700], borderRadius: '10%', marginRight: '10px' }}>
-                            <IconButton aria-label="update" size="small" onClick={() => editFacture(id)}>
-                                <BorderColorIcon fontSize="inherit" />
-                            </IconButton>
-                        </Box>)}
 
                     {!isUser && (
                         <Box sx={{ background: colors.redAccent[700], borderRadius: '10%', marginRight: '10px' }}>
