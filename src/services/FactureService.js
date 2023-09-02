@@ -11,6 +11,10 @@ class FactureService {
         return axios.get(FACTURE_API_BASE_URL + '/' + id);
     }
 
+    createFacture(facture) {
+        return axios.post(FACTURE_API_BASE_URL, facture);
+    }
+
     updateFacture(id, facture) {
         return axios.put(FACTURE_API_BASE_URL + '/update/' + id, facture);
     }
