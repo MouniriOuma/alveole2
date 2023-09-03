@@ -21,7 +21,6 @@ import BillForm from "./scenes/bills/CreateOrUpdateBill";
 import ListWaterElec from "./scenes/waterElec";
 import WaterElecForm from "./scenes/waterElec/CreateOrUpdateWaterElec";
 import SupplierForm from "./scenes/suppliers/CreateOrUpdateSupplier";
-import ProdCostForm from "./scenes/productionCost/ProdCostForm";
 import LoginForm from "./scenes/Login";
 import ListProdCost from "./scenes/productionCost";
 import ProductForm from "./scenes/product/CreateOrUpdateProduct";
@@ -42,6 +41,7 @@ import ViewFacture from "./scenes/facture/ViewFacture";
 import BonDeCommandeForm from "./scenes/bonDeCommande/CreateBonDeCommande";
 import BonDeLivraisonForm from "./scenes/bonDeLivraison/CreateBonDeLivraison";
 import FactureForm from "./scenes/facture/CreateFacture";
+import ProductPriceCalculator from "./scenes/productionCost/ProductPriceCalculator";
 
 
 function App() {
@@ -112,7 +112,7 @@ function App() {
                   <Route path = "/view-product/:id" element = {<ViewProduct />} />
                 {/* Production cost */}
                   <Route path = "/production_cost" element = {<ListProdCost />} />
-                  <Route path = "/add-production-cost" element = {<ProdCostForm />} />
+                  <Route path = "/add-production-cost" element = {<ProductPriceCalculator />} />
                   <Route path = "/view-production-cost/:id" element = {<ViewProductionCost />} />
                   </Routes>
                 </main>
