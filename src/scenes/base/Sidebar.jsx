@@ -264,7 +264,7 @@ const Sidebar = () => {
               {role.includes('admin') && (
             <Item
               title="production cost"
-              to="/production_cost"
+              to="/production-cost"
               icon={<CategoryOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
