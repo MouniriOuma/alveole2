@@ -59,7 +59,7 @@ const ProductPriceCalculator = () => {
             salarie,
             location,
             nomProduit,
-            quatiteProduit, // Corrected from 'quatiteProduit'
+            quatiteProduit,
         } = values;
 
         // Calculate the total cost of ingredients
@@ -77,11 +77,11 @@ const ProductPriceCalculator = () => {
         const totalCost = ingredientsTotalCost + othersTotalCost + electricite + salarie + location;
 
         // Calculate the cost per product
-        const costPerProduct = totalCost / quatiteProduit; // Corrected from 'quantiteProduit'
+        const costPerProduct = totalCost / quatiteProduit;
 
-        console.log('Cost per product inside function:', costPerProduct); // Log the cost per product
+        console.log('Cost per',nomProduit,' product inside function:', costPerProduct); // Log the cost per product
 
-        navigate(`/production-cost/${costPerProduct}`);
+        navigate(`/product-cost/${nomProduit}/${costPerProduct}`);
 
         return costPerProduct;
     }
