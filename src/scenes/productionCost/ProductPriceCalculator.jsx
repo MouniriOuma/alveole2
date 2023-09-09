@@ -81,6 +81,8 @@ const ProductPriceCalculator = () => {
 
         console.log('Cost per product inside function:', costPerProduct); // Log the cost per product
 
+        navigate(`/production-cost/${costPerProduct}`);
+
         return costPerProduct;
     }
     return (
