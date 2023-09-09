@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import ProductionCostService from '../../services/ProductionCostService';
+import ProductCostService from '../../services/ProductCostService';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
@@ -16,11 +16,11 @@ import UserService from "../../services/UserService";
 function ListProdCost() {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const [productionCosts, setProductionCosts] = React.useState([]);
+    const [productCosts, setProductCosts] = React.useState([]);
 
     React.useEffect(() => {
-        ProductionCostService.getProductionCosts().then((res) => {
-            setProductionCosts(res.data);
+        ProductCostService.getProductCosts().then((res) => {
+            setProductCosts(res.data);
         });
     }, []);
 
@@ -53,36 +53,32 @@ function ListProdCost() {
 
     const navigate = useNavigate();
 
-    const deleteProductionCost = (id) => {
-        ProductionCostService.deleteProductionCost(id)
+    const deleteProductCost = (id) => {
+        ProductCostService.deleteProductCost(id)
             .then(() => {
-                setProductionCosts((prevCosts) =>
+                setProductCosts((prevCosts) =>
                     prevCosts.filter((cost) => cost.id !== id)
                 );
                 window.location.reload();
             })
             .catch((error) => {
                 // Handle the error here
-                console.log('Error deleting production cost:', error);
+                console.log('Error deleting Product cost:', error);
             });
     };
 
-    const viewProductionCost = (id) => {
-        navigate(`/view-production-cost/${id}`);
+    const viewProductCost = (id) => {
+        navigate(`/view-product-cost/${id}`);
     };
 
-    const editProductionCost = (id) => {
-        navigate(`/edit-production-cost/${id}`);
-    };
-
-    const addProductionCost = () => {
-        navigate('/add-production-cost');
+    const addProductCost = () => {
+        navigate('/add-product-cost');
     };
 
     const columns = [
-       // { field: 'id', headerName: 'ID' },
+        { field: 'productName', headerName: 'Nom produit', flex: 1 },
         { field: 'date', headerName: 'Date', flex: 1 },
-        { field: 'cost', headerName: 'Cost', flex: 1 },
+        { field: 'cost', headerName: 'Coût', flex: 1 },
         {
             field: 'actions',
             headerName: 'Actions',
@@ -96,42 +92,38 @@ function ListProdCost() {
                     justifyContent="center"
                     borderRadius="4px"
                 >
-                    {/*{!isUser && (
-                    <Box sx={{ background: colors.blueAccent[700], borderRadius: '10%', marginRight: '10px' }}>
-                        <IconButton aria-label="update" size="small" onClick={() => editProductionCost(id)}>
-                            <BorderColorIcon fontSize="inherit" />
+                    <Box sx={{ background: colors.greenAccent[500], borderRadius: '10%', marginRight: '10px' }}>
+                        <IconButton aria-label="view" size="small" onClick={() => viewProductCost(id)}>
+                            <VisibilityIcon fontSize="inherit" />
                         </IconButton>
-                    </Box>)}*/}
+                    </Box>
+
                     {!isUser && (
 
                     <Box sx={{ background: colors.redAccent[700], borderRadius: '10%', marginRight: '10px' }}>
-                        <IconButton aria-label="delete" size="small" onClick={() => deleteProductionCost(id)}>
+                        <IconButton aria-label="delete" size="small" onClick={() => deleteProductCost(id)}>
                             <DeleteForeverIcon fontSize="inherit" />
                         </IconButton>
                     </Box>)}
 
-                    <Box sx={{ background: colors.greenAccent[500], borderRadius: '10%', marginRight: '10px' }}>
-                        <IconButton aria-label="view" size="small" onClick={() => viewProductionCost(id)}>
-                            <VisibilityIcon fontSize="inherit" />
-                        </IconButton>
-                    </Box>
                 </Box>
 
             ),
         },
     ];
 
-    const rows = productionCosts.map((cost) => ({
+    const rows = productCosts.map((cost) => ({
         id: cost.id,
+        productName: cost.productName,
         cost: cost.cost,
         date: cost.date,
     }));
 
     return (
         <Box m="20px">
-            <Header title="PRODUCTION COSTS" subtitle="All production costs" />
+            <Header title="PRODUCT COSTS" subtitle="All product costs" />
             <Button
-                onClick={() => addProductionCost()}
+                onClick={() => addProductCost()}
                 variant="contained"
                 color="secondary"
                 size="large"

@@ -22,7 +22,7 @@ import ListWaterElec from "./scenes/waterElec";
 import WaterElecForm from "./scenes/waterElec/CreateOrUpdateWaterElec";
 import SupplierForm from "./scenes/suppliers/CreateOrUpdateSupplier";
 import LoginForm from "./scenes/Login";
-import ListProdCost from "./scenes/productionCost";
+import ListProdCost from "./scenes/productCost";
 import ProductForm from "./scenes/product/CreateOrUpdateProduct";
 import ViewProduct from "./scenes/product/ViewProduct";
 import ViewSupplier from "./scenes/suppliers/ViewSupplier";
@@ -30,7 +30,7 @@ import ViewClient from "./scenes/clients/ViewClient";
 import ViewIngredient from "./scenes/ingredient/ViewIngredient";
 import ViewBill from "./scenes/bills/ViewBill";
 import ViewWaterElec from "./scenes/waterElec/ViewWaterElec";
-import ViewProductionCost from "./scenes/productionCost/ViewProductionCost";
+import ViewProductCost from "./scenes/productCost/ViewProductCost";
 import ViewUser from "./scenes/user/ViewUser";
 import ListBonDeCommande from "./scenes/bonDeCommande";
 import ListBonDeLivraison from "./scenes/bonDeLivraison";
@@ -41,8 +41,8 @@ import ViewFacture from "./scenes/facture/ViewFacture";
 import BonDeCommandeForm from "./scenes/bonDeCommande/CreateBonDeCommande";
 import BonDeLivraisonForm from "./scenes/bonDeLivraison/CreateBonDeLivraison";
 import FactureForm from "./scenes/facture/CreateFacture";
-import ProductPriceCalculator from "./scenes/productionCost/ProductPriceCalculator";
-import Cost from "./scenes/productionCost/Resultat";
+import ProductPriceCalculator from "./scenes/productCost/ProductPriceCalculator";
+import Cost from "./scenes/productCost/Resultat";
 
 
 function App() {
@@ -112,10 +112,10 @@ function App() {
                   <Route path = "/edit-product/:id" element = {<ProductForm />} />
                   <Route path = "/view-product/:id" element = {<ViewProduct />} />
                 {/* Production cost */}
-                  <Route path = "/production-cost" element = {<ListProdCost />} />
-                  <Route path = "/add-production-cost" element = {<ProductPriceCalculator />} />
-                  <Route path = "/view-production-cost/:id" element = {<ViewProductionCost />} />
-                  <Route path="/production-cost/:price" element={<Cost />} />
+                  <Route path = "/product-cost" element = {<ListProdCost />} />
+                  <Route path = "/add-product-cost" element = {<ProductPriceCalculator />} />
+                  <Route path = "/view-product-cost/:id" element = {<ViewProductCost />} />
+                  <Route path="/product-cost/:name/:price" element={<Cost />} />
 
               </Routes>
                 </main>

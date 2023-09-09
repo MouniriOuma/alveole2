@@ -7,80 +7,72 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Grid } from '@mui/material';
-import ProductionCostService from '../../services/ProductionCostService';
+import ProductCostService from '../../services/ProductCostService';
 import Header from "../base/Header";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { tokens } from "../../theme";
 
-export default function ViewProductionCost() {
+export default function Cost() {
     const isNonMobile = useMediaQuery("(min-width:600px)");
 
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
-    const { id } = useParams();
+    const { price } = useParams();
+    console.log(price);
     const navigate = useNavigate();
-    const [productionCost, setProductionCost] = useState(null);
 
-    useEffect(() => {
-        ProductionCostService.getProductionCostById(id)
-            .then((response) => {
-                setProductionCost(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching production cost:', error);
-            });
-    }, [id]);
 
-    const editProductionCost = (id) => {
-        navigate(`/edit-production-cost/${id}`);
-    };
-
-    const renderField = (label, value) => {
+    const renderField = (value) => {
         if (!value || value === null || value === 0) {
             return null;
         }
 
-        if (label === 'Cost') {
-            value = `${value} DH`;
-        }
+
+           value = `${value} DH`;
+
 
         return (
             <Grid item xs={12}>
-                <Typography variant="body2" color="text.secondary" sx={{ fontSize: 16 }}>
-                    <strong>{label}:</strong> {value}
+                <Typography variant="h5" color="text.secondary" sx={{ fontSize: 16 }}>
+                    <strong>{value}</strong>
                 </Typography>
             </Grid>
         );
     };
 
+    const saveCost = (price) => {
+        // Generate the current date in "YYYY-MM-DD" format
+        const currentDate = new Date().toISOString().split('T')[0];
+
+        // Prepare the data
+        const productCost = {
+            date: currentDate,
+            cost: price,
+        };
+
+        ProductCostService.createProductCost(productCost).then((res) => {
+            navigate("/product-cost");
+        });
+
+    }
+
     return (
         <Box m="20px">
-            <Header title="PRODUCTION COST DETAILS" subtitle=" " />
+            <Header title="Prix unitaire du produit d'aujourd'hui" subtitle=" " />
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
                 <Card sx={{ width: '50%', height: '50%', backgroundColor: colors.blueAccent[700] }}>
                     <CardContent>
                         <Grid item xs={12}>
-                            <Typography gutterBottom variant="h5" component="div" sx={{ fontSize: 24, textAlign: 'center' }}>
-                                {productionCost ? (
-                                    <span>Production Cost of the {productionCost.date}</span>
-                                ) : (
-                                    <span>Loading...</span>
-                                )}
+                            <Typography gutterBottom variant="h4" component="div" sx={{ fontSize: 24, textAlign: 'center' }}>
+
+                                    <span>Le prix unitaire est </span>{renderField(price)}
+
+
                             </Typography>
                         </Grid>
-                        {productionCost ? (
-                            <Grid container spacing={2}>
-                                {renderField('Date', productionCost.date)}
-                                {renderField('Cost', productionCost.cost)}
-                            </Grid>
-                        ) : (
-                            <Typography variant="body2" color="text.secondary">
-                                Loading...
-                            </Typography>
-                        )}
                     </CardContent>
                     <CardActions sx={{ justifyContent: 'center', paddingBottom: '16px' }}>
                         <Button
@@ -88,19 +80,28 @@ export default function ViewProductionCost() {
                             color="secondary"
                             sx={{ marginRight: '10px' }}
                             startIcon={<KeyboardBackspaceIcon />}
-                            onClick={() => navigate('/production_cost')}
+                            onClick={() => navigate('/add-product-cost')}
                         >
                             Back
                         </Button>
-                        {/*
                         <Button
                             variant="contained"
                             color="secondary"
-                            startIcon={<BorderColorIcon />}
-                            onClick={() => editProductionCost(id)}
+                            sx={{ marginRight: '10px' }}
+                            startIcon={<KeyboardBackspaceIcon />}
+                            onClick={saveCost(price)}
                         >
-                            Edit
-                        </Button>*/}
+                            save
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            sx={{ marginRight: '10px' }}
+                            startIcon={<KeyboardBackspaceIcon />}
+                            onClick={() => navigate('/product-cost')}
+                        >
+                            skip
+                        </Button>
                     </CardActions>
                 </Card>
             </Box>
