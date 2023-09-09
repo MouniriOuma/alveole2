@@ -42,6 +42,7 @@ import BonDeCommandeForm from "./scenes/bonDeCommande/CreateBonDeCommande";
 import BonDeLivraisonForm from "./scenes/bonDeLivraison/CreateBonDeLivraison";
 import FactureForm from "./scenes/facture/CreateFacture";
 import ProductPriceCalculator from "./scenes/productionCost/ProductPriceCalculator";
+import Cost from "./scenes/productionCost/Resultat";
 
 
 function App() {
@@ -111,10 +112,12 @@ function App() {
                   <Route path = "/edit-product/:id" element = {<ProductForm />} />
                   <Route path = "/view-product/:id" element = {<ViewProduct />} />
                 {/* Production cost */}
-                  <Route path = "/production_cost" element = {<ListProdCost />} />
+                  <Route path = "/production-cost" element = {<ListProdCost />} />
                   <Route path = "/add-production-cost" element = {<ProductPriceCalculator />} />
                   <Route path = "/view-production-cost/:id" element = {<ViewProductionCost />} />
-                  </Routes>
+                  <Route path="/production-cost/:price" element={<Cost />} />
+
+              </Routes>
                 </main>
             </div>
 
