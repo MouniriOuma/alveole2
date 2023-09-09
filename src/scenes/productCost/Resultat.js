@@ -20,8 +20,9 @@ export default function Cost() {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
+    const { name } = useParams();
     const { price } = useParams();
-    console.log(price);
+
     const navigate = useNavigate();
 
 
@@ -43,7 +44,7 @@ export default function Cost() {
         );
     };
 
-    const saveCost = (price) => {
+    const saveCost = (name, price) => {
         // Generate the current date in "YYYY-MM-DD" format
         const currentDate = new Date().toISOString().split('T')[0];
 
@@ -51,6 +52,7 @@ export default function Cost() {
         const productCost = {
             date: currentDate,
             cost: price,
+            productName: name
         };
 
         ProductCostService.createProductCost(productCost).then((res) => {
@@ -89,7 +91,7 @@ export default function Cost() {
                             color="secondary"
                             sx={{ marginRight: '10px' }}
                             startIcon={<KeyboardBackspaceIcon />}
-                            onClick={saveCost(price)}
+                            onClick={()=> saveCost(name,price)}
                         >
                             save
                         </Button>
