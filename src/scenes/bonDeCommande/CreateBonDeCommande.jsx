@@ -62,7 +62,6 @@ const BonDeCommandeForm = () => {
                 prixUnitaire: detail.prixUnitaire,
             })),
         };
-        console.log("BC => " + JSON.stringify(updatedBonDeCommande));
 
         const areAllValuesEmpty = (
             numeroCommande === '' &&
@@ -103,7 +102,7 @@ const BonDeCommandeForm = () => {
                         }}
                         validationSchema={validationSchema}
                         onSubmit={values => {
-                            console.log("onSubmit", JSON.stringify(values, null, 2));
+
                             saveBonDeCommande(values);
                         }}
                     >

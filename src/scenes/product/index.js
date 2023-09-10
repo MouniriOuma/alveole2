@@ -36,10 +36,10 @@ function ListProducts() {
     const [role, setRole] = useState('');
 
     React.useEffect(() => {
-        console.log('Fetching user roles...');
+
         UserService.getUserRoleByUsername(username)
             .then((response) => {
-                console.log('User roles response:', response.data);
+
                 const roleNames = response.data;
                 if (roleNames.includes('ROLE_USER') && !roleNames.includes('ROLE_ADMIN')) {
                     setRole('user');

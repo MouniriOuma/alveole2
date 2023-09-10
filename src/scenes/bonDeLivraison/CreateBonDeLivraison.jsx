@@ -65,7 +65,7 @@ const BonDeLivraisonForm = () => {
                 prixUnitaire: detail.prixUnitaire,
             })),
         };
-        console.log("BC => " + JSON.stringify(updatedBonDeLivraison));
+
 
         const areAllValuesEmpty = (
             numeroCommande === '' &&
@@ -108,7 +108,7 @@ const BonDeLivraisonForm = () => {
                         }}
                         validationSchema={validationSchema}
                         onSubmit={values => {
-                            console.log("onSubmit", JSON.stringify(values, null, 2));
+
                             saveBonDeLivraison(values);
                         }}
                     >

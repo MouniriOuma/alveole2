@@ -43,7 +43,7 @@ const ClientForm = () => {
   };
 
   const handleFormSubmit = (values) => {
-    console.log(values);
+
     if (values.ice === "0" && !values.raisonSocial && !values.adresse && !values.contact && !values.adresseEmail) {
       // Skip sending to the database if ice is 0 and all other values are null
       navigate("/clients");
@@ -69,7 +69,7 @@ const ClientForm = () => {
       adresseEmail,
     };
 
-    console.log("client => " + JSON.stringify(client));
+
 
     // Check if all values are empty
     const allValuesEmpty = Object.values(client).every((value) => !value);

@@ -80,7 +80,7 @@ const FactureForm = () => {
             })),
         };
 
-        console.log("BC => " , JSON.stringify(updatedFacture, null, 2));
+
 
         FactureService.createFacture(updatedFacture)
             .then(() => {
@@ -114,7 +114,7 @@ const FactureForm = () => {
                         }}
                         validationSchema={validationSchema}
                         onSubmit={values => {
-                            console.log("onSubmit", JSON.stringify(values, null, 2));
+
                             saveFacture(values);
                         }}
                     >

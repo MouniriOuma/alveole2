@@ -66,7 +66,7 @@ function IngredientForm() {
   };
 
   const handleFormSubmit = (values) => {
-    console.log(values);
+
     saveOrUpdateIngredient(values);
   };
 

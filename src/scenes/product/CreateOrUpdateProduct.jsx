@@ -37,7 +37,7 @@ const ProductForm = () => {
   };
 
   const handleFormSubmit = (values) => {
-    console.log(values);
+
     if (values.description === "" && values.productName === "" && values.quantity === "") {
       // Skip sending to the database if all values are empty
       navigate("/products");
@@ -59,7 +59,7 @@ const ProductForm = () => {
       quantity,
     };
 
-    console.log("product => " + JSON.stringify(product));
+
 
     // Check if all values are empty
     const allValuesEmpty = Object.values(product).every((value) => !value);

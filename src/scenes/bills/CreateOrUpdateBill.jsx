@@ -23,7 +23,7 @@ const BillForm = () => {
                 setSupplierList(res.data);
             })
             .catch((error) => {
-                console.log('Error fetching suppliers:', error);
+
             });
 
         if (id === '_add') {
@@ -55,7 +55,7 @@ const BillForm = () => {
     };
 
     const handleFormSubmit = (values) => {
-        console.log(values);
+
         saveOrUpdateBill(values);
     };
 

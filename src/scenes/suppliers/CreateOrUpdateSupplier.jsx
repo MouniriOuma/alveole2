@@ -58,7 +58,7 @@ const SupplierForm = () => {
   };
 
   const handleFormSubmit = (values) => {
-    console.log(values);
+
     saveOrUpdateSupplier(values);
   };
 
@@ -75,7 +75,7 @@ const SupplierForm = () => {
       suppliedProduct: values.suppliedProduct,
     };
 
-    console.log('supplier => ' + JSON.stringify(supplier));
+
 
     if (id === '_add') {
       SupplierService.createSupplier(supplier).then((res) => {

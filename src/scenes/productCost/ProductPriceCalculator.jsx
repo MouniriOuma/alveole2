@@ -79,7 +79,6 @@ const ProductPriceCalculator = () => {
         // Calculate the cost per product
         const costPerProduct = totalCost / quatiteProduit;
 
-        console.log('Cost per',nomProduit,' product inside function:', costPerProduct); // Log the cost per product
 
         navigate(`/product-cost/${nomProduit}/${costPerProduct}`);
 
@@ -116,7 +115,7 @@ const ProductPriceCalculator = () => {
                         }}
                         validationSchema={validationSchema}
                         onSubmit={values => {
-                            console.log("onSubmit", JSON.stringify(values, null, 2));
+
                             calculateProductPrice(values);
                         }}
                     >

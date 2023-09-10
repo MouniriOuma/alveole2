@@ -11,7 +11,7 @@ const UserForm = () => {
     const isNonMobile = useMediaQuery('(min-width:600px)');
 
     const { id } = useParams();
-    console.log('id:',id);
+
     const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
@@ -66,7 +66,7 @@ const UserForm = () => {
             role: roles,
         };
 
-        console.log("user", user);
+
 
         UserService.registerUser(user)
             .then(() => {
@@ -87,7 +87,7 @@ const UserForm = () => {
             role: roles,
         };
 
-        console.log('user:', user);
+
 
         UserService.updateUser(id, user)
             .then(() => {

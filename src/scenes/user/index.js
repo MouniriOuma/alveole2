@@ -20,7 +20,7 @@ function ListUsers() {
   React.useEffect(() => {
     UserService.getUsers().then((res) => {
       setUsers(res.data);
-      console.log("data : ", res.data);
+
     });
   }, []);
 

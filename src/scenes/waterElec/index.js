@@ -23,7 +23,7 @@ function ListWaterElec() {
     WaterElecService.getWaterElec()
       .then((res) => {
         setWaterElec(res.data);
-          console.log('waterElec => ' + JSON.stringify(res.data));
+
       })
       .catch((error) => {
         console.log('Error retrieving water/electricity bills:', error);
@@ -38,10 +38,10 @@ function ListWaterElec() {
     const [role, setRole] = useState('');
 
     React.useEffect(() => {
-        console.log('Fetching user roles...');
+
         UserService.getUserRoleByUsername(username)
             .then((response) => {
-                console.log('User roles response:', response.data);
+
                 const roleNames = response.data;
                 if (roleNames.includes('ROLE_USER') && !roleNames.includes('ROLE_ADMIN')) {
                     setRole('user');

@@ -42,7 +42,7 @@ const WaterElecForm = () => {
   };
 
   const handleFormSubmit = (values) => {
-    console.log(values);
+
     if (
         values.bill_Num === "" &&
         values.cost === 0 &&
@@ -66,7 +66,7 @@ const WaterElecForm = () => {
       date,
     };
 
-    console.log('waterElec => ' + JSON.stringify(bill));
+
 
     const allValuesEmpty = Object.values(bill).every((value) => !value);
 
