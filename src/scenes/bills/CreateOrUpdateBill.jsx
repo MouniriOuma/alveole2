@@ -125,17 +125,17 @@ const BillForm = () => {
 
     const getTitle = () => {
         if (id === '_add') {
-            return <span className="text-center">Add Bill</span>;
+            return <span className="text-center">Ajouter une facture </span>;
         } else {
-            return <span className="text-center">Update Bill</span>;
+            return <span className="text-center">Metter à jour une facture</span>;
         }
     };
 
     const getSubTitle = () => {
         if (id === '_add') {
-            return <span className="text-center">Add a new bill</span>;
+            return <span className="text-center">Ajouter une nouvelle facture</span>;
         } else {
-            return <span className="text-center">Update your bill</span>;
+            return <span className="text-center">Metter à jour une facture</span>;
         }
     };
 
@@ -183,7 +183,7 @@ const BillForm = () => {
                             <TextField
                                 fullWidth
                                 variant="filled"
-                                label="Bill number"
+                                label="N facture"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                                 value={values.billNumber}
@@ -197,7 +197,7 @@ const BillForm = () => {
                                 fullWidth
                                 variant="filled"
                                 type="number"
-                                label="Amount"
+                                label="Montant"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                                 value={values.amount || ""}
@@ -247,7 +247,7 @@ const BillForm = () => {
                                 fullWidth
                                 variant="filled"
                                 type="number"
-                                label="Supplier"
+                                label="Fournisseur"
                                 onBlur={handleBlur}
                                 onChange={(e) => {
                                     handleChange(e);
@@ -274,7 +274,7 @@ const BillForm = () => {
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
                             <Button type="submit" color="secondary" variant="contained">
-                                Save
+                                Sauvegarder
                             </Button>
                             <Button
                                 onClick={cancel}
@@ -282,7 +282,7 @@ const BillForm = () => {
                                 variant="contained"
                                 style={{ marginLeft: "10px" }}
                             >
-                                Cancel
+                                Annuler
                             </Button>
                         </Box>
                     </form>

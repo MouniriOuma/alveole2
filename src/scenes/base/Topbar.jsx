@@ -13,28 +13,24 @@ const Topbar = () => {
   const colorMode = useContext(ColorModeContext);
 
   return (
-    <Box display="flex" justifyContent="space-between" p={2}>
-      {/* logo and name BAR */}
+    <Box display="flex" justifyContent="space-between" p={1} backgroundColor={colors.primary[400]}>
+      {/* name  */}
       <Box
         display="flex"
-        //backgroundColor={colors.primary[400]}
-        borderRadius="3px"
       >
-       alveole
+       Alveole du maroc
       </Box>
 
       {/* ICONS */}
       <Box display="flex">
         <IconButton onClick={colorMode.toggleColorMode}>
           {theme.palette.mode === "dark" ? (
-            <DarkModeOutlinedIcon />
+              <DarkModeOutlinedIcon />
           ) : (
-            <LightModeOutlinedIcon />
+              <LightModeOutlinedIcon />
           )}
         </IconButton>
-        <IconButton>
-          <NotificationsOutlinedIcon />
-        </IconButton>       
+
       </Box>
     </Box>
   );

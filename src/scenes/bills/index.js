@@ -84,11 +84,11 @@ function ListBills() {
   };
 
   const columns = [
-    { field: 'billNumber', headerName: 'Bill Number', flex: 1 },
-    { field: 'amount', headerName: 'Amount', type: 'number', flex: 1 },
+    { field: 'billNumber', headerName: 'N facture', flex: 1 },
+    { field: 'amount', headerName: 'Montant', type: 'number', flex: 1 },
     { field: 'date', headerName: 'Date', type: 'date', flex: 1 },
     { field: 'status', headerName: 'Status', flex: 1 },
-    { field: 'supplier', headerName: 'Supplier', type: 'number', flex: 1 },
+    { field: 'supplier', headerName: 'Fournisseur', type: 'number', flex: 1 },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -137,7 +137,7 @@ function ListBills() {
 
   return (
     <Box m="20px">
-      <Header title="BILLS" subtitle="All bills" />
+      <Header title="FACTURES" subtitle="TOUTES LES FACTURES" />
       <Button
         onClick={addBill}
         variant="contained"
@@ -146,7 +146,7 @@ function ListBills() {
         startIcon={<AddIcon />}
         sx={{ marginRight: '10px' }}  
       >
-        Add
+        Ajouter
       </Button>
       <Box
         m="40px 0 0 0"

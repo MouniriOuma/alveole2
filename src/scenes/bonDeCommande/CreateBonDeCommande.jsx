@@ -127,7 +127,7 @@ const BonDeCommandeForm = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="Numero Commande"
+                                                label="N Commande"
                                                 name="numeroCommande"
                                                 value={values.numeroCommande}
                                                 required
@@ -221,7 +221,7 @@ const BonDeCommandeForm = () => {
                                                                     <TextField
                                                                         margin="normal"
                                                                         variant="outlined"
-                                                                        label="Quantite"
+                                                                        label="Quantité"
                                                                         name={quantiteName}
                                                                         value={detail.quantite}
                                                                         type="number"
@@ -264,7 +264,7 @@ const BonDeCommandeForm = () => {
                                                                 variant="outlined"
                                                                 onClick={() => remove(index)}
                                                             >
-                                                                Remove
+                                                                Retirer
                                                             </Button>
                                                         </div>
                                                     );
@@ -278,7 +278,7 @@ const BonDeCommandeForm = () => {
                                                         push({ produit: "", quantite: 0, prixUnitaire: 0 })
                                                     }
                                                 >
-                                                    Add
+                                                    Ajouter
                                                 </Button>
                                             </div>
                                         )}
@@ -289,7 +289,7 @@ const BonDeCommandeForm = () => {
                                             color="secondary"
                                             variant="contained"
                                         >
-                                            Submit
+                                            Envoyer
                                         </Button>
                                         <Button
                                             onClick={cancel}
@@ -297,7 +297,7 @@ const BonDeCommandeForm = () => {
                                             variant="contained"
                                             style={{ marginLeft: "10px" }}
                                         >
-                                            Cancel
+                                            Annuler
                                         </Button>
                                     </div>
                                 </Box>

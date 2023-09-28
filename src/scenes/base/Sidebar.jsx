@@ -137,7 +137,6 @@ const Sidebar = () => {
               />
 
               </Box>
-              {/* ADD FUNCTION GETUSER NAME */}
               <Box textAlign="center">
                 <Typography
                   variant="h3"
@@ -155,13 +154,16 @@ const Sidebar = () => {
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            <Item
-              title="Dashboard"
-              to="/Dashboard"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+
+              {role.includes('admin') && (
+                  <Item
+                      title="Calcul de prix produit"
+                      to="/product-cost"
+                      icon={<CategoryOutlinedIcon />}
+                      selected={selected}
+                      setSelected={setSelected}
+                  />
+              )}
 
             <Typography
               variant="h6"
@@ -172,7 +174,7 @@ const Sidebar = () => {
             </Typography>
               {role.includes('admin') && (
                   <Item
-                      title="Users"
+                      title="Utilisateurs"
                       to="/users"
                       icon={<EngineeringOutlinedIcon />}
                       selected={selected}
@@ -180,7 +182,7 @@ const Sidebar = () => {
                   />
               )}
               <Item
-              title="Suppliers"
+              title="Fournisseurs"
               to="/suppliers"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
@@ -203,7 +205,7 @@ const Sidebar = () => {
             </Typography>
 
             <Item
-              title="Products"
+              title="Produits"
               to="/products"
               icon={<CategoryOutlinedIcon />}
               selected={selected}
@@ -217,28 +219,28 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Bills"
+              title="Facture à payer"
               to="/bills"
               icon={<DescriptionIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Water/Electricity bills"
+              title="Factures d'eau et électricité "
               to="/waterElecs"
               icon={<ReceiptLongIcon />}
               selected={selected}
               setSelected={setSelected}
             />
               <Item
-                  title="Bon de commande"
+                  title="Bons de commande"
                   to="/BonDeCommande"
                   icon={<ReceiptLongIcon />}
                   selected={selected}
                   setSelected={setSelected}
               />
               <Item
-                  title="Bon de livraison"
+                  title="Bons de livraison"
                   to="/BonDeLivraison"
                   icon={<ReceiptLongIcon />}
                   selected={selected}
@@ -253,23 +255,7 @@ const Sidebar = () => {
               />
             
 
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Autre
-            </Typography>
 
-              {role.includes('admin') && (
-            <Item
-              title="product cost"
-              to="/product-cost"
-              icon={<CategoryOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-                  )}
 
             <Typography
               variant="h6"
@@ -278,7 +264,7 @@ const Sidebar = () => {
             >             
             </Typography>
             <Item
-              title="log out"
+              title="Déconnecter"
               to="/"
               icon={<LogoutIcon />}
               selected={selected}

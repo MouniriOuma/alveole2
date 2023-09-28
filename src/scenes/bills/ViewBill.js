@@ -81,7 +81,7 @@ export default function ViewBill() {
 
     return (
         <Box m="20px">
-            <Header title="BILL DETAILS" subtitle=" " />
+            <Header title="FACTURES DETAILS" subtitle=" " />
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
                 <Card sx={{ width: '50%', height: '50%', backgroundColor: colors.blueAccent[700] }}>
                     <CardContent>
@@ -96,11 +96,11 @@ export default function ViewBill() {
                         </Grid>
                         {bill ? (
                             <Grid container spacing={2}>
-                                {renderField('Bill Number', bill.billNumber)}
-                                {renderField('Amount', bill.amount)}
+                                {renderField('N facture', bill.billNumber)}
+                                {renderField('Montant', bill.amount)}
                                 {renderField('Date', bill.date)}
                                 {renderField('Status', bill.status)}
-                                {renderField('Supplier', bill.supplier.businessName)}
+                                {renderField('Fournisseur', bill.supplier.businessName)}
                             </Grid>
                         ) : (
                             <Typography variant="body2" color="text.secondary">
@@ -116,7 +116,7 @@ export default function ViewBill() {
                             startIcon={<KeyboardBackspaceIcon />}
                             onClick={() => navigate('/bills')}
                         >
-                            Back
+                            Retour
                         </Button>
                         {!isUser && (
                         <Button
@@ -125,7 +125,7 @@ export default function ViewBill() {
                             startIcon={<BorderColorIcon />}
                             onClick={() => editBill(id)}
                         >
-                            Edit
+                            Modifier
                         </Button>)}
                     </CardActions>
                 </Card>

@@ -88,7 +88,7 @@ export default function ViewBonDeCommande() {
 
     return (
         <Box m="20px">
-            <Header title="BON DE COMMANDE DETAILS" subtitle=" " />
+            <Header title="DETAILS DE BON DE COMMANDE " subtitle=" " />
             <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
                 {bill ? (
                     <Card style={{ width: '50%', height: '50%', backgroundColor: colors.blueAccent[700] }}>
@@ -112,9 +112,9 @@ export default function ViewBonDeCommande() {
                                 <Table>
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell>Product</TableCell>
-                                            <TableCell>Quantity</TableCell>
-                                            <TableCell>Unit Price</TableCell>
+                                            <TableCell>Produit</TableCell>
+                                            <TableCell>Quantité</TableCell>
+                                            <TableCell>Prix d'unité</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -142,7 +142,7 @@ export default function ViewBonDeCommande() {
                                 startIcon={<KeyboardBackspaceIcon />}
                                 onClick={() => navigate('/BonDeCommande')}
                             >
-                                Back
+                                Retour
                             </Button>
                             <Button
                                 variant="contained"
@@ -151,7 +151,7 @@ export default function ViewBonDeCommande() {
                                 style={{ marginLeft: '10px' }}
                                 onClick={exportPDF}
                             >
-                                Export PDF
+                                Exporter en PDF
                             </Button>
                         </CardActions>
                     </Card>
