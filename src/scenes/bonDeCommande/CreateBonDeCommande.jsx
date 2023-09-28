@@ -31,11 +31,11 @@ const BonDeCommandeForm = () => {
     };
 
     const getTitle = () => {
-        return <span className="text-center">Add bon de commande</span>;
+        return <span className="text-center">Ajouter un bon de commande</span>;
     };
 
     const getSubTitle = () => {
-        return <span className="text-center">Add a new bon de commande</span>;
+        return <span className="text-center">Ajouter un nouveau bon de commande</span>;
     };
 
     const saveBonDeCommande = (values) => {
@@ -145,7 +145,7 @@ const BonDeCommandeForm = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="Date Commande"
+                                                label="Date De Commande"
                                                 name="dateCommande"
                                                 type="date"
                                                 value={values.dateCommande}
