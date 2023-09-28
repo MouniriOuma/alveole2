@@ -32,11 +32,11 @@ const BonDeLivraisonForm = () => {
     };
 
     const getTitle = () => {
-        return <span className="text-center">Add bon de Livraison</span>;
+        return <span className="text-center">Ajouter un bon de Livraison</span>;
     };
 
     const getSubTitle = () => {
-        return <span className="text-center">Add a new bon de Livraison</span>;
+        return <span className="text-center">Ajouter un nouveau bon de Livraison</span>;
     };
 
     const saveBonDeLivraison = (values) => {
@@ -133,7 +133,7 @@ const BonDeLivraisonForm = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="Numero Livraison"
+                                                label="N Livraison"
                                                 name="numeroLivraison"
                                                 value={values.numeroLivraison}
                                                 required
@@ -151,7 +151,7 @@ const BonDeLivraisonForm = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="Numero Commande"
+                                                label="N Commande"
                                                 name="numeroCommande"
                                                 value={values.numeroCommande}
                                                 required
@@ -169,7 +169,7 @@ const BonDeLivraisonForm = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="Date Livraison"
+                                                label="Date De Livraison"
                                                 name="dateLivraison"
                                                 type="date"
                                                 value={values.dateLivraison}
@@ -245,7 +245,7 @@ const BonDeLivraisonForm = () => {
                                                                     <TextField
                                                                         margin="normal"
                                                                         variant="outlined"
-                                                                        label="Quantite"
+                                                                        label="Quantité"
                                                                         name={quantiteCommandeName}
                                                                         value={detail.quantiteCommande}
                                                                         type="number"
@@ -302,7 +302,7 @@ const BonDeLivraisonForm = () => {
                                                         push({ produit: "", quantiteCommande: 0, prixUnitaire: 0 })
                                                     }
                                                 >
-                                                    Add
+                                                    Ajouter
                                                 </Button>
                                             </div>
                                         )}
@@ -313,7 +313,7 @@ const BonDeLivraisonForm = () => {
                                             color="secondary"
                                             variant="contained"
                                         >
-                                            Submit
+                                            Envoyer
                                         </Button>
                                         <Button
                                             onClick={cancel}
@@ -321,7 +321,7 @@ const BonDeLivraisonForm = () => {
                                             variant="contained"
                                             style={{ marginLeft: "10px" }}
                                         >
-                                            Cancel
+                                            Annuler
                                         </Button>
                                     </div>
                                 </Box>

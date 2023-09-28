@@ -107,17 +107,17 @@ const ClientForm = () => {
 
   const getTitle = () => {
     if (id === "_add") {
-      return <span className="text-center">Add client</span>;
+      return <span className="text-center">Ajouter un client</span>;
     } else {
-      return <span className="text-center">Update Client</span>;
+      return <span className="text-center">Metter à jour un Client</span>;
     }
   };
 
   const getSubTitle = () => {
     if (id === "_add") {
-      return <span className="text-center">Add a new client</span>;
+      return <span className="text-center">Ajouter un nouveau client</span>;
     } else {
-      return <span className="text-center">Update your Client</span>;
+      return <span className="text-center"></span>;
     }
   };
 
@@ -186,7 +186,7 @@ const ClientForm = () => {
                       fullWidth
                       variant="filled"
                       type="text"
-                      label="Contact Number"
+                      label="Contact"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.contact}
@@ -199,7 +199,7 @@ const ClientForm = () => {
                       fullWidth
                       variant="filled"
                       type="text"
-                      label="Adresse Email"
+                      label="Email"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.adresseEmail}
@@ -212,10 +212,10 @@ const ClientForm = () => {
 
                 <Box display="flex" justifyContent="end" mt="20px">
                   <Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
-                    Save
+                    Envoyer
                   </Button>
                   <Button onClick={cancel} color="error" variant="contained" style={{ marginLeft: "10px" }}>
-                    Cancel
+                    Annuler
                   </Button>
                 </Box>
               </form>

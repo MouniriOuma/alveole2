@@ -34,11 +34,11 @@ const FactureForm = () => {
     };
 
     const getTitle = () => {
-        return <span className="text-center">Add bon de Livraison</span>;
+        return <span className="text-center">Ajouter une facture</span>;
     };
 
     const getSubTitle = () => {
-        return <span className="text-center">Add a new bon de Livraison</span>;
+        return <span className="text-center">Ajouter une nouvelle facture</span>;
     };
 
     const saveFacture = (values) => {
@@ -139,7 +139,7 @@ const FactureForm = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="Numero Livraison"
+                                                label="N Facture"
                                                 name="numeroFacture"
                                                 value={values.numeroFacture}
                                                 required
@@ -157,7 +157,7 @@ const FactureForm = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="Numero Livraison"
+                                                label="N Livraison"
                                                 name="numeroLivraison"
                                                 value={values.numeroLivraison}
                                                 required
@@ -175,7 +175,7 @@ const FactureForm = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="Numero Commande"
+                                                label="N Commande"
                                                 name="numeroCommande"
                                                 value={values.numeroCommande}
                                                 required
@@ -289,7 +289,7 @@ const FactureForm = () => {
                                                                     <TextField
                                                                         margin="normal"
                                                                         variant="outlined"
-                                                                        label="Quantite"
+                                                                        label="Quantité"
                                                                         name={quantiteCommandeName}
                                                                         value={detail.quantiteCommande}
                                                                         type="number"
@@ -332,7 +332,7 @@ const FactureForm = () => {
                                                                 variant="outlined"
                                                                 onClick={() => remove(index)}
                                                             >
-                                                                Remove
+                                                                Annuler
                                                             </Button>
                                                         </div>
                                                     );
@@ -346,7 +346,7 @@ const FactureForm = () => {
                                                         push({ produit: "", quantiteCommande: 0, prixUnitaire: 0 })
                                                     }
                                                 >
-                                                    Add
+                                                    Ajouter
                                                 </Button>
                                             </div>
                                         )}
@@ -357,7 +357,7 @@ const FactureForm = () => {
                                             color="secondary"
                                             variant="contained"
                                         >
-                                            Submit
+                                            Envoyer
                                         </Button>
                                         <Button
                                             onClick={cancel}
@@ -365,7 +365,7 @@ const FactureForm = () => {
                                             variant="contained"
                                             style={{ marginLeft: "10px" }}
                                         >
-                                            Cancel
+                                            Annuler
                                         </Button>
                                     </div>
                                 </Box>
