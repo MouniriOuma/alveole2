@@ -78,10 +78,10 @@ function ListBonDeCommande() {
     };
 
     const columns = [
-        { field: 'numeroCommande', headerName: 'Numero Commande', flex: 1 },
+        { field: 'numeroCommande', headerName: 'N Commande', flex: 1 },
         { field: 'dateCommande', headerName: 'Date Commande', type: 'date', flex: 1 },
         { field: 'client', headerName: 'Client', flex: 1 },
-        { field: 'totalHT', headerName: 'Total HT', type: 'number', flex: 1 },
+        { field: 'totalHT', headerName: 'Totale HT', type: 'number', flex: 1 },
         {
             field: 'actions',
             headerName: 'Actions',
@@ -122,7 +122,7 @@ function ListBonDeCommande() {
 
     return (
         <Box m="20px">
-            <Header title="BON DE COMMANDES" subtitle="All bon de commandes" />
+            <Header title="BON DE COMMANDES" subtitle="Toutes les bon de commandes" />
             <Button
                 onClick={addBonDeCommande}
                 variant="contained"
@@ -131,7 +131,7 @@ function ListBonDeCommande() {
                 startIcon={<AddIcon />}
                 sx={{ marginRight: '10px' }}
             >
-                Add
+                Ajouter
             </Button>
             <Box
                 m="40px 0 0 0"

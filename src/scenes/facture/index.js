@@ -78,13 +78,13 @@ function ListFacture() {
     };
 
     const columns = [
-        { field: 'numeroFacture', headerName: 'Numero de Facture', flex: 1 },
-        { field: 'numeroCommande', headerName: 'Numero de Commande', flex: 1 },
+        { field: 'numeroFacture', headerName: 'N Facture', flex: 1 },
+        { field: 'numeroCommande', headerName: 'N Commande', flex: 1 },
         { field: 'dateFacture', headerName: 'Date de Facture', type: 'date', flex: 1 },
         { field: 'client', headerName: 'Client', flex: 1 },
-        { field: 'totalHT', headerName: 'Total HT', type: 'number', flex: 1 },
-        { field: 'totalTVA', headerName: 'Total TVA', type: 'number', flex: 1 },
-        { field: 'totalTTC', headerName: 'Total TTC', type: 'number', flex: 1 },
+        { field: 'totalHT', headerName: 'Totale HT', type: 'number', flex: 1 },
+        { field: 'totalTVA', headerName: 'Totale TVA', type: 'number', flex: 1 },
+        { field: 'totalTTC', headerName: 'Totale TTC', type: 'number', flex: 1 },
         {
             field: 'actions',
             headerName: 'Actions',
@@ -129,7 +129,7 @@ function ListFacture() {
 
     return (
         <Box m="20px">
-            <Header title="FACTURE" subtitle="toutes les factures" />
+            <Header title="FACTURE" subtitle="Toutes les factures" />
             <Button
                 onClick={addFacture}
                 variant="contained"

@@ -79,11 +79,11 @@ function ListBonDeLivraison() {
     };
 
     const columns = [
-        { field: 'numeroLivraison', headerName: 'Numero Livraison', flex: 1 },
-        { field: 'numeroCommande', headerName: 'Numero Commande', flex: 1 },
+        { field: 'numeroLivraison', headerName: 'N Livraison', flex: 1 },
+        { field: 'numeroCommande', headerName: 'N Commande', flex: 1 },
         { field: 'dateLivraison', headerName: 'Date Livraison', type: 'date', flex: 1 },
         { field: 'client', headerName: 'Client', flex: 1 },
-        { field: 'totalHT', headerName: 'Total HT', type: 'number', flex: 1 },
+        { field: 'totalHT', headerName: 'Totale HT', type: 'number', flex: 1 },
         {
             field: 'actions',
             headerName: 'Actions',
@@ -126,7 +126,7 @@ function ListBonDeLivraison() {
 
     return (
         <Box m="20px">
-            <Header title="BON DE LIVRAISONS" subtitle="All bon de Livraisons" />
+            <Header title="BON DE LIVRAISONS" subtitle="Toutes les bon de Livraisons" />
             <Button
                 onClick={addBonDeLivraison}
                 variant="contained"
@@ -135,7 +135,7 @@ function ListBonDeLivraison() {
                 startIcon={<AddIcon />}
                 sx={{ marginRight: '10px' }}
             >
-                Add
+                Ajouter
             </Button>
             <Box
                 m="40px 0 0 0"

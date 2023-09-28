@@ -92,7 +92,7 @@ const columns = [
   { field: 'raisonSocial', headerName: 'Raison Sociale' ,flex: 1},
   { field: 'adresse', headerName: 'Adresse',flex: 1},
   { field: 'contact', headerName: 'Contact', type: "number"},
-  { field: 'adresseEmail', headerName: 'Adresse Email',flex: 1 },
+  { field: 'adresseEmail', headerName: 'Email',flex: 1 },
   {
   field: 'actions',
   headerName: 'Actions',
@@ -153,7 +153,7 @@ const rows = clients.map((client) => ({
         startIcon={<AddIcon />}
         sx={{ marginRight: '10px' }}  
       >
-        Add
+          Ajouter
       </Button>
       <Box
         m="40px 0 0 0"
