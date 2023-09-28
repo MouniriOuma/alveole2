@@ -99,7 +99,7 @@ export default function ViewBonDeCommande() {
                                 </Typography>
                             </Grid>
                             <Grid container spacing={2}>
-                                {renderField('Date Commande', bill.dateCommande)}
+                                {renderField('Date de Commande', bill.dateCommande)}
                                 {renderField('Client', bill.client)}
                             </Grid>
                             <Typography gutterBottom variant="h5" component="div" style={{ fontSize: 24, textAlign: 'center' }}>
@@ -114,7 +114,7 @@ export default function ViewBonDeCommande() {
                                         <TableRow>
                                             <TableCell>Produit</TableCell>
                                             <TableCell>Quantité</TableCell>
-                                            <TableCell>Prix d'unité</TableCell>
+                                            <TableCell>Prix unitaire</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
