@@ -98,8 +98,8 @@ export default function ViewFacture() {
                                 </Typography>
                             </Grid>
                             <Grid container spacing={2}>
-                                {renderField('Numero de Livraison', bill.numeroLivraison)}
-                                {renderField('Numero de Commande', bill.numeroCommande)}
+                                {renderField('N Livraison', bill.numeroLivraison)}
+                                {renderField('N Commande', bill.numeroCommande)}
                                 {renderField('Date de facture', bill.dateFacture)}
                                 {renderField('Client', bill.client)}
                             </Grid>
@@ -113,9 +113,9 @@ export default function ViewFacture() {
                                 <Table>
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell>Product</TableCell>
-                                            <TableCell>Quantity</TableCell>
-                                            <TableCell>Unit Price (HT)</TableCell>
+                                            <TableCell>Produit</TableCell>
+                                            <TableCell>Quantité</TableCell>
+                                            <TableCell>Prix unitaire (HT)</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -149,7 +149,7 @@ export default function ViewFacture() {
                                 startIcon={<KeyboardBackspaceIcon />}
                                 onClick={() => navigate('/Facture')}
                             >
-                                Back
+                                Retour
                             </Button>
 
                             <Button
@@ -159,7 +159,7 @@ export default function ViewFacture() {
                                 style={{ marginLeft: '10px' }}
                                 onClick={exportPDF}
                             >
-                                Export PDF
+                                Exporter en PDF
                             </Button>
                         </CardActions>
                     </Card>

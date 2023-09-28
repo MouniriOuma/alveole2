@@ -96,7 +96,7 @@ export default function ViewClient() {
                             <Grid container spacing={2}>
                                 {renderField('ice', client.ice)}
                                 {renderField('Adresse', client.adresse)}
-                                {renderField('Adresse Email', client.adresseEmail)}
+                                {renderField('Email', client.adresseEmail)}
                                 {renderField('Contact', client.contact)}
                             </Grid>
                         ) : (
@@ -113,7 +113,7 @@ export default function ViewClient() {
                             startIcon={<KeyboardBackspaceIcon />}
                             onClick={() => navigate('/clients')}
                         >
-                            Back
+                            Retour
                         </Button>
                         {!isUser && (
                         <Button
@@ -122,7 +122,7 @@ export default function ViewClient() {
                             startIcon={<BorderColorIcon />}
                             onClick={() => editClient(id)}
                         >
-                            Edit
+                            Modifier
                         </Button>)}
                     </CardActions>
                 </Card>

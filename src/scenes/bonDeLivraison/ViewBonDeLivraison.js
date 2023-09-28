@@ -113,9 +113,9 @@ export default function ViewBonDeLivraison() {
                                 <Table>
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell>Product</TableCell>
-                                            <TableCell>Quantity</TableCell>
-                                            <TableCell>Unit Price (HT)</TableCell>
+                                            <TableCell>Produit</TableCell>
+                                            <TableCell>Quantité</TableCell>
+                                            <TableCell>Prix unitaire (HT)</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -143,7 +143,7 @@ export default function ViewBonDeLivraison() {
                                 startIcon={<KeyboardBackspaceIcon />}
                                 onClick={() => navigate('/BonDeLivraison')}
                             >
-                                Back
+                                Retour
                             </Button>
 
                             <Button
@@ -153,7 +153,7 @@ export default function ViewBonDeLivraison() {
                                 style={{ marginLeft: '10px' }}
                                 onClick={exportPDF}
                             >
-                                Export PDF
+                                Exporter en PDF
                             </Button>
                         </CardActions>
                     </Card>
