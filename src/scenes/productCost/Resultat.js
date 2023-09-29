@@ -84,7 +84,7 @@ export default function Cost() {
                             startIcon={<KeyboardBackspaceIcon />}
                             onClick={() => navigate('/add-product-cost')}
                         >
-                            Back
+                            Retour
                         </Button>
                         <Button
                             variant="contained"
@@ -93,7 +93,7 @@ export default function Cost() {
                             startIcon={<KeyboardBackspaceIcon />}
                             onClick={()=> saveCost(name,price)}
                         >
-                            save
+                            Sauvgarder
                         </Button>
                         <Button
                             variant="contained"
@@ -102,7 +102,7 @@ export default function Cost() {
                             startIcon={<KeyboardBackspaceIcon />}
                             onClick={() => navigate('/product-cost')}
                         >
-                            skip
+                            Passer
                         </Button>
                     </CardActions>
                 </Card>

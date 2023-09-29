@@ -48,7 +48,7 @@ const ProductPriceCalculator = () => {
     };
 
     const getSubTitle = () => {
-        return <span className="text-center">Add details</span>;
+        return <span className="text-center">Ajouter les details</span>;
     };
 
     function calculateProductPrice(values) {
@@ -154,7 +154,7 @@ const ProductPriceCalculator = () => {
                                                                 <TextField
                                                                     margin="normal"
                                                                     variant="outlined"
-                                                                    label="Name"
+                                                                    label="Nom"
                                                                     name={Name}
                                                                     value={detail.name}
                                                                     required
@@ -173,7 +173,7 @@ const ProductPriceCalculator = () => {
                                                                 <TextField
                                                                     margin="normal"
                                                                     variant="outlined"
-                                                                    label="Quantite"
+                                                                    label="Quantité"
                                                                     name={quantiteName}
                                                                     value={detail.quantite}
                                                                     type="number"
@@ -216,7 +216,7 @@ const ProductPriceCalculator = () => {
                                                                     variant="outlined"
                                                                     onClick={() => remove(index)}
                                                                 >
-                                                                    Remove
+                                                                    Retirer
                                                                 </Button>
                                                             </div>
 
@@ -234,7 +234,7 @@ const ProductPriceCalculator = () => {
                                                     push({ name: "", quantite: 0, prixUnitaire: 0 })
                                                 }
                                             >
-                                                Add
+                                                Ajouter
                                             </Button>
                                         </div>
                                     )}
@@ -251,7 +251,7 @@ const ProductPriceCalculator = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="Electricite"
+                                                label="Electricité"
                                                 name="electricite"
                                                 type="number"
                                                 value={values.electricite}
@@ -270,7 +270,7 @@ const ProductPriceCalculator = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="salarie"
+                                                label="Salarié"
                                                 name="salarie"
                                                 value={values.salarie}
                                                 type="number"
@@ -290,7 +290,7 @@ const ProductPriceCalculator = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="location"
+                                                label="le loyer"
                                                 name="location"
                                                 value={values.location}
                                                 type="number"
@@ -328,7 +328,7 @@ const ProductPriceCalculator = () => {
                                                                     <TextField
                                                                         margin="normal"
                                                                         variant="outlined"
-                                                                        label="Name"
+                                                                        label="Nom"
                                                                         name={Name}
                                                                         value={detail.name}
                                                                         required
@@ -346,7 +346,7 @@ const ProductPriceCalculator = () => {
                                                                 <div className="col-md-3">
                                                                     <TextField
                                                                         margin="normal"
-                                                                        label="Prix "
+                                                                        label="Prix"
                                                                         name={prixName}
                                                                         value={detail.prix}
                                                                         type="number"
@@ -370,7 +370,7 @@ const ProductPriceCalculator = () => {
                                                                         variant="outlined"
                                                                         onClick={() => remove(index)}
                                                                     >
-                                                                        Remove
+                                                                        Retirer
                                                                     </Button>
                                                                 </div>
                                                             </div>
@@ -387,7 +387,7 @@ const ProductPriceCalculator = () => {
                                                         push({ name: "", prix: 0 })
                                                     }
                                                 >
-                                                    Add
+                                                    Ajouter
                                                 </Button>
                                             </div>
                                         )}
@@ -406,7 +406,7 @@ const ProductPriceCalculator = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="Name"
+                                                label="Nom"
                                                 name="nomProduit"
                                                 value={values.nomProduit}
                                                 required
@@ -425,7 +425,7 @@ const ProductPriceCalculator = () => {
                                             <TextField
                                                 margin="normal"
                                                 variant="outlined"
-                                                label="Quantite"
+                                                label="Quantité"
                                                 name="quatiteProduit"
                                                 value={values.quatiteProduit}
                                                 type="number"
@@ -449,7 +449,7 @@ const ProductPriceCalculator = () => {
                                             color="secondary"
                                             variant="contained"
                                         >
-                                            Submit
+                                            Retirer
                                         </Button>
                                         <Button
                                             onClick={cancel}
@@ -457,7 +457,7 @@ const ProductPriceCalculator = () => {
                                             variant="contained"
                                             style={{ marginLeft: "10px" }}
                                         >
-                                            Cancel
+                                            Annuler
                                         </Button>
                                     </div>
                                 </Box>
