@@ -66,7 +66,7 @@ export default function ViewProduct() {
 
     return (
         <Box m="20px">
-            <Header title="PRODUCT DETAILS" subtitle=" " />
+            <Header title="PRODUIT DETAILS" subtitle=" " />
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
                 <Card sx={{ width: '50%', height: '50%', backgroundColor: colors.blueAccent[700] }}>
                     <CardContent>
@@ -108,7 +108,7 @@ export default function ViewProduct() {
                             startIcon={<KeyboardBackspaceIcon />}
                             onClick={() => navigate('/products')}
                         >
-                            Back
+                            Retour
                         </Button>
                         {!isUser && (
                         <Button
@@ -117,7 +117,7 @@ export default function ViewProduct() {
                             startIcon={<BorderColorIcon />}
                             onClick={() => editProduct(id)}
                         >
-                            Edit
+                            Modifier
                         </Button>)}
                     </CardActions>
                 </Card>

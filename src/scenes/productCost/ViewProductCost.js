@@ -54,7 +54,7 @@ export default function ViewProductCost() {
 
     return (
         <Box m="20px">
-            <Header title="PRODUCT COST DETAILS" subtitle=" " />
+            <Header title="DETAILS DE COUT DE PRODUIT " subtitle=" " />
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
                 <Card sx={{ width: '50%', height: '50%', backgroundColor: colors.blueAccent[700] }}>
                     <CardContent>
@@ -85,7 +85,7 @@ export default function ViewProductCost() {
                             startIcon={<KeyboardBackspaceIcon />}
                             onClick={() => navigate('/product-cost')}
                         >
-                            Back
+                            Retour
                         </Button>
                     </CardActions>
                 </Card>
