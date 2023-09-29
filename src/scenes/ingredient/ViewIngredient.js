@@ -81,7 +81,7 @@ export default function ViewIngredient() {
 
     return (
         <Box m="20px">
-            <Header title="INGREDIENT DETAILS" subtitle=" " />
+            <Header title="DETAILS D'INGREDIENT" subtitle=" " />
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
                 <Card sx={{ width: '50%', height: '50%', backgroundColor: colors.blueAccent[700] }}>
                     <CardContent>
@@ -95,11 +95,11 @@ export default function ViewIngredient() {
                         {ingredient ? (
                             <Grid container spacing={2}>
                                 {renderField('Description', ingredient.description)}
-                                {renderField('Max Quantity', ingredient.maxQuantity)}
-                                {renderField('Stock Quantity', ingredient.stockQuantity)}
-                                {renderField('Unit of Measurement', ingredient.unitOfMeasurement)}
-                                {renderField('Unit Price', ingredient.unitPrice)}
-                                {renderField('Supplier', ingredient.supplier.businessName || `${ingredient.supplier.firstName} ${ingredient.supplier.lastName}`)}
+                                {renderField('Quantité maximale', ingredient.maxQuantity)}
+                                {renderField('Quantité stockée', ingredient.stockQuantity)}
+                                {renderField('Unité de mesure', ingredient.unitOfMeasurement)}
+                                {renderField('Prix unitaire', ingredient.unitPrice)}
+                                {renderField('Fournisseur', ingredient.supplier.businessName || `${ingredient.supplier.firstName} ${ingredient.supplier.lastName}`)}
                             </Grid>
                         ) : (
                             <Typography variant="body2" color="text.secondary">
@@ -115,7 +115,7 @@ export default function ViewIngredient() {
                             startIcon={<KeyboardBackspaceIcon />}
                             onClick={() => navigate('/ingredients')}
                         >
-                            Back
+                            Retour
                         </Button>
                         {!isUser && (
                         <Button
@@ -124,7 +124,7 @@ export default function ViewIngredient() {
                             startIcon={<BorderColorIcon />}
                             onClick={() => editIngredient(id)}
                         >
-                            Edit
+                            Modifier
                         </Button>)}
                     </CardActions>
                 </Card>
