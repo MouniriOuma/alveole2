@@ -81,7 +81,7 @@ export default function ViewSupplier() {
 
     return (
         <Box m="20px">
-            <Header title="SUPPLIER DETAILS" subtitle=" " />
+            <Header title="DETAILS DE FOURNISSEUR" subtitle=" " />
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
                 <Card sx={{ width: '50%', height: '50%', backgroundColor: colors.blueAccent[700] }}>
                     <CardContent>
@@ -92,15 +92,15 @@ export default function ViewSupplier() {
                         </Grid>
                         {supplier ? (
                             <Grid container spacing={2}>
-                                {renderField('Address', supplier.address)}
+                                {renderField('AdressE', supplier.address)}
                                 {renderField('Business Name', supplier.businessName)}
                                 {renderField('CIN', supplier.cin)}
                                 {renderField('Contact', supplier.contact)}
                                 {renderField('Email', supplier.email)}
-                                {renderField('First Name', supplier.firstName)}
+                                {renderField('Prènom', supplier.firstName)}
                                 {renderField('ICE', supplier.ice)}
-                                {renderField('Last Name', supplier.lastName)}
-                                {renderField('Supplied Product', supplier.suppliedProduct)}
+                                {renderField('Nom', supplier.lastName)}
+                                {renderField('Produit fourni', supplier.suppliedProduct)}
                             </Grid>
                         ) : (
                             <Typography variant="body2" color="text.secondary">
@@ -116,7 +116,7 @@ export default function ViewSupplier() {
                             startIcon={<KeyboardBackspaceIcon />}
                             onClick={() => navigate('/suppliers')}
                         >
-                            Back
+                            Retour
                         </Button>
                         {!isUser && (
                         <Button
@@ -125,7 +125,7 @@ export default function ViewSupplier() {
                             startIcon={<BorderColorIcon />}
                             onClick={() => editSupplier(id)}
                         >
-                            Edit
+                            Modifier
                         </Button>)}
                     </CardActions>
                 </Card>

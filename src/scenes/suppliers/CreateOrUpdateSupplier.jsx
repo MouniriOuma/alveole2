@@ -94,17 +94,17 @@ const SupplierForm = () => {
 
   const getTitle = () => {
     if (id === '_add') {
-      return <span className="text-center">Add Supplier</span>;
+      return <span className="text-center">Ajouter un fournisseur</span>;
     } else {
-      return <span className="text-center">Update Supplier</span>;
+      return <span className="text-center">Metter à jour un fournisseur</span>;
     }
   };
 
   const getSubTitle = () => {
     if (id === '_add') {
-      return <span className="text-center">Add a new supplier</span>;
+      return <span className="text-center">Ajouter un nouveau fournissseur</span>;
     } else {
-      return <span className="text-center">Update your supplier</span>;
+      return <span className="text-center">Metter à jour les dérails du fournisseur</span>;
     }
   };
 
@@ -140,7 +140,7 @@ const SupplierForm = () => {
               <TextField
                 fullWidth
                 name="address"
-                label="Address"
+                label="Adresse"
                 variant="filled"
                 size="large"
                 type="text"
@@ -207,7 +207,7 @@ const SupplierForm = () => {
               <TextField
                 id="firstName"
                 name="firstName"
-                label="First Name"
+                label="Prènom"
                 variant="filled"
                 size="small"
                 value={values.firstName}
@@ -221,7 +221,7 @@ const SupplierForm = () => {
               <TextField
                 id="lastName"
                 name="lastName"
-                label="Last Name"
+                label="Nom"
                 variant="filled"
                 size="small"
                 value={values.lastName}
@@ -246,7 +246,7 @@ const SupplierForm = () => {
               <TextField
                 id="suppliedProduct"
                 name="suppliedProduct"
-                label="Supplied Product"
+                label="Produit fourni"
                 variant="filled"
                 size="small"
                 value={values.suppliedProduct}
@@ -264,7 +264,7 @@ const SupplierForm = () => {
                 color="secondary"
                 sx={{ marginRight: '10px' }}
               >
-                Save
+                Sauvegarder
               </Button>
               <Button
                 type="button"
@@ -272,7 +272,7 @@ const SupplierForm = () => {
                 color="error"
                 onClick={cancel}
               >
-                Cancel
+                Annuler
               </Button>
             </Box>
           </form>
