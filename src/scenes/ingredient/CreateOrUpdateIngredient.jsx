@@ -146,17 +146,17 @@ function IngredientForm() {
 
   const getTitle = () => {
     if (id === '_add') {
-      return <span className="text-center">Add ingredient</span>;
+      return <span className="text-center">Ajouter un ingrédient</span>;
     } else {
-      return <span className="text-center">Update ingredient</span>;
+      return <span className="text-center">Metter à jour un ingrédient</span>;
     }
   };
 
   const getSubTitle = () => {
     if (id === '_add') {
-      return <span className="text-center">Add a new ingredient</span>;
+      return <span className="text-center">Ajouter un nouveau ingrédient</span>;
     } else {
-      return <span className="text-center">Update ingredient details</span>;
+      return <span className="text-center">Metter à jour les détails d'ingrédient</span>;
     }
   };
 
@@ -177,7 +177,7 @@ function IngredientForm() {
                 <TextField
                     fullWidth
                     variant="filled"
-                    label="Ingredient Name"
+                    label="Nom d'ingredient"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={values.ingredientName}
@@ -200,7 +200,7 @@ function IngredientForm() {
                     fullWidth
                     variant="filled"
                     type="number"
-                    label="Max Quantity"
+                    label="Quantité maximale"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={values.maxQuantity}
@@ -212,7 +212,7 @@ function IngredientForm() {
                     fullWidth
                     variant="filled"
                     type="number"
-                    label="Stock Quantity"
+                    label="Quantité stockée"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={values.stockQuantity}
@@ -223,7 +223,7 @@ function IngredientForm() {
                 <TextField
                     fullWidth
                     variant="filled"
-                    label="Unit of Measurement"
+                    label="Unité de mesure"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={values.unitOfMeasurement}
@@ -235,7 +235,7 @@ function IngredientForm() {
                     fullWidth
                     variant="filled"
                     type="number"
-                    label="Unit Price"
+                    label="Prix unitaire"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={values.unitPrice}
@@ -250,7 +250,7 @@ function IngredientForm() {
                     fullWidth
                     variant="filled"
                     type="number"
-                    label="Supplier"
+                    label="Fournisseur"
                     onBlur={handleBlur}
                     onChange={(e) => {
                       handleChange(e);
@@ -280,10 +280,10 @@ function IngredientForm() {
 
                 <Box display="flex" justifyContent="end" gap="10px">
                   <Button type="submit" variant="contained" color="secondary">
-                    Save
+                    Envoyer
                   </Button>
                   <Button variant="contained" color="error" onClick={cancel}>
-                    Cancel
+                    Annuler
                   </Button>
                 </Box>
               </Box>

@@ -135,7 +135,7 @@ const BillForm = () => {
         if (id === '_add') {
             return <span className="text-center">Ajouter une nouvelle facture</span>;
         } else {
-            return <span className="text-center">Metter à jour une facture</span>;
+            return <span className="text-center">Metter à jour les détails du facture</span>;
         }
     };
 

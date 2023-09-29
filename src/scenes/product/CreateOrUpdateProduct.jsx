@@ -97,17 +97,17 @@ const ProductForm = () => {
 
   const getTitle = () => {
     if (id === '_add') {
-      return <span className="text-center">Add product</span>;
+      return <span className="text-center">Ajouter un produit</span>;
     } else {
-      return <span className="text-center">Update product</span>;
+      return <span className="text-center">Metter à jour un product</span>;
     }
   };
 
   const getSubTitle = () => {
     if (id === '_add') {
-      return <span className="text-center">Add a new product</span>;
+      return <span className="text-center">Ajouter un nouveau product</span>;
     } else {
-      return <span className="text-center">Update your product</span>;
+      return <span className="text-center">Metter à jour les détails du product</span>;
     }
   };
 
@@ -145,7 +145,7 @@ const ProductForm = () => {
               fullWidth
               variant="filled"
               type="text"
-              label="Product Name"
+              label="Nom de produit"
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.productName}
@@ -173,7 +173,7 @@ const ProductForm = () => {
               fullWidth
               variant="filled"
               type="number"
-              label="Quantity"
+              label="Quantité"
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.quantity}
@@ -185,10 +185,10 @@ const ProductForm = () => {
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
-                Save
+                Sauvegarder
               </Button>
               <Button onClick={cancel} color="error" variant="contained" style={{ marginLeft: '10px' }}>
-                Cancel
+                Annuler
               </Button>
             </Box>
           </form>
