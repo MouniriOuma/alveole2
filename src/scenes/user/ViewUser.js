@@ -40,7 +40,7 @@ export default function ViewUser() {
 
     return (
         <Box m="20px">
-            <Header title="USER DETAILS" subtitle=" " />
+            <Header title="DETAILS D'UTILISATEUR" subtitle=" " />
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
                 <Card sx={{ width: '50%', height: '50%', backgroundColor: colors.blueAccent[700] }}>
                     <CardContent>
@@ -92,7 +92,7 @@ export default function ViewUser() {
                             startIcon={<KeyboardBackspaceIcon />}
                             onClick={() => navigate('/users')}
                         >
-                            Back
+                            Retour
                         </Button>
                         <Button
                             variant="contained"
@@ -100,7 +100,7 @@ export default function ViewUser() {
                             startIcon={<BorderColorIcon />}
                             onClick={() => editUser(id)}
                         >
-                            Edit
+                            Modifier
                         </Button>
                     </CardActions>
                 </Card>

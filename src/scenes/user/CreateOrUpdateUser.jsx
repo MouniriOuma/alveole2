@@ -105,17 +105,17 @@ const UserForm = () => {
 
     const getTitle = () => {
         if (id === '_add') {
-            return <span className="text-center">Add User</span>;
+            return <span className="text-center">Ajouter un utilisateur</span>;
         } else {
-            return <span className="text-center">Update user </span>;
+            return <span className="text-center">Metter à jour un utilisateur</span>;
         }
     };
 
     const getSubTitle = () => {
         if (id === '_add') {
-            return <span className="text-center">Add a new user</span>;
+            return <span className="text-center">Ajouter un nouveau utilisateur</span>;
         } else {
-            return <span className="text-center">Update / set new password for your User</span>;
+            return <span className="text-center">Metter à jour / changer le mot de pass pour ce utilisateur</span>;
         }
     };
 
@@ -157,7 +157,7 @@ const UserForm = () => {
                                 error={!!touched.roles && !!errors.roles}
                                 sx={{ gridColumn: 'span 4' }}
                             >
-                                <InputLabel>User Roles</InputLabel>
+                                <InputLabel>Roles d'utilisateur</InputLabel>
                                 <Select
                                     multiple
                                     value={roles}
@@ -216,10 +216,10 @@ const UserForm = () => {
 
                         <Box display="flex" justifyContent="end" mt="20px">
                             <Button type="submit" color="secondary" variant="contained">
-                                Save
+                                Sauvegarder
                             </Button>
                             <Button onClick={cancel} color="error" variant="contained" style={{ marginLeft: '10px' }}>
-                                Cancel
+                                Annuler
                             </Button>
                         </Box>
                     </form>

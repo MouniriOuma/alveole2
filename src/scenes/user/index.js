@@ -54,7 +54,7 @@ function ListUsers() {
     // { field: 'id', headerName: 'ID' },
     { field: 'username', headerName: 'Username', flex: 1 },
     { field: 'email', headerName: 'Email', flex: 1 },
-    { field: 'roles', headerName: 'User role', flex: 1 },
+    { field: 'roles', headerName: 'Roles', flex: 1 },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -117,7 +117,7 @@ function ListUsers() {
       startIcon={<AddIcon />}
       sx={{ marginRight: '10px' }}  
     >
-      Add
+      Ajouter
     </Button>
     <Box
       m="40px 0 0 0"
