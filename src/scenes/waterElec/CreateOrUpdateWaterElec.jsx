@@ -91,11 +91,11 @@ const WaterElecForm = () => {
   };
 
   const getTitle = () => {
-    return id === '_add' ? <span className="text-center">Add Bill</span> : <span className="text-center">Update Bill</span>;
+    return id === '_add' ? <span className="text-center">Ajouter facture eau/électricité</span> : <span className="text-center">Update Bill</span>;
   };
 
   const getSubTitle = () => {
-    return id === '_add' ? <span className="text-center">Add a new bill</span> : <span className="text-center">Update Bill</span>;
+    return id === '_add' ? <span className="text-center">Ajouter les détails du facture</span> : <span className="text-center">Update Bill</span>;
   };
 
   return (
@@ -128,7 +128,7 @@ const WaterElecForm = () => {
                   <TextField
                       fullWidth
                       variant="filled"
-                      label="Bill Number"
+                      label="N facture"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.bill_Num}
@@ -141,7 +141,7 @@ const WaterElecForm = () => {
                       fullWidth
                       variant="filled"
                       type="number"
-                      label="Cost"
+                      label="Coùt"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.cost}
@@ -154,7 +154,7 @@ const WaterElecForm = () => {
                       fullWidth
                       variant="filled"
                       select
-                      label="Water/Electricity"
+                      label="Eau/Electricité"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.water_elec}
@@ -187,7 +187,7 @@ const WaterElecForm = () => {
 
                 <Box mt="20px" display="flex" justifyContent="flex-end">
                   <Button type="submit" variant="contained" color="secondary" onClick={handleFormSubmit}>
-                    Save
+                    Sauvegarder
                   </Button>
                   <Button
                       variant="contained"
@@ -195,7 +195,7 @@ const WaterElecForm = () => {
                       onClick={cancel}
                       sx={{ ml: '10px' }}
                   >
-                    Cancel
+                    Annuler
                   </Button>
                 </Box>
               </form>

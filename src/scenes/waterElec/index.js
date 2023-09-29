@@ -84,9 +84,9 @@ function ListWaterElec() {
   };
 
   const columns = [
-    { field: 'bill_Num', headerName: 'Bill Number', flex: 1 },
-    { field: 'cost', headerName: 'Cost', type: 'number', flex: 1 },
-    { field: 'water_elec', headerName: 'Water/Electricity', flex: 1 },
+    { field: 'bill_Num', headerName: 'N facture', flex: 1 },
+    { field: 'cost', headerName: 'Coùt', type: 'number', flex: 1 },
+    { field: 'water_elec', headerName: 'Eau/Electricité', flex: 1 },
     { field: 'date', headerName: 'Date', type: 'date', flex: 1 },
     {
       field: 'actions',
@@ -144,7 +144,7 @@ function ListWaterElec() {
         startIcon={<AddIcon />}
         sx={{ marginRight: '10px' }}  
       >
-        Add 
+        Ajouter
       </Button>
       <Box
         m="40px 0 0 0"

@@ -80,7 +80,7 @@ export default function ViewWaterElec() {
 
     return (
         <Box m="20px">
-            <Header title="WATER/ELECTRICITY DETAILS" subtitle=" " />
+            <Header title="DETAILS D EAU/Electricité " subtitle=" " />
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
                 <Card sx={{ width: '50%', height: '50%', backgroundColor: colors.blueAccent[700] }}>
                     <CardContent>
@@ -95,10 +95,10 @@ export default function ViewWaterElec() {
                         </Grid>
                         {waterElec ? (
                             <Grid container spacing={2}>
-                                {renderField('Bill Number', waterElec.bill_Num)}
+                                {renderField('N facture', waterElec.bill_Num)}
                                 {renderField('Cost', waterElec.cost)}
                                 {renderField('Date', waterElec.date)}
-                                {renderField('Water/Electricity', waterElec.water_elec)}
+                                {renderField('Eau/Electricité', waterElec.water_elec)}
                             </Grid>
                         ) : (
                             <Typography variant="body2" color="text.secondary">
@@ -114,7 +114,7 @@ export default function ViewWaterElec() {
                             startIcon={<KeyboardBackspaceIcon />}
                             onClick={() => navigate('/waterElecs')}
                         >
-                            Back
+                            Retour
                         </Button>
                         {!isUser && (
                         <Button
@@ -123,7 +123,7 @@ export default function ViewWaterElec() {
                             startIcon={<BorderColorIcon />}
                             onClick={() => editWaterElec(id)}
                         >
-                            Edit
+                            Modifier
                         </Button>)}
                     </CardActions>
                 </Card>
