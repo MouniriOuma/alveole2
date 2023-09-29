@@ -79,12 +79,12 @@ function ListIngredients() {
 
   const columns = [
    // { field: 'ingredientId', headerName: 'ID'},
-    { field: 'name', headerName: 'Name', flex: 1 },
-    { field: 'stockQuantity', headerName: 'Stock Quantity', type: 'number', flex: 1 },
-    { field: 'unitOfMeasurement', headerName: 'Unit of Measurement', flex: 1  },
-    { field: 'unitPrice', headerName: 'Unit Price', type: 'number', flex: 1 },
+    { field: 'name', headerName: 'Nom', flex: 1 },
+    { field: 'stockQuantity', headerName: 'Quantité stockée', type: 'number', flex: 1 },
+    { field: 'unitOfMeasurement', headerName: 'Unité de mesure', flex: 1  },
+    { field: 'unitPrice', headerName: 'Prix unitaire', type: 'number', flex: 1 },
     { field: 'description', headerName: 'Description', flex: 1 },
-    { field: 'supplier', headerName: 'Supplier', flex: 1 },
+    { field: 'supplier', headerName: 'Fournisseur', flex: 1 },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -136,7 +136,7 @@ function ListIngredients() {
 
     return (
     <Box m="20px">
-      <Header title="INGREDIENTS" subtitle="All ingredients" />
+      <Header title="INGREDIENTS" subtitle="tous les ingredients" />
       <Button 
         onClick={() => addIngredient()} 
         variant="contained" 
@@ -145,7 +145,7 @@ function ListIngredients() {
         startIcon={<AddIcon />} 
         sx={{ marginBottom: '10px' }}
         >
-        Add Ingredient
+          Ajouter
       </Button>
       <Box
         m="40px 0 0 0"

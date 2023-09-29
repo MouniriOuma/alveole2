@@ -121,7 +121,7 @@ function ListProdCost() {
 
     return (
         <Box m="20px">
-            <Header title="PRODUCT COSTS" subtitle="All product costs" />
+            <Header title="COUT DE PRODUIT" subtitle="HISTORIQUE" />
             <Button
                 onClick={() => addProductCost()}
                 variant="contained"
@@ -130,7 +130,7 @@ function ListProdCost() {
                 startIcon={<AddIcon />}
                 sx={{ marginRight: '10px' }}
             >
-                Add
+                Ajouter
             </Button>
             <Box
                 m="40px 0 0 0"

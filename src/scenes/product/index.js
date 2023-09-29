@@ -85,9 +85,9 @@ function ListProducts() {
 
   const columns = [
   // { field: 'productId', headerName: 'Product ID' },
-    { field: 'productName', headerName: 'Product Name', flex: 1 },
+    { field: 'productName', headerName: 'Nom Produit', flex: 1 },
     { field: 'description', headerName: 'Description', flex: 1 },
-    { field: 'quantity', headerName: 'Quantity' },
+    { field: 'quantity', headerName: 'Quantité' },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -145,7 +145,7 @@ function ListProducts() {
         startIcon={<AddIcon />}
         sx={{ marginRight: '10px' }}  
       >
-        Add
+        Ajouter
       </Button>
       <Box
         m="40px 0 0 0"
