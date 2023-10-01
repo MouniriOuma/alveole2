@@ -115,7 +115,7 @@ const UserForm = () => {
         if (id === '_add') {
             return <span className="text-center">Ajouter un nouveau utilisateur</span>;
         } else {
-            return <span className="text-center">Metter à jour / changer le mot de pass pour ce utilisateur</span>;
+            return <span className="text-center">Changer le mot de passe / Metter à jour pour ce utilisateur</span>;
         }
     };
 
@@ -215,7 +215,7 @@ const UserForm = () => {
                         </Box>
 
                         <Box display="flex" justifyContent="end" mt="20px">
-                            <Button type="submit" color="secondary" variant="contained">
+                            <Button type="submit" color="secondary" variant="contained" >
                                 Sauvegarder
                             </Button>
                             <Button onClick={cancel} color="error" variant="contained" style={{ marginLeft: '10px' }}>

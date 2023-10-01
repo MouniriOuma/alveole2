@@ -28,6 +28,9 @@ class UserService {
     return axios.get(USER_API_BASE_URL + '/role/' + username);
   }
 
+  logout() {
+    return axios.post(SIGN_USER_API_BASE_URL + '/signout');
+  }
 
 }
 

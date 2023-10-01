@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -43,7 +43,7 @@ const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Dashboard");
+  const [selected, setSelected] = useState("");
 
   //define user role
   const username = localStorage.getItem('username');
@@ -74,9 +74,17 @@ const Sidebar = () => {
     }
 
     const isUser = isUserRole(role);
+    const navigate = useNavigate();
 
-
-
+    const handleLogout = () => {
+        UserService.logout()
+            .then(() => {
+                navigate('/');
+            })
+            .catch((error) => {
+                console.error('Error logging out', error);
+            });
+    };
 
     return (
     <Box
@@ -269,6 +277,7 @@ const Sidebar = () => {
               icon={<LogoutIcon />}
               selected={selected}
               setSelected={setSelected}
+              onClick={handleLogout}
             />
           </Box>
         </Menu>

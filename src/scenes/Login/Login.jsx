@@ -61,9 +61,7 @@ class Login extends Component {
             loading: false,
           });
           // Perform any necessary actions after successful login
-          // For example, redirect to a dashboard page
-          // Replace "/Dashboard" with the actual path to your dashboard page
-          this.props.history.push("/Dashboard");
+          this.props.history.push("/products");
         })
         .catch(() => {
           this.setState({
@@ -79,7 +77,7 @@ class Login extends Component {
     const { isLoggedIn, message } = this.props;
 
     if (isLoggedIn) {
-      return <Navigate to="/Dashboard" />;
+      return <Navigate to="/products" />;
     }
 
     return (

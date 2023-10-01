@@ -13,6 +13,8 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { tokens } from "../../theme";
+import FileDownloadOffIcon from '@mui/icons-material/FileDownloadOff';
+import SendAndArchiveIcon from '@mui/icons-material/SendAndArchive';
 
 export default function Cost() {
     const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -90,7 +92,7 @@ export default function Cost() {
                             variant="contained"
                             color="secondary"
                             sx={{ marginRight: '10px' }}
-                            startIcon={<KeyboardBackspaceIcon />}
+                            startIcon={<SendAndArchiveIcon />}
                             onClick={()=> saveCost(name,price)}
                         >
                             Sauvgarder
@@ -99,7 +101,7 @@ export default function Cost() {
                             variant="contained"
                             color="secondary"
                             sx={{ marginRight: '10px' }}
-                            startIcon={<KeyboardBackspaceIcon />}
+                            startIcon={<FileDownloadOffIcon />}
                             onClick={() => navigate('/product-cost')}
                         >
                             Passer

@@ -85,7 +85,7 @@ const ProductForm = () => {
 
   const checkoutSchema = yup.object().shape({
     description: yup.string().required('Description is required'),
-    productName: yup.string().required('Product Name is required'),
+    productName: yup.string().required('Nom produit is required'),
     quantity: yup
       .number()
       .required('Quantity is required'),
@@ -159,7 +159,7 @@ const ProductForm = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Description"
+                label="Déscription"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.description}

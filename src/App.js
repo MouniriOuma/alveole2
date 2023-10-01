@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import {Route, Routes} from "react-router-dom";
 import Topbar from './scenes/base/Topbar';
 import Sidebar from "./scenes/base/Sidebar";
-import Dashboard from "./scenes/dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import {CssBaseline, ThemeProvider} from "@mui/material";
@@ -61,8 +60,6 @@ function App() {
               <Routes>
                 {/* login */}
                   <Route path="/" element={<LoginForm />} />
-                {/* Dashbord */}
-                  <Route path="/Dashboard" element={<Dashboard />} />
                 {/* Client */}
                   <Route path = "/clients" element = {<ListClients />} />
                   <Route path = "/add-client/:id" element = {<ClientForm />} />

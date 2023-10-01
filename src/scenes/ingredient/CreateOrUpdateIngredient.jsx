@@ -276,8 +276,6 @@ function IngredientForm() {
                 </TextField>
 
 
-
-
                 <Box display="flex" justifyContent="end" gap="10px">
                   <Button type="submit" variant="contained" color="secondary">
                     Envoyer

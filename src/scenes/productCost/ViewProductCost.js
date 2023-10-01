@@ -39,7 +39,7 @@ export default function ViewProductCost() {
             return null;
         }
 
-        if (label === 'Cost') {
+        if (label === 'Cout') {
             value = `${value} DH`;
         }
 
@@ -69,7 +69,7 @@ export default function ViewProductCost() {
                         </Grid>
                         {productCost ? (
                             <Grid container spacing={2} sx={{ textAlign: 'center' }}>
-                                {renderField('Cost', productCost.cost)}
+                                {renderField('Cout', productCost.cost)}
                             </Grid>
                         ) : (
                             <Typography variant="body2" color="text.secondary">

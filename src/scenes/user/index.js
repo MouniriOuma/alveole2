@@ -108,7 +108,7 @@ function ListUsers() {
 
     return (
     <Box m="20px">
-    <Header title="USERS" subtitle="All users" />
+    <Header title="UTILISATEURS" subtitle="Tous les utilisateurs" />
     <Button
       onClick={() => addUser()}
       variant="contained"

@@ -40,7 +40,7 @@ const ProductPriceCalculator = () => {
     });
 
     const cancel = () => {
-        navigate('/BonDeCommande');
+        navigate('/product-cost');
     };
 
     const getTitle = () => {
@@ -323,7 +323,7 @@ const ProductPriceCalculator = () => {
                                                     return (
                                                         <div key={index} className="mb-3">
                                                             <div className="row">
-                                                                <Typography variant="subtitle3">Autres</Typography>
+                                                                <Typography variant="subtitle3">Autres charges</Typography>
                                                                 <div className="col-md-3">
                                                                     <TextField
                                                                         margin="normal"
@@ -449,7 +449,7 @@ const ProductPriceCalculator = () => {
                                             color="secondary"
                                             variant="contained"
                                         >
-                                            Retirer
+                                            Soumettre
                                         </Button>
                                         <Button
                                             onClick={cancel}

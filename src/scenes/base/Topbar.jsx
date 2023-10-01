@@ -15,11 +15,12 @@ const Topbar = () => {
   return (
     <Box display="flex" justifyContent="space-between" p={1} backgroundColor={colors.primary[400]}>
       {/* name  */}
-      <Box
-        display="flex"
-      >
-       Alveole du maroc
-      </Box>
+        <Box
+            display="flex"
+        >
+            <img src="public/logo.png" alt="Logo" />
+            Alveole du maroc
+        </Box>
 
       {/* ICONS */}
       <Box display="flex">

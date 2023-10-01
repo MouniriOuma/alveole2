@@ -50,8 +50,8 @@ const Login = () => {
 
 
 
-                    // Redirect to Dashboard
-                    navigate('/Dashboard');
+                    // Redirect to products
+                    navigate('/products');
 
                 } else if (response.type === 'LOGIN_FAIL') {
                     setLoggedIn(false);

@@ -136,7 +136,7 @@ function ListProducts() {
 
   return (
     <Box m="20px">
-      <Header title="PRODUCTS" subtitle="All products" />
+      <Header title="PRODUCTS" subtitle="Tous les produits" />
       <Button
         onClick={() => addProduct()}
         variant="contained"

@@ -80,7 +80,7 @@ export default function ViewProduct() {
                                 <Grid item xs={12}>
                                     <Typography variant="body2" color="text.secondary" sx={{ fontSize: 16 }}>
                                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                            <strong>Description:</strong>
+                                            <strong>Déscription:</strong>
                                             <Box sx={{ marginLeft: '30px' }}>{product.description}</Box>
                                         </Box>
                                     </Typography>
@@ -88,7 +88,7 @@ export default function ViewProduct() {
                                 <Grid item xs={12}>
                                     <Typography variant="body2" color="text.secondary" sx={{ fontSize: 16 }}>
                                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                            <strong>Quantity:</strong>
+                                            <strong>Quantité:</strong>
                                             <Box sx={{ marginLeft: '50px' }}>{product.quantity}</Box>
                                         </Box>
                                     </Typography>

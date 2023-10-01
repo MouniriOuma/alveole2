@@ -131,13 +131,13 @@ export default function ViewFacture() {
                             </TableContainer>
 
                             <Grid container justifyContent="flex-end"  marginTop='10px' >
-                                {renderField('Total HT', `${bill.totalHT} DH`)}
+                                {renderField('Totale HT', `${bill.totalHT} DH`)}
                             </Grid>
                             <Grid container justifyContent="flex-end"  marginTop='10px' >
-                                {renderField('Total TVA', `${bill.totalTVA} DH`)}
+                                {renderField('Totale TVA', `${bill.totalTVA} DH`)}
                             </Grid>
                             <Grid container justifyContent="flex-end"  marginTop='10px' >
-                                {renderField('Total TTC', `${bill.totalTTC} DH`)}
+                                {renderField('Totale TTC', `${bill.totalTTC} DH`)}
                             </Grid>
 
                         </CardContent>

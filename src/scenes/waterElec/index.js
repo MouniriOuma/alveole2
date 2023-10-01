@@ -135,7 +135,7 @@ function ListWaterElec() {
 
   return (
     <Box m="20px">
-      <Header title="WATER/ELECTRICITY BILLS" subtitle="All bills" />
+      <Header title="FACTURE D'EAU/ELECTRICITE" subtitle="Toutes les factures" />
       <Button
         onClick={() => addWaterElec()}
         variant="contained"

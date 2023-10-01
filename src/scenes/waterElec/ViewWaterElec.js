@@ -80,7 +80,7 @@ export default function ViewWaterElec() {
 
     return (
         <Box m="20px">
-            <Header title="DETAILS D EAU/Electricité " subtitle=" " />
+            <Header title="DETAILS D'EAU/ELECTRICITE " subtitle=" " />
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
                 <Card sx={{ width: '50%', height: '50%', backgroundColor: colors.blueAccent[700] }}>
                     <CardContent>
@@ -96,7 +96,7 @@ export default function ViewWaterElec() {
                         {waterElec ? (
                             <Grid container spacing={2}>
                                 {renderField('N facture', waterElec.bill_Num)}
-                                {renderField('Cost', waterElec.cost)}
+                                {renderField('Coùt', waterElec.cost)}
                                 {renderField('Date', waterElec.date)}
                                 {renderField('Eau/Electricité', waterElec.water_elec)}
                             </Grid>

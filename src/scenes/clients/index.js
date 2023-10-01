@@ -144,7 +144,7 @@ const rows = clients.map((client) => ({
 
   return (
     <Box m="20px">
-      <Header title="CLIENTS" subtitle="All clients" />
+      <Header title="CLIENTS" subtitle="Tous les clients" />
       <Button
         onClick={() => addClient()}
         variant="contained"

@@ -237,8 +237,8 @@ const BillForm = () => {
                                 helperText={touched.status && errors.status}
                                 sx={{ gridColumn: "span 2" }}
                             >
-                                <MenuItem value="PENDING">PENDING</MenuItem>
-                                <MenuItem value="PAID">PAID</MenuItem>
+                                <MenuItem value="PENDING">En attendant</MenuItem>
+                                <MenuItem value="PAID">Payé</MenuItem>
                             </TextField>
 
                             {/* here the supplier text field */}

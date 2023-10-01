@@ -94,7 +94,7 @@ export default function ViewIngredient() {
                         </Grid>
                         {ingredient ? (
                             <Grid container spacing={2}>
-                                {renderField('Description', ingredient.description)}
+                                {renderField('Déscription', ingredient.description)}
                                 {renderField('Quantité maximale', ingredient.maxQuantity)}
                                 {renderField('Quantité stockée', ingredient.stockQuantity)}
                                 {renderField('Unité de mesure', ingredient.unitOfMeasurement)}
